@@ -11,6 +11,6 @@ public class GravityController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		Physics2D.gravity = new Vector2(gravityX, gravityY);
+		Physics.gravity = new Vector2(gravityX, gravityY);
 	}
 }
