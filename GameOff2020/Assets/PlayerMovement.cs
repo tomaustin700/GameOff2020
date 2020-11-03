@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
-    public float JumpHeight = 10f;
+    public float JumpHeight = 3f;
     public LayerMask groundLayers;
     public LayerMask CameraRotateLayerMask;
     private float horizontal;

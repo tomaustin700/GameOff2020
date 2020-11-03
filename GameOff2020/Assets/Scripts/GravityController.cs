@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class GravityController : MonoBehaviour
 {
-	
-	public float gravityX;
-	public float gravityY;
-
-	// Use this for initialization
-	void Start()
-	{
-		Physics.gravity = new Vector2(gravityX, gravityY);
-	}
+    // Use this for initialization
+    void Start()
+    {
+        //Earth gravity is -9.5f
+        Physics.gravity = new Vector3(0, -3, 0);
+    }
 }
