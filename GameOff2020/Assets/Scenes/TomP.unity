@@ -495,6 +495,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0c05d8a3b468084088500b14e74e576, type: 3}
+--- !u!114 &1270885797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1414553808771494952, guid: 89729c74ff541db488c2c8f9f90a5768, type: 3}
+  m_PrefabInstance: {fileID: 1414553809183833262}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1547029145
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,17 +965,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 938133227355519363, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
+      propertyPath: oxygenText
+      value: 
+      objectReference: {fileID: 1270885797}
     - target: {fileID: 1135181053363690634, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
       propertyPath: m_Name
       value: Player_WithCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907572486509695105, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
-      propertyPath: JumpHeight
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3907572486509695167, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8409669353421842433, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
       propertyPath: m_LocalPosition.x
