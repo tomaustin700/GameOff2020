@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ad9bc0cf68020c746a7b9e6761686936
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Taurus Mono Outline
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8884a8c597bf6f344b17acaefd7f856d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
