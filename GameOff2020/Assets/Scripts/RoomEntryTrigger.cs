@@ -10,6 +10,11 @@ public class RoomEntryTrigger : MonoBehaviour
 
     private PlayerManager playerManager;
 
+    GameObject wall1;
+    GameObject wall2;
+    GameObject wall3;
+    GameObject wall4;
+
     private void Awake()
     {
         playerManager = GameObject.Find("Player_WithCamera").GetComponent<PlayerManager>();
@@ -17,7 +22,10 @@ public class RoomEntryTrigger : MonoBehaviour
 
     void Start()
     {
-        
+        wall1 = GameObject.Find("Wall 1");
+        wall2 = GameObject.Find("Wall 2");
+        wall3 = GameObject.Find("Wall 3");
+        wall4 = GameObject.Find("Wall 4");
     }
 
     // Update is called once per frame
@@ -27,26 +35,26 @@ public class RoomEntryTrigger : MonoBehaviour
     }
     void OnTriggerExit()
     {
-        playerManager.inHab = !playerManager.inHab;
-
-        var wall1 = GameObject.Find("Wall 1").GetComponent<Renderer>();
-        var wall2 = GameObject.Find("Wall 2").GetComponent<Renderer>();
-        var wall3 = GameObject.Find("Wall 3").GetComponent<Renderer>();
-        var wall4 = GameObject.Find("Wall 4").GetComponent<Renderer>();
-
-        if (playerManager.inHab)
-        {
-            wall1.material = inHabMaterial;
-            wall2.material = inHabMaterial;
-            wall3.material = inHabMaterial;
-            wall4.material = inHabMaterial;
-        }
-        else
-        {
-            wall1.material = defaultMaterial;
-            wall2.material = defaultMaterial;
-            wall3.material = defaultMaterial;
-            wall4.material = defaultMaterial;
-        }
+        playerManager.inHab = false;
+        wall1 = GameObject.Find("Wall 1");
+        wall2 = GameObject.Find("Wall 2");
+        wall3 = GameObject.Find("Wall 3");
+        wall4 = GameObject.Find("Wall 4");
+        wall1.GetComponent<Renderer>().material = defaultMaterial;
+        wall2.GetComponent<Renderer>().material = defaultMaterial;
+        wall3.GetComponent<Renderer>().material = defaultMaterial;
+        wall4.GetComponent<Renderer>().material = defaultMaterial;
+    }
+    void OnTriggerEnter()
+    {
+        playerManager.inHab = true;
+        wall1 = GameObject.Find("Wall 1");
+        wall2 = GameObject.Find("Wall 2");
+        wall3 = GameObject.Find("Wall 3");
+        wall4 = GameObject.Find("Wall 4");
+        wall1.GetComponent<Renderer>().material = inHabMaterial;
+        wall2.GetComponent<Renderer>().material = inHabMaterial;
+        wall3.GetComponent<Renderer>().material = inHabMaterial;
+        wall4.GetComponent<Renderer>().material = inHabMaterial;
     }
 }
