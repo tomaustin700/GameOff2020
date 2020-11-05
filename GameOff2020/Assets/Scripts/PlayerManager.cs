@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class PlayerManager : MonoBehaviour
 {
     public float oxygenLevel = 100f;
+    public float healthLevel = 100f;
     public Text oxygenText;
+    public Text healthText;
     public bool inHab;
     public bool playerDead;
     public float oxygenSubtractionMultiplier = 1;
@@ -33,8 +35,15 @@ public class PlayerManager : MonoBehaviour
             else
                 oxygenText.color = Color.black;
 
-            if (oxygenLevel == 0)
-                playerDead = true;
+            if (oxygenLevel == 0 && healthLevel > 0)
+            {
+                if (healthLevel - 25 >= 0)
+                    healthLevel = healthLevel - 25f;
+                else
+                {
+                    healthLevel = 0f;
+                }
+            }
         }
         else
         {
@@ -42,7 +51,7 @@ public class PlayerManager : MonoBehaviour
                 oxygenLevel = 100;
         }
 
-        oxygenText.text = "Oxygen: " + oxygenLevel;
+        oxygenText.text = oxygenLevel.ToString();
 
     }
 }
