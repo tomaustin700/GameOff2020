@@ -28,7 +28,13 @@ public class PlayerMovement : MonoBehaviour
         bool onGround = Physics.CheckSphere(transform.position, 0.5f, groundLayers);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if(animator.GetInteger("PlayerState") == 2 && onGround && !isJumping)
+
+        if (!onGround)
+        {
+            animator.SetInteger("PlayerState", 5);
+
+        }
+        else if (animator.GetInteger("PlayerState") == 2 && onGround && !isJumping)
         {
             animator.SetInteger("PlayerState", 3);
         }
