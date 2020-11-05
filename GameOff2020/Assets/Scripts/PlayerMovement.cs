@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumping = false;
     private Animator animator;
     private bool isRunning = false;
+    private bool isFloating = false;
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -28,7 +29,28 @@ public class PlayerMovement : MonoBehaviour
         bool onGround = Physics.CheckSphere(transform.position, 0.5f, groundLayers);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        if(animator.GetInteger("PlayerState") == 2 && onGround && !isJumping)
+
+        if (isFloating && onGround)
+        {
+            if (horizontal != 0 || vertical != 0)
+            {
+                if (!isRunning)
+                {
+                    animator.SetInteger("PlayerState", 7);
+                }
+                else
+                {
+                    animator.SetInteger("PlayerState", 6);
+                }
+            }
+            else
+                animator.SetInteger("PlayerState", 8);
+
+            isFloating = false;
+
+        }
+
+        if (animator.GetInteger("PlayerState") == 2 && onGround && !isJumping)
         {
             animator.SetInteger("PlayerState", 3);
         }
@@ -60,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
-            rigidBody.MovePosition(transform.position + movementVector * Time.deltaTime * (Speed * 2));
+            rigidBody.MovePosition(transform.position + movementVector * Time.deltaTime * (Speed * 1.5f));
         }
         else
         {
@@ -93,5 +115,10 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce((Vector3.up * JumpHeight) + rigidBody.velocity, ForceMode.Impulse);
         }
         isJumping = false;
+        isFloating = true;
+        animator.SetInteger("PlayerState", 5);
+
+
+
     }
 }
