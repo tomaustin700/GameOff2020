@@ -87,7 +87,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eafe7fcaca36e204f99d738e2853d117, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eafe7fcaca36e204f99d738e2853d117, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: JumpHeight
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8339537576814164829, guid: 8b05a2201ab59684c94ec6667e4cdcf2, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: bf82d477c9dbd1a4a8f6edb6af2148b5, type: 2}
     - target: {fileID: 8339537576814164832, guid: 8b05a2201ab59684c94ec6667e4cdcf2, type: 3}
       propertyPath: m_Name
       value: Player_Astronaut
