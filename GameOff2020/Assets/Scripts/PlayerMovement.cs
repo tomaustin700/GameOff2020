@@ -6,71 +6,68 @@ public class PlayerMovement : MonoBehaviour
 {
     public float Speed;
     public float JumpHeight = 3f;
+    public PlayerAnimationState PlayerAnimationState;
     public LayerMask groundLayers;
     public LayerMask CameraRotateLayerMask;
     private float horizontal;
     private float vertical;
     private Rigidbody rigidBody;
+    [SerializeField]
     private bool queueJump = false;
+    [SerializeField]
     private bool isJumping = false;
     private Animator animator;
+    [SerializeField]
     private bool isRunning = false;
+    [SerializeField]
     private bool isFloating = false;
+    [SerializeField]
+    private bool onGround = false;
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        Debug.Log(animator != null);
         rigidBody = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool onGround = Physics.CheckSphere(transform.position, 0.5f, groundLayers);
+        animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
+        onGround = Physics.CheckSphere(transform.position, 0.2f, groundLayers);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-
-        if (isFloating && onGround)
+        var yVelocity = Mathf.Abs(GetComponent<Rigidbody>().velocity.y);
+        if (yVelocity >= 0.5f)
         {
-            if (horizontal != 0 || vertical != 0)
+            isFloating = true;
+            PlayerAnimationState = PlayerAnimationState.Floating;
+        }
+        else
+        {
+            isFloating = false;
+        }
+
+        if(onGround && !isJumping && !isFloating && horizontal == 0 && vertical == 0)
+        {
+            PlayerAnimationState = PlayerAnimationState.Idle;
+        }
+        else
+        {
+            if ((horizontal != 0 || vertical != 0) && onGround && !isJumping && !isFloating)
             {
                 if (!isRunning)
                 {
-                    animator.SetInteger("PlayerState", 7);
+                    PlayerAnimationState = PlayerAnimationState.Walking;
                 }
-                else
+                else if (isRunning)
                 {
-                    animator.SetInteger("PlayerState", 6);
+                    PlayerAnimationState = PlayerAnimationState.Running;
                 }
-            }
-            else
-                animator.SetInteger("PlayerState", 8);
 
-            isFloating = false;
-
-        }
-
-        if (animator.GetInteger("PlayerState") == 2 && onGround && !isJumping)
-        {
-            animator.SetInteger("PlayerState", 3);
-        }
-        else if(horizontal != 0 || vertical != 0 && onGround && !isJumping)
-        {
-            if(!isRunning)
-            {
-                animator.SetInteger("PlayerState", 1);
             }
-            else
-            {
-                animator.SetInteger("PlayerState", 4);
-            }
-            
         }
-        else if(!queueJump && onGround && !isJumping)
-        {
-            animator.SetInteger("PlayerState", 0);
-        }
-        if (Input.GetKey(KeyCode.Space) && !isJumping && onGround)
+        if (Input.GetKey(KeyCode.Space) && !isJumping && onGround && !isFloating)
         {
             queueJump = true;
         }
@@ -79,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 movementVector = (transform.forward * vertical) + (transform.right * horizontal);
+        movementVector.y = 0;
         if(Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
@@ -108,15 +106,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StartJump()
     {
         isJumping = true;
-        animator.SetInteger("PlayerState", 2);
+        PlayerAnimationState = PlayerAnimationState.Jumping;
         yield return new WaitForSeconds(0.5f);
         if (rigidBody.velocity.y <= 0 && Physics.CheckSphere(transform.position, 0.5f, groundLayers))
         {
             rigidBody.AddForce((Vector3.up * JumpHeight) + rigidBody.velocity, ForceMode.Impulse);
         }
         isJumping = false;
-        isFloating = true;
-        animator.SetInteger("PlayerState", 5);
+      
 
 
 
