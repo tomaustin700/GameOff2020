@@ -6,7 +6,7 @@ public class UseableObjectsManager : MonoBehaviour
 {
     [SerializeField] private string useableItemTag = "UseableItem";
     [SerializeField] private Material useableItemMaterial;
-    [SerializeField] private Material defaultItemMaterial;
+    private Material defaultItemMaterial;
     [SerializeField] private float useableRange;
     Rigidbody player;
     private Transform _currentItem;
@@ -30,9 +30,10 @@ public class UseableObjectsManager : MonoBehaviour
                 float dist = Vector3.Distance(player.transform.position, item.position);
                 if (dist < useableRange)
                 {
-                    var itemRenderer = item.GetComponent<Renderer>();
+                    var itemRenderer = (Renderer)item.GetComponentInChildren(typeof(Renderer));
                     if (itemRenderer != null)
                     {
+                        defaultItemMaterial = itemRenderer.material;
                         itemRenderer.material = useableItemMaterial;
                     }
                     _currentItem = item;
