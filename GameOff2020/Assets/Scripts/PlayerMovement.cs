@@ -34,11 +34,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
-        onGround = Physics.CheckSphere(transform.position, 0.2f, groundLayers);
+        onGround = Physics.CheckSphere(transform.position, 0.4f, groundLayers);
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         var yVelocity = Mathf.Abs(GetComponent<Rigidbody>().velocity.y);
-        if (yVelocity >= 0.5f)
+        if (yVelocity >= 0.5f && !onGround)
         {
             isFloating = true;
             PlayerAnimationState = PlayerAnimationState.Floating;
