@@ -7,14 +7,17 @@ public class PlayerManager : MonoBehaviour
 {
     public float oxygenLevel = 100f;
     public float healthLevel = 100f;
-    public Text oxygenText;
-    public Text healthText;
     public bool inHab;
     public bool playerDead;
     public float oxygenSubtractionMultiplier = 1;
+
+    private Text oxygenText;
+    private Text healthText;
     // Start is called before the first frame update
     void Start()
     {
+        oxygenText = GameObject.Find("oxygenValue").GetComponent<Text>();
+        healthText = GameObject.Find("healthValue").GetComponent<Text>();
         InvokeRepeating("UpdateOxygen", 0, 2.0f);
 
     }
