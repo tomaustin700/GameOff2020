@@ -577,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8409669353421842433, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -123.3
+      value: -204
       objectReference: {fileID: 0}
     - target: {fileID: 8409669353421842433, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
       propertyPath: m_LocalPosition.y
@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4fa6336c528e7439ec89467e02be29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ToolbarSelection: 0
+  ToolbarSelection: 1
   TrackedObject: {fileID: 1890501}
   GenerateOnStart: 1
   GenerationRadius: 3
