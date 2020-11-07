@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-  
-    public float powerLevel = 100f;
+
+    public int daysSurvived = 0;
     // Start is called before the first frame update
     void Start()
     {
+        InvokeRepeating("UpdateDaysSurvived", 0, 600);
+
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateDaysSurvived()
     {
-
+        daysSurvived++;
     }
 
     
