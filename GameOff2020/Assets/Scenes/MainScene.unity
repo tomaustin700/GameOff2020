@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2035111234}
-  m_IndirectSpecularColor: {r: 131.16855, g: 162.52502, b: 215.10977, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -893,6 +893,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: commonRockZSpread
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
+      propertyPath: rareRockXSpread
       value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
