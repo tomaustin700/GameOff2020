@@ -7,12 +7,25 @@ public class GameManager : MonoBehaviour
 {
 
     public int daysSurvived = 0;
-    // Start is called before the first frame update
+
+    private ItemSpawner itemSpawner;
+
+
     void Start()
     {
         InvokeRepeating("UpdateDaysSurvived", 0, 600);
+        SpawnItems();
+        Physics.gravity = new Vector3(0, -3, 0);
 
     }
+
+    void SpawnItems()
+    {
+        itemSpawner = GetComponent<ItemSpawner>();
+        if (itemSpawner != null)
+            itemSpawner.Spawn();
+    }
+
 
     // Update is called once per frame
     void UpdateDaysSurvived()
@@ -20,7 +33,7 @@ public class GameManager : MonoBehaviour
         daysSurvived++;
     }
 
-    
+
 
 
 }
