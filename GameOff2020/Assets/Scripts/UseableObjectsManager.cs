@@ -27,7 +27,7 @@ public class UseableObjectsManager : MonoBehaviour
             var item = hit.transform;
             if (item.CompareTag(useableItemTag))
             {
-                float dist = Vector3.Distance(player.transform.position, item.position);
+                float dist = Vector3.Distance(player.transform.position, hit.point);
                 if (dist < useableRange)
                 {
                     var itemRenderer = (Renderer)item.GetComponentInChildren(typeof(Renderer));
