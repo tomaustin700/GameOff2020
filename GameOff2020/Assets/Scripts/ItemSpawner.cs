@@ -6,13 +6,19 @@ public class ItemSpawner : MonoBehaviour
 {
 
     public GameObject playerPrefab;
-    public GameObject rockPrefab;
+    public GameObject commonRockPrefab;
+    public GameObject rareRockPrefab;
 
 
-    public float rockXSpread = 10;
-    public float rockYSpread = 2;
-    public float rockZSpread = 10;
-    public int rocksToSpawn = 10;
+    public float commonRockXSpread = 300;
+    public float commonRockYSpread = 2;
+    public float commonRockZSpread = 300;
+    public int commonRocksToSpawn = 50;
+
+    public float rareRockXSpread = 300;
+    public float rareRockYSpread = 2;
+    public float rareRockZSpread = 300;
+    public int rareRocksToSpawn = 10;
 
     public void Spawn()
     {
@@ -20,16 +26,30 @@ public class ItemSpawner : MonoBehaviour
         Instantiate(playerPrefab, new Vector3(0, 2, 0), Quaternion.identity);
 
 
-        for (int i = 0; i < rocksToSpawn; i++)
+        for (int i = 0; i < commonRocksToSpawn; i++)
         {
-            SpreadRocks();
+            SpreadCommonRocks();
+        }
+
+        for (int i = 0; i < commonRocksToSpawn; i++)
+        {
+            SpreadRareRocks();
         }
     }
 
-    void SpreadRocks()
+    void SpreadCommonRocks()
     {
-        Vector3 randPosition = new Vector3(Random.Range(-rockXSpread, rockXSpread), Random.Range(-rockYSpread, rockYSpread), Random.Range(-rockZSpread, rockZSpread)) + transform.position;
-        Instantiate(rockPrefab, randPosition, Quaternion.identity);
+        Vector3 randPosition = new Vector3(Random.Range(-commonRockXSpread, commonRockXSpread),
+            Random.Range(-commonRockYSpread, commonRockYSpread), Random.Range(-commonRockZSpread, commonRockZSpread)) + transform.position;
+        Instantiate(commonRockPrefab, randPosition, Quaternion.identity);
+
+    }
+
+    void SpreadRareRocks()
+    {
+        Vector3 randPosition = new Vector3(Random.Range(-rareRockXSpread, rareRockXSpread),
+            Random.Range(-rareRockYSpread, rareRockYSpread), Random.Range(-rareRockZSpread, rareRockZSpread)) + transform.position;
+        Instantiate(rareRockPrefab, randPosition, Quaternion.identity);
 
     }
 }

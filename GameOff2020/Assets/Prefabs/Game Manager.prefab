@@ -58,8 +58,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1135181053363690634, guid: 02db5495869531846b3f09ce67f78a52, type: 3}
-  rockPrefab: {fileID: 7530345389010977665, guid: 2d5bed0b94101ac4aadbbf73a78cc25a, type: 3}
-  rockXSpread: 300
-  rockYSpread: 0
-  rockZSpread: 300
-  rocksToSpawn: 50
+  commonRockPrefab: {fileID: 542309943682021657, guid: 9c86ec737d33b0142ad531ecbbd00d36, type: 3}
+  rareRockPrefab: {fileID: 8881592373060723496, guid: d67d840d937d6ac4498723f5d716dc98, type: 3}
+  commonRockXSpread: 300
+  commonRockYSpread: 2
+  commonRockZSpread: 300
+  commonRocksToSpawn: 50
+  rareRockXSpread: 300
+  rareRockYSpread: 2
+  rareRockZSpread: 300
+  rareRocksToSpawn: 10
