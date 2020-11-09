@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potentialRocks:
-  - {fileID: 100000, guid: d209be13548e70947bc39053977ce977, type: 3}
+  - {fileID: 100000, guid: d2db22038a6f9804598cd46453cc7cb8, type: 3}
   - {fileID: 100000, guid: 0f1e1518a80e562458930d8b2d0670d9, type: 3}
   - {fileID: 100000, guid: 1679506d96acb1447aa6870479416bf8, type: 3}
   - {fileID: 100000, guid: 5d4cffe5f1249a046b3bc42bbd99dc47, type: 3}
-  - {fileID: 100000, guid: d2db22038a6f9804598cd46453cc7cb8, type: 3}

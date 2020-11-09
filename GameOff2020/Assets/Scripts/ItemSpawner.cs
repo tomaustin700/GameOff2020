@@ -31,7 +31,7 @@ public class ItemSpawner : MonoBehaviour
             SpreadCommonRocks();
         }
 
-        for (int i = 0; i < commonRocksToSpawn; i++)
+        for (int i = 0; i < rareRocksToSpawn; i++)
         {
             SpreadRareRocks();
         }

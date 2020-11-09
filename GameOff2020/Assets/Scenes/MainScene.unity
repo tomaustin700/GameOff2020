@@ -588,7 +588,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10000
+  m_Intensity: 8000
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -631,7 +631,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5500
+  m_ColorTemperature: 5207
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -645,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035111233}
   m_LocalRotation: {x: 0.70019025, y: 0.5256512, z: 0.09865969, w: 0.47295955}
-  m_LocalPosition: {x: -3.18, y: 3, z: 0}
+  m_LocalPosition: {x: -307, y: 270, z: 255}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
-  m_Intensity: 10000
+  m_Intensity: 8000
   m_EnableSpotReflector: 0
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -898,6 +898,10 @@ PrefabInstance:
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: rareRockXSpread
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
+      propertyPath: rareRockYSpread
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_LocalPosition.x
