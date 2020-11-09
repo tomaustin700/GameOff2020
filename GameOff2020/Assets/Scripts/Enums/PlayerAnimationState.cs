@@ -10,5 +10,7 @@ using UnityEngine;
 		Jumping = 2,
 		//Landing = 3,
 		Running = 4,
-		Floating = 5
+		Floating = 5,
+		Using = 6,
+		Dying = 7
 	}

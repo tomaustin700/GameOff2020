@@ -13,12 +13,19 @@ public class PlayerManager : MonoBehaviour
 
     private Text oxygenText;
     private Text healthText;
+    private Text tempText;
+    private GameObject playerAstronaut;
+    
     // Start is called before the first frame update
     void Start()
     {
         oxygenText = GameObject.Find("oxygenValue").GetComponent<Text>();
         healthText = GameObject.Find("healthValue").GetComponent<Text>();
-        InvokeRepeating("UpdateOxygen", 0, 2.0f);
+        tempText = GameObject.Find("tempValue").GetComponent<Text>();
+        playerAstronaut = GameObject.Find("Player_Astronaut");
+
+        InvokeRepeating("UpdateOxygen", 0, 4.0f);
+        InvokeRepeating("UpdateTemp", 0, 5.0f);
 
     }
 
@@ -26,6 +33,43 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         
+
+    }
+
+    void UpdateTemp()
+    {
+        var playerPos = playerAstronaut.transform;
+        var temp = 100f;
+
+        if (playerPos.position.x > playerPos.position.z)
+        {
+            temp = temp - (playerPos.position.x / 150);
+        }
+        else
+        {
+            temp = temp - (playerPos.position.z / 150);
+
+        }
+
+        var dec = decimal.Round((decimal)Random.Range(temp - 0.8f, temp + 0.8f), 1);
+
+        tempText.text = dec.ToString() + "°c";
+
+        if (dec > 150 || dec < -150)
+        {
+            tempText.color = Color.red;
+
+            if (healthLevel - 25 >= 0)
+                healthLevel = healthLevel - 25f;
+            else
+            {
+                healthLevel = 0f;
+            }
+        }
+        else
+        {
+            tempText.color = Color.black;
+        }
     }
 
     void UpdateOxygen()
