@@ -266,7 +266,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 39a79c52a85b5b247bf71dcaa2ae0b73, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.07
+  m_Volume: 0.041
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -684,6 +684,11 @@ LightProbeGroup:
   - {x: -0.68649423, y: 0.51661086, z: 2.327536}
   - {x: -0.8738291, y: 0.51661086, z: 2.5225298}
   m_Dering: 0
+--- !u!1 &1943940125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2458250918459265512, guid: 89729c74ff541db488c2c8f9f90a5768, type: 3}
+  m_PrefabInstance: {fileID: 1414553809183833262}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2035111233
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   daysUntilRescue: 100
+  rescueTimerStarted: 0
+  rescueHud: {fileID: 0}
 --- !u!114 &2035111237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1008,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2458250918459265512, guid: 89729c74ff541db488c2c8f9f90a5768, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89729c74ff541db488c2c8f9f90a5768, type: 3}
 --- !u!1001 &5229372982781245561
@@ -1010,6 +1021,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5229372980702570076, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
+      propertyPath: rescueHud
+      value: 
+      objectReference: {fileID: 1943940125}
+    - target: {fileID: 5229372980702570076, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
+      propertyPath: daysUntilRescue
+      value: 61
+      objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570077, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_Name
       value: Game Manager
