@@ -6,16 +6,24 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public int daysSurvived = 0;
+    public int daysUntilRescue = 100;
 
     private ItemSpawner itemSpawner;
 
 
     void Start()
     {
-        InvokeRepeating("UpdateDaysSurvived", 0, 600);
+        InvokeRepeating("UpdateDaysUntilRescue", 0, 600);
         SpawnItems();
+
         Physics.gravity = new Vector3(0, -3, 0);
+
+
+    }
+
+    private void Update()
+    {
+       
 
     }
 
@@ -28,9 +36,10 @@ public class GameManager : MonoBehaviour
 
 
     // Update is called once per frame
-    void UpdateDaysSurvived()
+    void UpdateDaysUntilRescue()
     {
-        daysSurvived++;
+        if (daysUntilRescue > 0)
+            daysUntilRescue--;
     }
 
 
