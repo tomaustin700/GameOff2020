@@ -7,23 +7,16 @@ public class DirectionalArrow : MonoBehaviour
 {
     public GameObject player;
     private Vector3 target;
-    private Vector3 arrowOffset;
-    // Start is called before the first frame update
-    private void Start()
-    {
-        target = player.GetComponent<Rigidbody>().position;
-        arrowOffset = player.transform.position - transform.position;
-    }
 
-    // Update is called once per frame
-    private void Update()
+    void LateUpdate()
     {
-        //position of arrow
-        transform.position = player.transform.position - (new Vector3(arrowOffset.x, arrowOffset.y, arrowOffset.z));
+        Vector3 newPosition = player.transform.position;
+        newPosition.y = transform.position.y;
+        transform.position = newPosition;
 
-        ////rotation of arrow
-        Vector3 newTarget = target;
-        newTarget.y = transform.position.y;
-        transform.LookAt(newTarget);
+        //set target
+        target = new Vector3(0, 0);
+        //rotation
+        transform.LookAt(new Vector3(target.x, transform.position.y));
     }
 }
