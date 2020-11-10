@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 217e1b8e00dde52429278f8171ae553c, type: 3}
       propertyPath: m_Name
-      value: _ewArrow
+      value: DirectionArrow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217e1b8e00dde52429278f8171ae553c, type: 3}
