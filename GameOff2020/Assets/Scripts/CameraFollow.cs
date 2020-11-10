@@ -4,24 +4,39 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public GameObject FollowTarget;
-    private Vector3 CameraOffset;
-    public float MaxZoomInRange = 7.0f;
-    public float MaxZoomOutRange = 5f;
-    public float ScrollSpeed = 3f;
+    public Vector2 CameraSensitivity = new Vector2(3f, 3f );
+    public float TurnSpeed = 2.0f;
+    public GameObject CameraPoint;
     [SerializeField]
-    private float CameraZoom;
-    // Start is called before the first frame update
-    void Start()
+    private Vector2 mouseAxis;
+    private Vector3 targetRotation;
+    private float horizontal;
+    private void Awake()
     {
-        CameraOffset = FollowTarget.transform.position - transform.position;
+        Cursor.visible = false;
     }
-
     // Update is called once per frame
     void Update()
     {
-        CameraZoom = Mathf.Clamp(CameraZoom += Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed, -MaxZoomOutRange, MaxZoomInRange);
-        transform.position = FollowTarget.transform.position - (new Vector3(CameraOffset.x, CameraOffset.y + CameraZoom, CameraOffset.z));
-        transform.LookAt(FollowTarget.transform);
+        horizontal = Input.GetAxis("Horizontal");
+        mouseAxis = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")).normalized;
+        if(Mathf.Abs(mouseAxis.x) <= 0.001f || Mathf.Abs(mouseAxis.y) <= 0.001f)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        Vector2 mouseDir = new Vector2(CameraPoint.transform.rotation.eulerAngles.x + (mouseAxis.x * CameraSensitivity.y), CameraPoint.transform.rotation.eulerAngles.y + (mouseAxis.y * CameraSensitivity.x));//new Input.mousePosition * 0.05f;
+        Debug.Log(mouseDir);
+
+        Vector3 angle = new Vector3(Mathf.Clamp(mouseDir.x,0f,40f), mouseDir.y + (horizontal * TurnSpeed), 0);
+        if (Mathf.Abs(mouseAxis.x) > 0.001f || Mathf.Abs(mouseAxis.y) > 0.001f || horizontal != 0)
+        {
+            targetRotation = angle;
+        }
+        CameraPoint.transform.rotation = Quaternion.Slerp(CameraPoint.transform.rotation, Quaternion.Euler(targetRotation),0.5f);
     }
+
 }

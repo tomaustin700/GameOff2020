@@ -23,19 +23,28 @@ public class PlayerMovement : MonoBehaviour
     private bool isFloating = false;
     [SerializeField]
     private bool onGround = false;
+    private Vector3 currentVelocity;
+    private GameObject model;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         rigidBody = GetComponent<Rigidbody>();
-
+        model = transform.GetComponentInChildren<Animator>().gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if ((horizontal != 0 || vertical != 0))
+        {
+            var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
+            model.transform.rotation = Quaternion.Slerp(model.transform.rotation,Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z),0.2f);
+        }
+        
         animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
         onGround = Physics.CheckSphere(transform.position, 0.4f, groundLayers);
-        horizontal = Input.GetAxis("Horizontal");
+        horizontal = 0; //Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         var yVelocity = Mathf.Abs(GetComponent<Rigidbody>().velocity.y);
         if (yVelocity >= 0.5f && !onGround)
@@ -54,13 +63,13 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if ((horizontal != 0 || vertical != 0) && onGround && !isJumping && !isFloating)
+            if ((horizontal != 0 || vertical != 0))
             {
-                if (!isRunning)
+                if (!isRunning && onGround && !isJumping && !isFloating)
                 {
                     PlayerAnimationState = PlayerAnimationState.Walking;
                 }
-                else if (isRunning)
+                else if (isRunning && onGround && !isJumping && !isFloating)
                 {
                     PlayerAnimationState = PlayerAnimationState.Running;
                 }
@@ -75,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movementVector = (transform.forward * vertical) + (transform.right * horizontal);
+        Vector3 movementVector = model.transform.forward * vertical + model.transform.right * horizontal;
         movementVector.y = 0;
         if(Input.GetKey(KeyCode.LeftShift))
         {
@@ -88,15 +97,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.MovePosition(transform.position + movementVector * Time.deltaTime * Speed);
         }
       
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit))
-        {
-            var newPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-            transform.LookAt(newPosition);
-        }
-
+      
         if(queueJump && !isJumping)
         {
             queueJump = false;
