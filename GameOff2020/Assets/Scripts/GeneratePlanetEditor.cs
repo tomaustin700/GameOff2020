@@ -1,18 +1,18 @@
-﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
+﻿//using UnityEngine;
+//using System.Collections;
+//using UnityEditor;
 
-[CustomEditor(typeof(GeneratePlanet))]
-public class GeneratePlanetEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+////[CustomEditor(typeof(GeneratePlanet))]
+//public class GeneratePlanetEditor : Editor
+//{
+//    //public override void OnInspectorGUI()
+//    //{
+//    //    DrawDefaultInspector();
 
-        GeneratePlanet myScript = (GeneratePlanet)target;
-        if (GUILayout.Button("Create Planet"))
-        {
-            myScript.CreatePlanet();
-        }
-    }
-}
+//    //    GeneratePlanet myScript = (GeneratePlanet)target;
+//    //    if (GUILayout.Button("Create Planet"))
+//    //    {
+//    //        myScript.CreatePlanet();
+//    //    }
+//    //}
+//}
