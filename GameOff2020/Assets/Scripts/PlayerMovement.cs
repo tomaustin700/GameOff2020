@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerAnimationState PlayerAnimationState;
     public LayerMask groundLayers;
     public LayerMask CameraRotateLayerMask;
+    public bool AllowPlayerMovementInAir = false;
     private float horizontal;
     private float vertical;
     private Rigidbody rigidBody;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private bool isFloating = false;
     [SerializeField]
-    private bool onGround = false;
+    public bool onGround = false;
     private Vector3 currentVelocity;
     private GameObject model;
 
@@ -38,8 +39,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((horizontal != 0 || vertical != 0))
         {
-            var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
-            model.transform.rotation = Quaternion.Slerp(model.transform.rotation,Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z),0.2f);
+            if (!AllowPlayerMovementInAir && onGround)
+            {
+                var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
+                model.transform.rotation = Quaternion.Slerp(model.transform.rotation, Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z), 0.2f);
+            }
+            else if(AllowPlayerMovementInAir)
+            {
+                var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
+                model.transform.rotation = Quaternion.Slerp(model.transform.rotation, Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z), 0.2f);
+            }
+
         }
         
         animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
