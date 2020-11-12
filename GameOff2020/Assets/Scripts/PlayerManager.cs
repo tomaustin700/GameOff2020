@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
     private Text tempText;
     private GameObject playerAstronaut;
     private float temp;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +41,7 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
     }
 
@@ -77,33 +77,32 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-           // tempText.color = Color.black;
+            // tempText.color = Color.black;
         }
     }
 
     void UpdatePower()
     {
-        if (!inHab)
+
+        var tempMultiplier = (temp > 0 ? temp : (temp * -1)) * 0.05;
+        powerLvl.SetHealth(powerLvl.health - powerSubtractionMultiplier - (float)tempMultiplier);
+
+
+        if (powerLvl.health == 0 && healthLvl.health > 0)
         {
-            var tempMultiplier = (temp > 0 ? temp : (temp * -1)) * 0.05;
-            powerLvl.SetHealth(powerLvl.health - powerSubtractionMultiplier - (float)tempMultiplier);
-
-
-            if (powerLvl.health == 0 && healthLvl.health > 0)
+            if (healthLvl.health - 25 >= 0)
+                healthLvl.SetHealth(healthLvl.health - 25f);
+            else
             {
-                if (healthLvl.health - 25 >= 0)
-                    healthLvl.SetHealth(healthLvl.health - 25f);
-                else
-                {
-                    healthLvl.SetHealth(0f);
-                }
+                healthLvl.SetHealth(0f);
             }
         }
-        else
-        {
-            if (powerLvl.health < 100)
-                powerLvl.SetHealth(100);
-        }
+
+    }
+
+    public void Recharge()
+    {
+        powerLvl.SetHealth(100);
     }
 
     void UpdateOxygen()
@@ -111,7 +110,7 @@ public class PlayerManager : MonoBehaviour
         if (!inHab)
         {
             oxygenLvl.SetHealth(oxygenLvl.health - oxygenSubtractionMultiplier);
-         
+
 
             if (oxygenLvl.health == 0 && healthLvl.health > 0)
             {
