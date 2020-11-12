@@ -5,26 +5,35 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    public float oxygenLevel = 100f;
-    public float healthLevel = 100f;
+
     public bool inHab;
     public bool playerDead;
     public float oxygenSubtractionMultiplier = 1;
+    public float powerSubtractionMultiplier = 1;
 
-    private Text oxygenText;
-    private Text healthText;
+    private Healthbar oxygenLvl;
+    private Healthbar healthLvl;
+    private Healthbar powerLvl;
     private Text tempText;
     private GameObject playerAstronaut;
+    private float temp;
     
     // Start is called before the first frame update
     void Start()
     {
-        oxygenText = GameObject.Find("oxygenValue").GetComponent<Text>();
-        healthText = GameObject.Find("healthValue").GetComponent<Text>();
+        oxygenLvl = GameObject.Find("oxygenValue").GetComponent<Healthbar>();
+        healthLvl = GameObject.Find("healthValue").GetComponent<Healthbar>();
+        powerLvl = GameObject.Find("powerValue").GetComponent<Healthbar>();
         tempText = GameObject.Find("tempValue").GetComponent<Text>();
         playerAstronaut = GameObject.Find("Player_Astronaut");
 
-        InvokeRepeating("UpdateOxygen", 0, 4.0f);
+        oxygenLvl.SetHealth(100);
+        healthLvl.SetHealth(100);
+        powerLvl.SetHealth(100);
+        temp = 100f;
+
+        InvokeRepeating("UpdateOxygen", 4, 4.0f);
+        InvokeRepeating("UpdatePower", 60, 180);
         InvokeRepeating("UpdateTemp", 0, 5.0f);
 
     }
@@ -39,7 +48,7 @@ public class PlayerManager : MonoBehaviour
     void UpdateTemp()
     {
         var playerPos = playerAstronaut.transform;
-        var temp = 100f;
+        temp = 100f;
 
         if (playerPos.position.x > playerPos.position.z)
         {
@@ -57,18 +66,43 @@ public class PlayerManager : MonoBehaviour
 
         if (dec > 150 || dec < -150)
         {
-            tempText.color = Color.red;
+            //tempText.color = Color.red;
 
-            if (healthLevel - 25 >= 0)
-                healthLevel = healthLevel - 25f;
+            if (healthLvl.health - 25 >= 0)
+                healthLvl.SetHealth(healthLvl.health - 25f);
             else
             {
-                healthLevel = 0f;
+                healthLvl.SetHealth(0f);
             }
         }
         else
         {
-            tempText.color = Color.black;
+           // tempText.color = Color.black;
+        }
+    }
+
+    void UpdatePower()
+    {
+        if (!inHab)
+        {
+            var tempMultiplier = (temp > 0 ? temp : (temp * -1)) * 0.05;
+            powerLvl.SetHealth(powerLvl.health - powerSubtractionMultiplier - (float)tempMultiplier);
+
+
+            if (powerLvl.health == 0 && healthLvl.health > 0)
+            {
+                if (healthLvl.health - 25 >= 0)
+                    healthLvl.SetHealth(healthLvl.health - 25f);
+                else
+                {
+                    healthLvl.SetHealth(0f);
+                }
+            }
+        }
+        else
+        {
+            if (powerLvl.health < 100)
+                powerLvl.SetHealth(100);
         }
     }
 
@@ -76,29 +110,25 @@ public class PlayerManager : MonoBehaviour
     {
         if (!inHab)
         {
-            oxygenLevel = oxygenLevel - oxygenSubtractionMultiplier;
-            if (oxygenLevel < 20)
-                oxygenText.color = Color.red;
-            else
-                oxygenText.color = Color.black;
+            oxygenLvl.SetHealth(oxygenLvl.health - oxygenSubtractionMultiplier);
+         
 
-            if (oxygenLevel == 0 && healthLevel > 0)
+            if (oxygenLvl.health == 0 && healthLvl.health > 0)
             {
-                if (healthLevel - 25 >= 0)
-                    healthLevel = healthLevel - 25f;
+                if (healthLvl.health - 25 >= 0)
+                    healthLvl.SetHealth(healthLvl.health - 25f);
                 else
                 {
-                    healthLevel = 0f;
+                    healthLvl.SetHealth(0f);
                 }
             }
         }
         else
         {
-            if (oxygenLevel < 100)
-                oxygenLevel = 100;
+            if (oxygenLvl.health < 100)
+                oxygenLvl.SetHealth(100);
         }
 
-        oxygenText.text = oxygenLevel.ToString();
 
     }
 }
