@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8409669353421842433}
   - component: {fileID: 938133227355519363}
+  - component: {fileID: 2004175755491573197}
   m_Layer: 0
   m_Name: Player_WithCamera
   m_TagString: Untagged
@@ -151,11 +152,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0fc5d951428b5f44aa759039d8eb205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  oxygenLevel: 100
-  healthLevel: 100
   inHab: 0
   playerDead: 0
   oxygenSubtractionMultiplier: 1
+  powerSubtractionMultiplier: 1
+--- !u!114 &2004175755491573197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135181053363690634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5637990083420376214
 GameObject:
   m_ObjectHideFlags: 0
