@@ -23,7 +23,8 @@ public class ItemSpawner : MonoBehaviour
     public void Spawn()
     {
         //Spawn player - use similar logic to spawn other items that player starts with such as hab
-        var startingPosition = new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50));
+        //var startingPosition = new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50));
+        var startingPosition = new Vector3(0, 5, 0);
 
         Instantiate(playerPrefab, startingPosition, Quaternion.identity);
 
