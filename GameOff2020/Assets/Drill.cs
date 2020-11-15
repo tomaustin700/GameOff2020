@@ -6,14 +6,15 @@ public class Drill : MonoBehaviour
 {
     public float TimeToGatherResources = 2.0f;
     public bool ResourcesAvailable;
-    public int TotalRock = 0;
     
     private PowerIO powerIO;
     private new Animation animation;
     private new ParticleSystem particleSystem;
+    private InventoryManager inventoryManager;
     void Start()
     {
         powerIO = GetComponent<PowerIO>();
+        inventoryManager = GetComponent<InventoryManager>();
         animation = GetComponentInChildren<Animation>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
         InvokeRepeating(nameof(DrillInterval),TimeToGatherResources, TimeToGatherResources);
@@ -23,14 +24,23 @@ public class Drill : MonoBehaviour
     {
         if(powerIO.CanBePowered())
         {
-            TotalRock++;
-            if(!animation.IsPlaying(animation.clip.name))
+            try
             {
-                animation.Play();
+                //Just adding iron for now, will make this choose a random element
+                inventoryManager.AddItem(new Iron());
+
+                if (!animation.IsPlaying(animation.clip.name))
+                {
+                    animation.Play();
+                }
+                if (!particleSystem.isPlaying)
+                {
+                    particleSystem.Play();
+                }
             }
-            if(!particleSystem.isPlaying)
+            catch(InventoryFullException)
             {
-                particleSystem.Play();
+                //Inventory is full 
             }
         }
         else

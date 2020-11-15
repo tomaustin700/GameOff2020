@@ -4837,6 +4837,7 @@ GameObject:
   - component: {fileID: 2884106691859624241}
   - component: {fileID: 7078396417635563852}
   - component: {fileID: 2006271843}
+  - component: {fileID: 3520221079493972658}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -4875,6 +4876,8 @@ MonoBehaviour:
   MaxRequiredPower: 2
   PowerManager: {fileID: 0}
   Destroying: 0
+  _currentPowerProduction: 0
+  _currentPowerConsumption: 0
 --- !u!114 &2006271843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4890,6 +4893,20 @@ MonoBehaviour:
   TimeToGatherResources: 2
   ResourcesAvailable: 0
   TotalRock: 0
+--- !u!114 &3520221079493972658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884106691859624246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSize: 8
+  itemsInInventory: []
 --- !u!64 &1212034888
 MeshCollider:
   m_ObjectHideFlags: 0
