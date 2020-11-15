@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &1246000473
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2650102370254370976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2534964839176971238, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
 --- !u!1 &2884106690904739817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4821,6 +4835,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2884106691859624241}
+  - component: {fileID: 7078396417635563852}
+  - component: {fileID: 2006271843}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -4843,6 +4859,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7078396417635563852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884106691859624246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2570d7569b4743963136304b600ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPowerProduced: 0
+  MaxRequiredPower: 2
+  PowerManager: {fileID: 0}
+  Destroying: 0
+--- !u!114 &2006271843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2884106691859624246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05c8ef29987c8348a88c1f1f00e0bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToGatherResources: 2
+  ResourcesAvailable: 0
+  TotalRock: 0
+--- !u!64 &1212034888
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6129547652485150140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3613567641014311022, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
 --- !u!111 &2884106691151659392
 Animation:
   m_ObjectHideFlags: 0
@@ -4952,6 +5013,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
+--- !u!1 &2650102370254370976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
+  m_PrefabInstance: {fileID: 2884106692040295921}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3426358315689370138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}

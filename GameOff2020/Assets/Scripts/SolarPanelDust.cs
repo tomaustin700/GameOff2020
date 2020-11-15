@@ -4,36 +4,50 @@ using UnityEngine;
 
 public class SolarPanelDust : MonoBehaviour
 {
-    int solarPanelStage;
+    public float SolarDustTime = 30f;
+    public int solarPanelStage;
     [SerializeField] private Material stageOne;
     [SerializeField] private Material stageTwo;
     [SerializeField] private Material stageThree;
     [SerializeField] private Material stageFour;
     private Rigidbody player;
     private float useableRange = 2.5f;
+    private new Renderer renderer;
+    private PowerIO powerIO;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        powerIO = GetComponent<PowerIO>();
+        renderer = GetComponentInChildren<Renderer>();
+        powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
+        
+    }
     void Start()
     {
-        solarPanelStage = 1;
-        InvokeRepeating(nameof(IncreaseSolarPanelDust), 5, 5);
+        solarPanelStage = 0;
+        InvokeRepeating(nameof(IncreaseSolarPanelDust), SolarDustTime, SolarDustTime);
     }
 
     // Update is called once per frame
     void Update()
     {
+        float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
+        Debug.Log($"{powerIO.MaxPowerProduced} - {solarPanelStage} = {powerMade}");
+        powerIO.CurrentPowerProduction = powerMade;
+
         switch (solarPanelStage)
         {
+            case 0:
+                renderer.material = stageOne;
+                break;
             case 1:
-                GetComponent<Renderer>().material = stageOne;
+                renderer.material = stageTwo;
                 break;
             case 2:
-                GetComponent<Renderer>().material = stageTwo;
+                renderer.material = stageThree;
                 break;
             case 3:
-                GetComponent<Renderer>().material = stageThree;
-                break;
-            case 4:
-                GetComponent<Renderer>().material = stageFour;
+                renderer.material = stageFour;
                 break;
             default:
                 break;
@@ -41,7 +55,7 @@ public class SolarPanelDust : MonoBehaviour
     }
     void IncreaseSolarPanelDust()
     {
-        if (solarPanelStage != 4)
+        if (solarPanelStage != 3)
         {
             solarPanelStage++;
         }

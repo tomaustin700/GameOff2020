@@ -28,8 +28,7 @@ public class CameraFollow : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
         }
-        Vector2 mouseDir = new Vector2(CameraPoint.transform.rotation.eulerAngles.x + (mouseAxis.x * CameraSensitivity.y), CameraPoint.transform.rotation.eulerAngles.y + (mouseAxis.y * CameraSensitivity.x));//new Input.mousePosition * 0.05f;
-        Debug.Log(mouseDir);
+        Vector2 mouseDir = new Vector2(CameraPoint.transform.rotation.eulerAngles.x + (mouseAxis.x * CameraSensitivity.y), CameraPoint.transform.rotation.eulerAngles.y + (mouseAxis.y * CameraSensitivity.x));
 
         Vector3 angle = new Vector3(Mathf.Clamp(mouseDir.x,0f,40f), mouseDir.y + (horizontal * TurnSpeed), 0);
         if (Mathf.Abs(mouseAxis.x) > 0.001f || Mathf.Abs(mouseAxis.y) > 0.001f || horizontal != 0)
