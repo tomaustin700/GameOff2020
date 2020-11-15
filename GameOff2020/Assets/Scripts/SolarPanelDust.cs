@@ -32,7 +32,7 @@ public class SolarPanelDust : MonoBehaviour
     void Update()
     {
         float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
-        Debug.Log($"{powerIO.MaxPowerProduced} - {solarPanelStage} = {powerMade}");
+        //Debug.Log($"{powerIO.MaxPowerProduced} - {solarPanelStage} = {powerMade}");
         powerIO.CurrentPowerProduction = powerMade;
 
         switch (solarPanelStage)
