@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Iron : InventoryItem
+public class Iron : Element
 {
     public Iron()
     {
         name = nameof(Iron);
-        count = 1;
+        chance = 14;
     }
 
    

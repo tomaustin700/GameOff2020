@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem
+public interface IElement : IInventoryItem
 {
-    public string name;
-
+    int chance { get; set; }
 }

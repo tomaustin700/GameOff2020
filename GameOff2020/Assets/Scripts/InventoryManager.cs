@@ -2,48 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 public class InventoryManager : MonoBehaviour
 {
 
     public int maxSize = 8;
 
-    public List<InventoryItem> itemsInInventory;
+    public ObservableCollection<IInventoryItem> itemsInInventory;
 
 
     void Start()
     {
-        itemsInInventory = new List<InventoryItem>();
+        itemsInInventory = new ObservableCollection<IInventoryItem>();
     }
 
-    public void AddItem(InventoryItem item)
+    public void AddItem(IInventoryItem item)
     {
-        if (itemsInInventory.Count <= maxSize)
+        if (itemsInInventory.Count < maxSize)
         {
-            if (itemsInInventory.Any(x => x.name == item.name))
-            {
-                var inventItem = itemsInInventory.First(x => x.name == item.name);
-                inventItem.count = inventItem.count + item.count;
-            }
-            else
-            {
-                itemsInInventory.Add(item);
-            }
+
+            itemsInInventory.Add(item);
+
         }
         else
             throw new InventoryFullException();
     }
 
-    public void UpdateCount(InventoryItem item, int countChange)
-    {
-        var inventItem = itemsInInventory.First(x => x.name == item.name);
-        inventItem.count = inventItem.count + countChange;
 
-        if (inventItem.count <= 0)
-            itemsInInventory.Remove(inventItem);
-    }
-
-    public void RemoveItem(InventoryItem item)
+    public void RemoveItem(IInventoryItem item)
     {
         itemsInInventory.Remove(itemsInInventory.Single(a => a.name == item.name));
 

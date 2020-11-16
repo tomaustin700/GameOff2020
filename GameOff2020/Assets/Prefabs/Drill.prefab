@@ -4892,7 +4892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToGatherResources: 2
   ResourcesAvailable: 0
-  TotalRock: 0
 --- !u!114 &3520221079493972658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4905,8 +4904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSize: 8
-  itemsInInventory: []
+  maxSize: 32
 --- !u!64 &1212034888
 MeshCollider:
   m_ObjectHideFlags: 0

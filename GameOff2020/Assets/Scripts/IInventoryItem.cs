@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryItem
+public interface IInventoryItem
 {
-    public string name;
 
+    string name { get; set; }
 }
