@@ -13,6 +13,7 @@ public class Drill : MonoBehaviour
     private new ParticleSystem particleSystem;
     private InventoryManager inventoryManager;
     private bool onMineralPatch;
+    private bool onIce;
     private System.Random rnd;
     void Start()
     {
@@ -24,6 +25,7 @@ public class Drill : MonoBehaviour
         InvokeRepeating(nameof(DrillInterval), TimeToGatherResources, TimeToGatherResources);
 
         onMineralPatch = true; //do raycast down and if on patch set this to true
+        onIce = false; //do raycast down and if on patch set this to true
 
     }
 
@@ -45,25 +47,34 @@ public class Drill : MonoBehaviour
             if (randomNumber <= accumulatedProbability)
                 return items[i];
         }
-        return null;    
+        return null;
     }
 
 
 
     void DrillInterval()
     {
-        if (powerIO.CanBePowered())
+        if (powerIO.CanBePowered() && inventoryManager.itemsInInventory.Count < inventoryManager.maxSize)
         {
             try
             {
                 var potentialElements = new List<IElement>();
-                potentialElements.Add(new Silicon());
-                potentialElements.Add(new Aluminium());
-                if (onMineralPatch)
+
+                if (onIce)
                 {
-                    potentialElements.Add(new Magnesium());
-                    potentialElements.Add(new Titanium());
-                    potentialElements.Add(new Iron());
+                    potentialElements.Add(new Oxygen());
+                    potentialElements.Add(new Hydrogen());
+                }
+                else
+                {
+                    potentialElements.Add(new Silicon());
+                    potentialElements.Add(new Aluminium());
+                    if (onMineralPatch)
+                    {
+                        potentialElements.Add(new Magnesium());
+                        potentialElements.Add(new Titanium());
+                        potentialElements.Add(new Iron());
+                    }
                 }
 
                 inventoryManager.AddItem(SelectItem(potentialElements));
