@@ -53,6 +53,7 @@ public class NotificationDisplay : MonoBehaviour
     {
         canCreateNotification = false;
         completeCheckBox.isOn = true;
+        yield return new WaitForSeconds(0.5f);
         Description.text = string.Empty;
         _animator.SetInteger("NotificationState",1);
         yield return new WaitForSeconds(1f);
