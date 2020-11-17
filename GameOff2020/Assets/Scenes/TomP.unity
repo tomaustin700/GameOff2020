@@ -3609,6 +3609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drill
       objectReference: {fileID: 0}
+    - target: {fileID: 2884106691859624246, guid: 58f55b57f1c8d3942a6c0537d5fd1db3, type: 3}
+      propertyPath: m_TagString
+      value: UseableItem
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58f55b57f1c8d3942a6c0537d5fd1db3, type: 3}
 --- !u!1001 &5586622408088047640
