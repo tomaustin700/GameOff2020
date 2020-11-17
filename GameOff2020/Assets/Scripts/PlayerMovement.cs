@@ -39,6 +39,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((horizontal != 0 || vertical != 0))
         {
+            if(vertical > 0)
+            {
+                NotificationManager.CompleteNotification(EventName.MoveForwards);
+            }
+            else if(vertical < 0)
+            {
+                NotificationManager.CompleteNotification(EventName.MoveBackwards);
+            }
             if (!AllowPlayerMovementInAir && onGround)
             {
                 var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
