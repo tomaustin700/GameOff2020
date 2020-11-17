@@ -3653,6 +3653,10 @@ PrefabInstance:
       value: Drill
       objectReference: {fileID: 0}
     - target: {fileID: 2884106691859624246, guid: 58f55b57f1c8d3942a6c0537d5fd1db3, type: 3}
+      propertyPath: m_TagString
+      value: UseableItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884106691859624246, guid: 58f55b57f1c8d3942a6c0537d5fd1db3, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

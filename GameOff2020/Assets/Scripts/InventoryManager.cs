@@ -15,7 +15,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        hotbar = GameObject.FindGameObjectWithTag("Hotbar");
+        if (tag != "UseableItem")
+            hotbar = GameObject.FindGameObjectWithTag("Hotbar");
     }
     void Start()
     {
@@ -37,7 +38,7 @@ public class InventoryManager : MonoBehaviour
             }
 
         }
-       
+
     }
 
 
