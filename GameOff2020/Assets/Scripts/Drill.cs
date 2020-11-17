@@ -15,9 +15,12 @@ public class Drill : MonoBehaviour
     private bool onMineralPatch;
     private bool onIce;
     private System.Random rnd;
+    private List<(InventoryItem, int chance)> elements;
     void Start()
     {
         rnd = new System.Random();
+        elements = new List<(InventoryItem, int chance)>();
+
         powerIO = GetComponent<PowerIO>();
         inventoryManager = GetComponent<InventoryManager>();
         animation = GetComponentInChildren<Animation>();
@@ -30,7 +33,7 @@ public class Drill : MonoBehaviour
     }
 
 
-    IElement SelectItem(List<IElement> items)
+    InventoryItem SelectItem(List<(InventoryItem, int chance)> items)
     {
         int poolSize = 0;
         for (int i = 0; i < items.Count; i++)
@@ -45,7 +48,7 @@ public class Drill : MonoBehaviour
         {
             accumulatedProbability += items[i].chance;
             if (randomNumber <= accumulatedProbability)
-                return items[i];
+                return items[i].Item1;
         }
         return null;
     }
@@ -56,42 +59,36 @@ public class Drill : MonoBehaviour
     {
         if (powerIO.CanBePowered() && inventoryManager.itemsInInventory.Count < inventoryManager.maxSize)
         {
-            try
+            if (onIce)
             {
-                var potentialElements = new List<IElement>();
+                elements.Add((new InventoryItem("Oxygen"), 50));
+                elements.Add((new InventoryItem("Hydrogen"), 40));
+            }
+            else
+            {
+                elements.Add((new InventoryItem("Silicon"), 45));
+                elements.Add((new InventoryItem("Aluminium"), 15));
 
-                if (onIce)
+                if (onMineralPatch)
                 {
-                    potentialElements.Add(new Oxygen());
-                    potentialElements.Add(new Hydrogen());
-                }
-                else
-                {
-                    potentialElements.Add(new Silicon());
-                    potentialElements.Add(new Aluminium());
-                    if (onMineralPatch)
-                    {
-                        potentialElements.Add(new Magnesium());
-                        potentialElements.Add(new Titanium());
-                        potentialElements.Add(new Iron());
-                    }
-                }
-
-                inventoryManager.AddItem(SelectItem(potentialElements));
-
-                if (!animation.IsPlaying(animation.clip.name))
-                {
-                    animation.Play();
-                }
-                if (!particleSystem.isPlaying)
-                {
-                    particleSystem.Play();
+                    elements.Add((new InventoryItem("Magnesium"), 9));
+                    elements.Add((new InventoryItem("Titanium"), 4));
+                    elements.Add((new InventoryItem("Iron"), 14));
                 }
             }
-            catch (InventoryFullException)
+
+            inventoryManager.AddItem(SelectItem(elements));
+
+            if (!animation.IsPlaying(animation.clip.name))
             {
-                //Inventory is full 
+                animation.Play();
             }
+            if (!particleSystem.isPlaying)
+            {
+                particleSystem.Play();
+            }
+
+
         }
         else
         {

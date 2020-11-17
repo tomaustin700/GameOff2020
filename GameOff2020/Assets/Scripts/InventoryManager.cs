@@ -3,30 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Collections.ObjectModel;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
 
     public int maxSize = 8;
 
-    public ObservableCollection<IInventoryItem> itemsInInventory;
+    public List<InventoryItem> itemsInInventory;
+    private GameObject hotbar;
 
-
+    private void Awake()
+    {
+        hotbar = GameObject.FindGameObjectWithTag("Hotbar");
+    }
     void Start()
     {
-        itemsInInventory = new ObservableCollection<IInventoryItem>();
+        itemsInInventory = new List<InventoryItem>();
     }
 
-    public void AddItem(IInventoryItem item)
+    public void AddItem(InventoryItem item)
     {
         if (itemsInInventory.Count < maxSize)
         {
 
             itemsInInventory.Add(item);
+            if (hotbar != null)
+            {
+                var hotbatSlotToFill = "Slot (" + itemsInInventory.Count + ")";
+
+                var slot = GetComponentsInChildren<RawImage>().Single(a => a.name == hotbatSlotToFill);
+                slot.texture = item.sprite;
+            }
 
         }
-        else
-            throw new InventoryFullException();
+       
     }
 
 
@@ -34,5 +45,13 @@ public class InventoryManager : MonoBehaviour
     {
         itemsInInventory.Remove(itemsInInventory.Single(a => a.name == item.name));
 
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            AddItem(new InventoryItem("Aluminium"));
+        }
     }
 }

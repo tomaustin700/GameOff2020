@@ -7,5 +7,5 @@ public interface IInventoryItem
 {
 
     string name { get; set; }
-    Image image { get; set; }
+    Sprite sprite { get; set; }
 }

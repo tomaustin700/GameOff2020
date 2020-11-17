@@ -900,7 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4045719628229073060}
   - component: {fileID: 1542348502702741070}
-  - component: {fileID: 972888506875622301}
+  - component: {fileID: 3470672302174231726}
   m_Layer: 5
   m_Name: Slot (2)
   m_TagString: Untagged
@@ -935,7 +935,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2491707824260904935}
   m_CullTransparentMesh: 0
---- !u!114 &972888506875622301
+--- !u!114 &3470672302174231726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -944,27 +944,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2491707824260904935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &2535195340810238771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9057990029856973459}
   - component: {fileID: 7452959579767675647}
-  - component: {fileID: 5404410067842945691}
+  - component: {fileID: 6270699305519630088}
   m_Layer: 5
   m_Name: Slot (3)
   m_TagString: Untagged
@@ -1105,7 +1102,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2716735139812602902}
   m_CullTransparentMesh: 0
---- !u!114 &5404410067842945691
+--- !u!114 &6270699305519630088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,27 +1111,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2716735139812602902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &3283012493439237855
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6292324256045678087}
   - component: {fileID: 5521505465086293818}
-  - component: {fileID: 2186270092835088859}
+  - component: {fileID: 1658453894077281661}
   m_Layer: 5
   m_Name: Slot (8)
   m_TagString: Untagged
@@ -1180,7 +1174,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3283012493439237855}
   m_CullTransparentMesh: 0
---- !u!114 &2186270092835088859
+--- !u!114 &1658453894077281661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1189,27 +1183,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 3283012493439237855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &3364906228513046508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5329683284221835205}
   - component: {fileID: 8387071965882004715}
-  - component: {fileID: 5707344003161867805}
+  - component: {fileID: 1254248119446775126}
   m_Layer: 5
   m_Name: Slot (7)
   m_TagString: Untagged
@@ -1608,7 +1599,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4821090130948341564}
   m_CullTransparentMesh: 0
---- !u!114 &5707344003161867805
+--- !u!114 &1254248119446775126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1617,27 +1608,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4821090130948341564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &4996864443614019161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,7 +1636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7369796029775473992}
   - component: {fileID: 3740894536376890768}
-  - component: {fileID: 7986176750190959182}
+  - component: {fileID: 3629893756286449679}
   m_Layer: 5
   m_Name: Slot (6)
   m_TagString: Untagged
@@ -1683,7 +1671,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4996864443614019161}
   m_CullTransparentMesh: 0
---- !u!114 &7986176750190959182
+--- !u!114 &3629893756286449679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1692,27 +1680,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4996864443614019161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &5258316516727955845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1708,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7215390503572347105}
   - component: {fileID: 3137864984707026153}
-  - component: {fileID: 7202830418808372117}
+  - component: {fileID: 1960972705217262849}
   m_Layer: 5
   m_Name: Slot (4)
   m_TagString: Untagged
@@ -1758,7 +1743,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5258316516727955845}
   m_CullTransparentMesh: 0
---- !u!114 &7202830418808372117
+--- !u!114 &1960972705217262849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1767,27 +1752,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 5258316516727955845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &5360057006833622106
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,7 +1779,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1949301155557019885}
-  - component: {fileID: 7980725304921981918}
   m_Layer: 5
   m_Name: Hotbar
   m_TagString: Untagged
@@ -1825,19 +1806,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7980725304921981918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5360057006833622106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSize: 8
 --- !u!1 &6117090281519790605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5370273832964211776}
   - component: {fileID: 6220404173606302518}
-  - component: {fileID: 8466832761597471549}
+  - component: {fileID: 440997216107852511}
   m_Layer: 5
   m_Name: Slot (1)
   m_TagString: Untagged
@@ -1883,7 +1851,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6117090281519790605}
   m_CullTransparentMesh: 0
---- !u!114 &8466832761597471549
+--- !u!114 &440997216107852511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1892,27 +1860,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6117090281519790605}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &6345216733315293012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,9 +1889,10 @@ GameObject:
   - component: {fileID: 8366238908513725941}
   - component: {fileID: 2722557130093848922}
   - component: {fileID: 6414474677153511659}
+  - component: {fileID: 2018488988692938925}
   m_Layer: 5
   m_Name: Slots
-  m_TagString: Untagged
+  m_TagString: Hotbar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1996,6 +1962,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2018488988692938925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6345216733315293012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSize: 8
 --- !u!1 &6813484672358413210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +1985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2784261073648345023}
   - component: {fileID: 5513066092878529359}
-  - component: {fileID: 5920948115350322989}
+  - component: {fileID: 6477736121611604139}
   m_Layer: 5
   m_Name: Slot (5)
   m_TagString: Untagged
@@ -2041,7 +2020,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6813484672358413210}
   m_CullTransparentMesh: 0
---- !u!114 &5920948115350322989
+--- !u!114 &6477736121611604139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2050,27 +2029,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6813484672358413210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3679245, g: 0.36271805, b: 0.36271805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &8707947642731354762
 GameObject:
   m_ObjectHideFlags: 0
