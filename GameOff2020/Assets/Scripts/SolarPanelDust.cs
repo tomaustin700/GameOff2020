@@ -1,25 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SolarPanelDust : MonoBehaviour
 {
-    public float SolarDustTime = 30f;
+    [SerializeField] private float SolarDustTime;//150f
     public int solarPanelStage;
     [SerializeField] private Material stageOne;
     [SerializeField] private Material stageTwo;
     [SerializeField] private Material stageThree;
     [SerializeField] private Material stageFour;
-    private Rigidbody player;
-    private float useableRange = 2.5f;
     private new Renderer renderer;
     private PowerIO powerIO;
+    public bool isUseable = false;
     // Start is called before the first frame update
     private void Awake()
     {
-        powerIO = GetComponent<PowerIO>();
+        //powerIO = GetComponent<PowerIO>();
         renderer = GetComponentInChildren<Renderer>();
-        powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
+        //powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
         
     }
     void Start()
@@ -31,9 +28,9 @@ public class SolarPanelDust : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
+        //float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
         //Debug.Log($"{powerIO.MaxPowerProduced} - {solarPanelStage} = {powerMade}");
-        powerIO.CurrentPowerProduction = powerMade;
+        //powerIO.CurrentPowerProduction = powerMade;
 
         switch (solarPanelStage)
         {
@@ -52,6 +49,11 @@ public class SolarPanelDust : MonoBehaviour
             default:
                 break;
         }
+
+        if (Input.GetKey(KeyCode.E) && isUseable)
+        {
+            RemoveDust();
+        }
     }
     void IncreaseSolarPanelDust()
     {
@@ -60,18 +62,8 @@ public class SolarPanelDust : MonoBehaviour
             solarPanelStage++;
         }
     }
-    private void OnMouseDown()
+    private void RemoveDust()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        player = GameObject.Find("Player_Astronaut").GetComponent<Rigidbody>();
-        if (Physics.Raycast(ray, out hit))
-        {
-                float dist = Vector3.Distance(player.transform.position, hit.point);
-                if (dist < useableRange)
-                {
-                solarPanelStage = 1;
-            }
-        }
+        solarPanelStage = 0;
     }
 }

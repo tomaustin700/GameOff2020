@@ -6,6 +6,7 @@ TagManager:
   tags:
   - UseableItem
   - Hotbar
+  - SolarPanel
   layers:
   - Default
   - TransparentFX

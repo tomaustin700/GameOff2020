@@ -5,14 +5,19 @@ using UnityEngine;
 public class InHabScript : MonoBehaviour
 {
     // Start is called before the first frame update
-
+    private GameObject player;
     private PlayerManager playerManager;
     private void LateUpdate()
     {
-        if (playerManager == null)
+        if (player == null)
         {
-            playerManager = GameObject.Find("Player_WithCamera(Clone)").GetComponent<PlayerManager>();
+            player = GameObject.Find("Player_WithCamera(Clone)");
+            if (player == null)
+            {
+                player = GameObject.Find("Player_WithCamera");
+            }
         }
+        playerManager = player.GetComponent<PlayerManager>();
     }
     void OnTriggerEnter()
     {

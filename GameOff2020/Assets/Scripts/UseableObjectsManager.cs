@@ -1,42 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class UseableObjectsManager : MonoBehaviour
 {
     [SerializeField] private string useableItemTag = "UseableItem";
-    [SerializeField] private Material useableItemMaterial;
-    private Material defaultItemMaterial;
-    [SerializeField] private float useableRange;
-    Rigidbody player;
-    private Transform _currentItem;
-
+    Collider[] hitColliders;
+    [SerializeField] private GameObject player;
     void Update()
     {
-        if (_currentItem != null)
+        Vector3 newPosition = player.transform.position;
+        transform.position = newPosition;
+
+
+        hitColliders = Physics.OverlapSphere(transform.position, 3f);
+        foreach (Collider col in hitColliders)
         {
-            var itemRenderer = _currentItem.GetComponent<Renderer>();
-            itemRenderer.material = defaultItemMaterial;
-            _currentItem = null;
-        }
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        player = GameObject.Find("Player_Astronaut").GetComponent<Rigidbody>();
-        if (Physics.Raycast(ray, out hit))
-        {
-            var item = hit.transform;
-            if (item.CompareTag(useableItemTag))
+            if (col.gameObject.CompareTag(useableItemTag))
             {
-                float dist = Vector3.Distance(player.transform.position, hit.point);
-                if (dist < useableRange)
+                //solar panel
+                if (col.GetComponent<SolarPanelDust>() != null)
                 {
-                    var itemRenderer = (Renderer)item.GetComponentInChildren(typeof(Renderer));
-                    if (itemRenderer != null)
-                    {
-                        defaultItemMaterial = itemRenderer.material;
-                        itemRenderer.material = useableItemMaterial;
-                    }
-                    _currentItem = item;
+                    var solarPanel = col.GetComponent<SolarPanelDust>();
+                    solarPanel.isUseable = true;
                 }
             }
         }
