@@ -27,24 +27,24 @@ public class NotificationDisplay : MonoBehaviour
         var currentNotification = NotificationManager.Notifications.FirstOrDefault();
         if (currentNotification != null)
         {
-            if(notification == null && canCreateNotification)
+            if (notification == null && canCreateNotification)
             {
                 StartCoroutine(AddNotification(currentNotification));
 
             }
-            else if(notification != null && notification.EventName != currentNotification.EventName && canCreateNotification)
+            else if (notification != null && notification.EventName != currentNotification.EventName && canCreateNotification)
             {
                 StartCoroutine(CompleteNotification());
             }
-        
+
         }
-        else if(currentNotification == null)
+        else if (currentNotification == null)
         {
             Description.text = string.Empty;
             if (_animator.isActiveAndEnabled)
             {
                 StartCoroutine(CompleteNotification());
-               // _animator.enabled = false;
+
             }
         }
     }
@@ -54,17 +54,27 @@ public class NotificationDisplay : MonoBehaviour
         canCreateNotification = false;
         completeCheckBox.isOn = true;
         yield return new WaitForSeconds(0.5f);
+        completeCheckBox.gameObject.SetActive(false);
+
         Description.text = string.Empty;
-        _animator.SetInteger("NotificationState",1);
-        yield return new WaitForSeconds(1f);
+        _animator.SetInteger("NotificationState", 1);
+        yield return new WaitForSeconds(0.5f);
+
         notification = null;
-        _animator.SetInteger("NotificationState", -1);
+        //    _animator.SetInteger("NotificationState", -1);
         canCreateNotification = true;
+        //if (!NotificationManager.Notifications.Any())
+        //{
+        //    yield return new WaitForSeconds(1.0f);
+        //    _animator.enabled = false;
+        //}    
+          
     }
 
     IEnumerator AddNotification(NotificationEvent newNotification)
     {
         canCreateNotification = false;
+        completeCheckBox.gameObject.SetActive(false);
 
         if (!_animator.isActiveAndEnabled)
         {
@@ -73,9 +83,14 @@ public class NotificationDisplay : MonoBehaviour
         notification = newNotification;
         _animator.SetInteger("NotificationState", 0);
         completeCheckBox.isOn = false;
-        yield return new WaitForSeconds(1f);
-        _animator.SetInteger("NotificationState", -1);
+
+        yield return new WaitForSeconds(0.8f);
+        //   _animator.SetInteger("NotificationState", -1);
+        NotificationManager.Notifications.First().IsReady = true;
+        completeCheckBox.gameObject.SetActive(true);
         Description.text = notification.Description;
+        notification.IsReady = true;
+
         canCreateNotification = true;
     }
 }
