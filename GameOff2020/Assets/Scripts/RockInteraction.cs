@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RockInteraction : MonoBehaviour
 {
-    private System.Random rnd;
     private bool isRare;
 
     public void PickUpRock()
