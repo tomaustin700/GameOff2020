@@ -1317,6 +1317,10 @@ PrefabInstance:
       propertyPath: rareRockYSpread
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
+      propertyPath: commonRocksToSpawn
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
