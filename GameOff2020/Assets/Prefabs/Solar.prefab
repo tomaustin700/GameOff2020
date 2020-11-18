@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047348770909450608}
   m_LocalRotation: {x: 0.50153637, y: 0.49845898, z: 0.498634, w: -0.50136226}
-  m_LocalPosition: {x: -6.8408813, y: -0.66999984, z: 1.8304768}
+  m_LocalPosition: {x: 0, y: -0.66999984, z: 1.8304768}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 5335940952239416575}
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f3ee86724a89c4c838822c55b5abb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SolarDustTime: 5
+  SolarDustTime: 60
   solarPanelStage: 0
   stageOne: {fileID: 2100000, guid: 478656965b3468144b2137cdc9994346, type: 2}
   stageTwo: {fileID: 2100000, guid: 918fd399a0b6f69419ca9f3c9b4b64a9, type: 2}
