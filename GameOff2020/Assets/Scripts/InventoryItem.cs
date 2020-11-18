@@ -7,9 +7,9 @@ public class InventoryItem
     public string name { get; set; }
     public Texture sprite { get; set; }
 
-    public InventoryItem(string name)
+    public InventoryItem(Item item)
     {
-        this.name = name;
+        name = item.ToString();
         sprite = Resources.Load<Texture>("Sprites/" + name);
 
     }

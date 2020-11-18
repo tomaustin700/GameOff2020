@@ -61,19 +61,19 @@ public class Drill : MonoBehaviour
         {
             if (onIce)
             {
-                elements.Add((new InventoryItem("Oxygen"), 50));
-                elements.Add((new InventoryItem("Hydrogen"), 40));
+                elements.Add((new InventoryItem(Item.Oxygen), 50));
+                elements.Add((new InventoryItem(Item.Hydrogen), 40));
             }
             else
             {
-                elements.Add((new InventoryItem("Silicon"), 45));
-                elements.Add((new InventoryItem("Aluminium"), 15));
+                elements.Add((new InventoryItem(Item.Silicon), 45));
+                elements.Add((new InventoryItem(Item.Aluminium), 15));
 
                 if (onMineralPatch)
                 {
-                    elements.Add((new InventoryItem("Magnesium"), 9));
-                    elements.Add((new InventoryItem("Titanium"), 4));
-                    elements.Add((new InventoryItem("Iron"), 14));
+                    elements.Add((new InventoryItem(Item.Magnesium), 9));
+                    elements.Add((new InventoryItem(Item.Titanium), 4));
+                    elements.Add((new InventoryItem(Item.Iron), 14));
                 }
             }
 

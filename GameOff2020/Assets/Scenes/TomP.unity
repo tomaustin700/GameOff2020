@@ -2559,8 +2559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d3ff8085d36b43aeb779347ecefd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inHabMaterial: {fileID: 2100000, guid: 32d48e218e0b71d45bb06c51451b9316, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: ecc14236e5193af4ab76ec1cc3745e6e, type: 2}
 --- !u!65 &1530674608
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3409,8 +3407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9d3ff8085d36b43aeb779347ecefd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inHabMaterial: {fileID: 2100000, guid: 32d48e218e0b71d45bb06c51451b9316, type: 2}
-  defaultMaterial: {fileID: 2100000, guid: ecc14236e5193af4ab76ec1cc3745e6e, type: 2}
 --- !u!1001 &1414553809183833262
 PrefabInstance:
   m_ObjectHideFlags: 0
