@@ -18,7 +18,7 @@ public static class NotificationManager
     }
     public static void UpdateNotification(NotificationEvent notification)
     {
-        if (Notifications.Any(x => x.EventName == notification.EventName))
+        if (Notifications.Any(x => x.EventName == notification.EventName &&  x.IsReady))
         {
             var notificationToUpdate = Notifications.First(x => x.EventName == notification.EventName);
             //notificationToUpdate.Title = notification.Title;
@@ -31,11 +31,12 @@ public static class NotificationManager
             Notifications.Add(notification);
         }
     }
-    public static void CompleteNotification(EventName notification)
+    public static void CompleteNotification(EventName eventName)
     {
-        if (Notifications.Any(x => x.EventName == notification))
+        var currentNotification = Notifications.FirstOrDefault();
+        if (currentNotification != null && currentNotification.IsReady && currentNotification.EventName == eventName && currentNotification.IsReady)
         {
-            Notifications.RemoveAll(x => x.EventName == notification);
+            Notifications.RemoveAll(x => x.EventName == eventName);
         }
     }
 }

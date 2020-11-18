@@ -43,9 +43,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 NotificationManager.CompleteNotification(EventName.MoveForwards);
             }
-            else if(vertical < 0)
+            if(vertical < 0)
             {
                 NotificationManager.CompleteNotification(EventName.MoveBackwards);
+            }
+            if (horizontal > 0)
+            {
+                NotificationManager.CompleteNotification(EventName.TurnRight);
+            }
+             if (horizontal < 0)
+            {
+                NotificationManager.CompleteNotification(EventName.TurnLeft);
             }
             if (!AllowPlayerMovementInAir && onGround)
             {
@@ -62,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         
         animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
         onGround = Physics.CheckSphere(transform.position, 0.4f, groundLayers);
-        horizontal = 0; //Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         var yVelocity = Mathf.Abs(GetComponent<Rigidbody>().velocity.y);
         if (yVelocity >= 0.5f && !onGround)
@@ -75,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             isFloating = false;
         }
 
-        if(onGround && !isJumping && !isFloating && horizontal == 0 && vertical == 0)
+        if(onGround && !isJumping && !isFloating && vertical == 0)
         {
             PlayerAnimationState = PlayerAnimationState.Idle;
         }
@@ -102,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 movementVector = model.transform.forward * vertical + model.transform.right * horizontal;
+        Vector3 movementVector = model.transform.forward * vertical + model.transform.right * 0;
         movementVector.y = 0;
         if(Input.GetKey(KeyCode.LeftShift))
         {

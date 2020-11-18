@@ -9,6 +9,8 @@ public class ProgressionManager : MonoBehaviour
     {
         NotificationManager.AddNotification(new NotificationEvent(EventName.MoveForwards, "Move forwards with W"));
         NotificationManager.AddNotification(new NotificationEvent(EventName.MoveBackwards, "Move backwards with S"));
+        NotificationManager.AddNotification(new NotificationEvent(EventName.TurnLeft, "Turn left with A"));
+        NotificationManager.AddNotification(new NotificationEvent(EventName.TurnRight, "Turn right with D"));
     }
 
     // Update is called once per frame
