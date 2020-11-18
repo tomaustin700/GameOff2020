@@ -20,7 +20,10 @@ public class UseableObjectsManager : MonoBehaviour
                 if (col.GetComponent<SolarPanelDust>() != null)
                 {
                     var solarPanel = col.GetComponent<SolarPanelDust>();
-                    solarPanel.isUseable = true;
+                    if (Input.GetKey(KeyCode.E))
+                    {
+                        solarPanel.RemoveDust();
+                    }
                 }
             }
         }

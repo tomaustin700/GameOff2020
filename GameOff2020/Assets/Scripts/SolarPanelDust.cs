@@ -10,7 +10,6 @@ public class SolarPanelDust : MonoBehaviour
     [SerializeField] private Material stageFour;
     private new Renderer renderer;
     private PowerIO powerIO;
-    public bool isUseable = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -49,11 +48,10 @@ public class SolarPanelDust : MonoBehaviour
             default:
                 break;
         }
-
-        if (Input.GetKey(KeyCode.E) && isUseable)
-        {
-            RemoveDust();
-        }
+    }
+    public void RemoveDust()
+    {
+        solarPanelStage = 0;
     }
     void IncreaseSolarPanelDust()
     {
@@ -61,9 +59,5 @@ public class SolarPanelDust : MonoBehaviour
         {
             solarPanelStage++;
         }
-    }
-    private void RemoveDust()
-    {
-        solarPanelStage = 0;
     }
 }
