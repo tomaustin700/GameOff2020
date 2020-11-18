@@ -13,9 +13,9 @@ public class SolarPanelDust : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        //powerIO = GetComponent<PowerIO>();
+        powerIO = GetComponent<PowerIO>();
         renderer = GetComponentInChildren<Renderer>();
-        //powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
+        powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
         
     }
     void Start()
@@ -27,10 +27,6 @@ public class SolarPanelDust : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
-        //Debug.Log($"{powerIO.MaxPowerProduced} - {solarPanelStage} = {powerMade}");
-        //powerIO.CurrentPowerProduction = powerMade;
-
         switch (solarPanelStage)
         {
             case 0:
@@ -48,6 +44,8 @@ public class SolarPanelDust : MonoBehaviour
             default:
                 break;
         }
+        float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
+        powerIO.CurrentPowerProduction = powerMade;
     }
     public void RemoveDust()
     {
