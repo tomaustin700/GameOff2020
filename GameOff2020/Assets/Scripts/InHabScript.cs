@@ -11,7 +11,7 @@ public class InHabScript : MonoBehaviour
     {
         if (playerManager == null)
         {
-            playerManager = GameObject.Find("Player_WithCamera(Clone)").GetComponent<PlayerManager>();
+            playerManager = GameObject.Find("Player_WithCamera").GetComponent<PlayerManager>();
         }
     }
     void OnTriggerEnter()
