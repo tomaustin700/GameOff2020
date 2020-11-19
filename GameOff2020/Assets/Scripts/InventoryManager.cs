@@ -122,7 +122,8 @@ public class InventoryManager : MonoBehaviour
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-            var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
+            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
+            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
 
             GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
