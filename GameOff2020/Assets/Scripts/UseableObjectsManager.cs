@@ -7,23 +7,37 @@ public class UseableObjectsManager : MonoBehaviour
     [SerializeField] private GameObject player;
     void Update()
     {
-        Vector3 newPosition = player.transform.position;
-        transform.position = newPosition;
-
-
-        hitColliders = Physics.OverlapSphere(transform.position, 3f);
-        foreach (Collider col in hitColliders)
+        if (player != null)
         {
-            if (col.gameObject.CompareTag(useableItemTag))
+            Vector3 newPosition = player.transform.position;
+            transform.position = newPosition;
+
+
+            hitColliders = Physics.OverlapSphere(transform.position, 3f);
+            foreach (Collider col in hitColliders)
             {
-                //solar panel
-                if (col.GetComponent<SolarPanelDust>() != null)
+                if (col.gameObject.CompareTag(useableItemTag))
                 {
-                    var solarPanel = col.GetComponent<SolarPanelDust>();
-                    if (Input.GetKey(KeyCode.E))
+                    //solar panel
+                    if (col.GetComponent<SolarPanelDust>() != null)
                     {
-                        solarPanel.RemoveDust();
+                        var solarPanel = col.GetComponent<SolarPanelDust>();
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            solarPanel.RemoveDust();
+                        }
                     }
+
+                    if (col.GetComponentInParent<RockInteraction>() != null)
+                    {
+                        var rock = col.GetComponentInParent<RockInteraction>();
+
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            rock.PickUpRock();
+                        }
+                    }
+
                 }
             }
         }

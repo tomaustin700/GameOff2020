@@ -9,6 +9,7 @@ public class NotificationEvent
     public string Description;
     public int CurrentCount = 0;
     public int MaxCount = 1;
+    public bool IsReady = false;
     public NotificationEvent(EventName _eventName,string _description)
         {
             EventName = _eventName;

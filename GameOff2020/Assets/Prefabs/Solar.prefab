@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5335940952239416575}
-  - component: {fileID: 5586622408088047642}
-  - component: {fileID: 5586622408088047643}
   m_Layer: 0
   m_Name: Solar
   m_TagString: Untagged
@@ -33,40 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5586622408088047642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4703660900295441989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc2570d7569b4743963136304b600ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxPowerProduced: 3
-  MaxRequiredPower: 0
-  PowerManager: {fileID: 0}
-  Destroying: 0
---- !u!114 &5586622408088047643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4703660900295441989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f3ee86724a89c4c838822c55b5abb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SolarDustTime: 5
-  solarPanelStage: 0
-  stageOne: {fileID: 2100000, guid: 478656965b3468144b2137cdc9994346, type: 2}
-  stageTwo: {fileID: 2100000, guid: 918fd399a0b6f69419ca9f3c9b4b64a9, type: 2}
-  stageThree: {fileID: 2100000, guid: dd08efec2bc0cf347937ba0d00aaee2e, type: 2}
-  stageFour: {fileID: 2100000, guid: d62c705355bbf7148b78cba6e2a9118f, type: 2}
 --- !u!1 &5047348770909450608
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,9 +43,11 @@ GameObject:
   - component: {fileID: 540965239128115460}
   - component: {fileID: 8252820956067435995}
   - component: {fileID: 5586622407562688892}
+  - component: {fileID: 2104775316}
+  - component: {fileID: 2104775317}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: UseableItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5047348770909450608}
   m_LocalRotation: {x: 0.50153637, y: 0.49845898, z: 0.498634, w: -0.50136226}
-  m_LocalPosition: {x: -6.8408813, y: -0.66999984, z: 1.8304768}
+  m_LocalPosition: {x: 0, y: -0.66999984, z: 1.8304768}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 5335940952239416575}
@@ -163,3 +129,39 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: fcfaa81d91ecc694b9f6f2d3f7634fd3, type: 3}
+--- !u!114 &2104775316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047348770909450608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f3ee86724a89c4c838822c55b5abb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SolarDustTime: 60
+  solarPanelStage: 0
+  stageOne: {fileID: 2100000, guid: 478656965b3468144b2137cdc9994346, type: 2}
+  stageTwo: {fileID: 2100000, guid: 918fd399a0b6f69419ca9f3c9b4b64a9, type: 2}
+  stageThree: {fileID: 2100000, guid: dd08efec2bc0cf347937ba0d00aaee2e, type: 2}
+  stageFour: {fileID: 2100000, guid: d62c705355bbf7148b78cba6e2a9118f, type: 2}
+--- !u!114 &2104775317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047348770909450608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc2570d7569b4743963136304b600ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxPowerProduced: 3
+  MaxRequiredPower: 0
+  PowerManager: {fileID: 0}
+  Destroying: 0
+  _currentPowerProduction: 0
+  _currentPowerConsumption: 0
