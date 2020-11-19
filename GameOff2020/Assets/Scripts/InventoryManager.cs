@@ -117,9 +117,11 @@ public class InventoryManager : MonoBehaviour
 
     void DropItem()
     {
-        if (selectedSlot != null && itemsInInventory.ElementAtOrDefault(selectedSlot.Value - 1) != null)
+        if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
         {
-            var item = itemsInInventory.ElementAtOrDefault(selectedSlot.Value - 1);
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
             var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
 
             GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
