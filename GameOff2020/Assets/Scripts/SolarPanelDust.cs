@@ -3,7 +3,7 @@
 public class SolarPanelDust : MonoBehaviour
 {
     [SerializeField] private float SolarDustTime;//150f
-    public int solarPanelStage;
+    private int solarPanelStage;
     [SerializeField] private Material stageOne;
     [SerializeField] private Material stageTwo;
     [SerializeField] private Material stageThree;
