@@ -9,8 +9,12 @@ public class InventorySlotScript : MonoBehaviour
         Owner = GameObject.FindGameObjectWithTag("InventoryUI").GetComponent<CurrentInventoryOwner>();
     }
     public CurrentInventoryOwner Owner;
-    public void AddToCurrentInventory()
+    public void AddToHotbarInventory()
     {
         Owner.TransferToHotBar(gameObject);
+    }
+    public void AddToCurrentInventory(int slot)
+    {
+        Owner.TransferToCurrentInventory(slot);
     }
 }

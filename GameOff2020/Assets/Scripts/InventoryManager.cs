@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject hotbar;
     private int? selectedSlot;
     private GameObject player;
-    private List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
+    public List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
 
     private void Awake()
     {
@@ -123,26 +123,26 @@ public class InventoryManager : MonoBehaviour
         if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
         {
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
-
-            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
-            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
-
-            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
-            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
-            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
-
-
-            if (player == null)
-                player = GameObject.Find("Player_Astronaut");
-
-            var forward = player.transform.position + player.transform.forward;
-            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
-
-
+            DropItemBySlot(slotItem);
         }
     }
-
+    public void DropItemBySlot((string hotbarLocation, Guid itemGuid) slotItem, bool instantiate = true)
+    {
+        var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+        var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+        
+        GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+        hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+        itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+        
+        
+        if (player == null)
+            player = GameObject.Find("Player_Astronaut");
+        
+        var forward = player.transform.position + player.transform.forward;
+        if(instantiate)
+            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+    }
     void SelectHotbarSlot(int slotToSelect)
     {
         //if (itemsInInventory.ElementAtOrDefault(slotToSelect - 1) != null)

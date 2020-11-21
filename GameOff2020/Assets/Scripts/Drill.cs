@@ -11,7 +11,7 @@ public class Drill : MonoBehaviour
     private PowerIO powerIO;
     private new Animation animation;
     private new ParticleSystem particleSystem;
-    private InventoryManager inventoryManager;
+    private Storage storage;
     private bool onMineralPatch;
     private bool onIce;
     private System.Random rnd;
@@ -22,7 +22,7 @@ public class Drill : MonoBehaviour
         elements = new List<(InventoryItem, int chance)>();
 
         powerIO = GetComponent<PowerIO>();
-        inventoryManager = GetComponent<InventoryManager>();
+        storage = GetComponentInChildren<Storage>();
         animation = GetComponentInChildren<Animation>();
         particleSystem = GetComponentInChildren<ParticleSystem>();
         InvokeRepeating(nameof(DrillInterval), TimeToGatherResources, TimeToGatherResources);
@@ -57,7 +57,7 @@ public class Drill : MonoBehaviour
 
     void DrillInterval()
     {
-        if (powerIO.CanBePowered() && inventoryManager.itemsInInventory.Count < inventoryManager.maxSize)
+        if (powerIO.CanBePowered() && storage.Inventory.CanAddItem())
         {
             if (onIce)
             {
@@ -77,8 +77,8 @@ public class Drill : MonoBehaviour
                 }
             }
 
-            inventoryManager.AddItem(SelectItem(elements));
-
+            storage.Inventory.AddItem(SelectItem(elements));
+            storage.ReDraw();
             if (!animation.IsPlaying(animation.clip.name))
             {
                 animation.Play();

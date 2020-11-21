@@ -9,28 +9,31 @@ public class Storage : MonoBehaviour
     public Inventory Inventory;
     public GameObject InventoryUI;
     public GameObject InventorySlot;
+    [Range(1,8)]
     public int SlotsXLength = 5;
+    [Range(1,5)]
     public int SlotsYLength = 5;
     public bool IsOpen = false;
     public CurrentInventoryOwner Owner;
     public GameObject CameraObject;
+    public bool Locked = false;
+    public List<Item> PreExistingItems = new List<Item>();
     // Start is called before the first frame update
     private void Awake()
     {
-        Inventory = new Inventory();
+        Inventory = ScriptableObject.CreateInstance<Inventory>();
         InventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         Owner = InventoryUI.GetComponent<CurrentInventoryOwner>();
         CameraObject = Camera.main.gameObject;
     }
     void Start()
     {
-        Inventory.InventorySlots = new InventoryItem[SlotsXLength, SlotsYLength];
+        Inventory.InventorySlots = new InventoryItem[SlotsYLength, SlotsXLength];
         
-        Inventory.AddItem(new InventoryItem(Item.RockGrinder));
-        Inventory.AddItem(new InventoryItem(Item.Rock1));
-        Inventory.AddItem(new InventoryItem(Item.Rock2));
-
-
+        foreach(Item item in PreExistingItems)
+        {
+            Inventory.AddItem(new InventoryItem(item));
+        }   
     }
 
     // Update is called once per frame
@@ -69,21 +72,24 @@ public class Storage : MonoBehaviour
     }
     public void ReDraw()
     {
-        GameObject.FindGameObjectsWithTag("InventorySlot").ToList().ForEach(x => Destroy(x));
-        for (int k = 0; k < Inventory.InventorySlots.GetLength(0); k++)
+        if (IsOpen)
         {
-            for (int l = 0; l < Inventory.InventorySlots.GetLength(1); l++)
+            GameObject.FindGameObjectsWithTag("InventorySlot").ToList().ForEach(x => Destroy(x));
+            for (int k = 0; k < Inventory.InventorySlots.GetLength(0); k++)
             {
-                var item = Inventory.InventorySlots[k, l];
-                var slot = Instantiate(InventorySlot, InventoryUI.transform);
-                var rect = slot.GetComponent<RectTransform>();
-                if (item != null)
+                for (int l = 0; l < Inventory.InventorySlots.GetLength(1); l++)
                 {
-                    slot.GetComponentInChildren<RawImage>().texture = item.sprite;
-                    slot.name = item.refId.ToString();
-                }
+                    var item = Inventory.InventorySlots[k, l];
+                    var slot = Instantiate(InventorySlot, InventoryUI.transform);
+                    var rect = slot.GetComponent<RectTransform>();
+                    if (item != null)
+                    {
+                        slot.GetComponentInChildren<RawImage>().texture = item.sprite;
+                        slot.name = item.refId.ToString();
+                    }
 
-                slot.GetComponent<RectTransform>().position = new Vector3(rect.position.x + (k * 80), rect.position.y + (l * -80), rect.position.z);
+                    slot.GetComponent<RectTransform>().position = new Vector3(rect.position.x + (l * 80), rect.position.y + (k * -80), rect.position.z);
+                }
             }
         }
     }
