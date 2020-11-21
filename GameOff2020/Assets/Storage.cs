@@ -24,7 +24,7 @@ public class Storage : MonoBehaviour
         Inventory = ScriptableObject.CreateInstance<Inventory>();
         InventoryUI = GameObject.FindGameObjectWithTag("InventoryUI");
         Owner = InventoryUI.GetComponent<CurrentInventoryOwner>();
-        CameraObject = Camera.main.gameObject;
+        CameraObject = Camera.main?.gameObject;
     }
     void Start()
     {
@@ -35,7 +35,13 @@ public class Storage : MonoBehaviour
             Inventory.AddItem(new InventoryItem(item));
         }   
     }
-
+    private void Update()
+    {
+        if (CameraObject == null)
+        {
+            CameraObject = Camera.main?.gameObject;
+        }
+    }
     // Update is called once per frame
     public void ToggleInventory()
     {
