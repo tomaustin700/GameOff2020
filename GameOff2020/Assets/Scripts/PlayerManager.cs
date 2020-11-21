@@ -21,21 +21,28 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Init());
+    }
+
+    IEnumerator Init()
+    {
+        yield return new WaitForSeconds(0.5f);
+
         oxygenLvl = GameObject.Find("oxygenValue").GetComponent<Healthbar>();
         healthLvl = GameObject.Find("healthValue").GetComponent<Healthbar>();
         powerLvl = GameObject.Find("powerValue").GetComponent<Healthbar>();
+
         tempText = GameObject.Find("tempValue").GetComponent<Text>();
         playerAstronaut = GameObject.Find("Player_Astronaut");
-
-        oxygenLvl.SetHealth(100);
-        healthLvl.SetHealth(100);
-        powerLvl.SetHealth(100);
-        temp = 100f;
 
         InvokeRepeating("UpdateOxygen", 4, 4.0f);
         InvokeRepeating("UpdatePower", 60, 180);
         InvokeRepeating("UpdateTemp", 0, 5.0f);
-
+        
+        oxygenLvl.SetHealth(100);
+        healthLvl.SetHealth(100);
+        powerLvl.SetHealth(100);
+        temp = 100f;
     }
 
     // Update is called once per frame
