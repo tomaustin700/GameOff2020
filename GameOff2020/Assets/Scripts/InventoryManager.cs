@@ -187,8 +187,8 @@ public class InventoryManager : MonoBehaviour
             itemToPlace.transform.parent = null;
             var rigidBody = itemToPlace.GetComponentInChildren<Rigidbody>();
             rigidBody.isKinematic = false;
-            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |RigidbodyConstraints.FreezeRotation;
+            rigidBody.mass = 10f;
             isPlaceing = false;
         }
     }

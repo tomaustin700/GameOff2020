@@ -21,11 +21,18 @@ public class SolarPanelDust : MonoBehaviour
     void Start()
     {
         solarPanelStage = 0;
+        SetMaterial();
         InvokeRepeating(nameof(IncreaseSolarPanelDust), SolarDustTime, SolarDustTime);
     }
 
     // Update is called once per frame
     void Update()
+    {
+    
+        float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
+        powerIO.CurrentPowerProduction = powerMade;
+    }
+    public void SetMaterial()
     {
         switch (solarPanelStage)
         {
@@ -44,18 +51,18 @@ public class SolarPanelDust : MonoBehaviour
             default:
                 break;
         }
-        float powerMade = powerIO.IsDeviceOn ? (powerIO.MaxPowerProduced - solarPanelStage) : 0;
-        powerIO.CurrentPowerProduction = powerMade;
     }
     public void RemoveDust()
     {
         solarPanelStage = 0;
+        SetMaterial();
     }
     void IncreaseSolarPanelDust()
     {
         if (solarPanelStage != 3)
         {
             solarPanelStage++;
+            SetMaterial();
         }
     }
 }

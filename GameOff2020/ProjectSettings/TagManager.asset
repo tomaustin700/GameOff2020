@@ -9,6 +9,8 @@ TagManager:
   - SolarPanel
   - InventoryUI
   - InventorySlot
+  - CraftList
+  - CraftUI
   layers:
   - Default
   - TransparentFX

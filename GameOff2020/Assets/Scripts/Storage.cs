@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Renderer))]
 public class Storage : MonoBehaviour
 {
     public Inventory Inventory;
@@ -18,6 +19,7 @@ public class Storage : MonoBehaviour
     public GameObject CameraObject;
     public bool Locked = false;
     public List<Item> PreExistingItems = new List<Item>();
+    
     // Start is called before the first frame update
     private void Awake()
     {

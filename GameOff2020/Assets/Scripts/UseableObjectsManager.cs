@@ -12,6 +12,11 @@ public class UseableObjectsManager : MonoBehaviour
     private Material currentItemDefaultMaterial;
 
     public Text InstructionText;
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position + transform.forward, new Vector3(1f, 1f, 1));
+    }
     void Update()
     {
         if (player != null)
@@ -19,8 +24,8 @@ public class UseableObjectsManager : MonoBehaviour
             Vector3 newPosition = player.transform.position;
             transform.position = newPosition;
 
-
-            hitColliders = Physics.OverlapSphere(transform.position, 3f);
+            hitColliders = Physics.OverlapBox(transform.position + transform.forward, new Vector3(1f,1f,1),transform.rotation);
+            //hitColliders = Physics.OverlapCapsule(transform.position, transform.position + transform.forward,1.5f);
             string text = string.Empty;
             foreach (Collider col in hitColliders)
             {
@@ -29,9 +34,14 @@ public class UseableObjectsManager : MonoBehaviour
                     //highlight
                     if (currentItem == null)
                     {
-                        currentItemDefaultMaterial = col.gameObject.GetComponent<Renderer>().material;
-                        col.gameObject.transform.gameObject.GetComponent<Renderer>().material = highlightMaterial;
+                        currentItemDefaultMaterial = col.gameObject.GetComponentInChildren<Renderer>().material;
+                        col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
                         currentItem = col.gameObject.transform.gameObject;
+                    }
+                    else if(col.Equals(currentItem) && col.gameObject.GetComponentInChildren<Renderer>().material != highlightMaterial)
+                    {
+                        currentItemDefaultMaterial = col.gameObject.GetComponentInChildren<Renderer>().material;
+                        col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
                     }
 
 
@@ -45,6 +55,7 @@ public class UseableObjectsManager : MonoBehaviour
                         if (Input.GetKey(KeyCode.E))
                         {
                             solarPanel.RemoveDust();
+                            col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
                         }
                     }
                     if (col.GetComponent<Storage>() != null)
@@ -52,10 +63,21 @@ public class UseableObjectsManager : MonoBehaviour
 
                         var storage = col.GetComponent<Storage>();
 
-                        text = storage.IsOpen ? text = "'E' To Close Storage" : "'E' To Open Storage";
+                        text = storage.IsOpen ? "'E' To Close Storage" : "'E' To Open Storage";
                         if (Input.GetKeyUp(KeyCode.E))
                         {
                             storage.ToggleInventory();
+                        }
+                    }
+                    if (col.GetComponent<Printer>() != null)
+                    {
+
+                        var printer = col.GetComponent<Printer>();
+
+                        text = printer.IsOpen ? "'E' Close Crafting" : "'E' Begin Crafting";
+                        if (Input.GetKeyUp(KeyCode.E))
+                        {
+                            printer.ToggleCrafting();
                         }
                     }
                     if (col.GetComponentInParent<RockInteraction>() != null)
@@ -72,7 +94,22 @@ public class UseableObjectsManager : MonoBehaviour
             }
             if (currentItem != null && !hitColliders.Contains(currentItem.GetComponent<Collider>()))
             {
-                currentItem.GetComponent<Renderer>().material = currentItemDefaultMaterial;
+                currentItem.GetComponentInChildren<Renderer>().material = currentItemDefaultMaterial;
+                var solar = currentItem.GetComponent<SolarPanelDust>();
+                if (solar != null)
+                {
+                    solar.SetMaterial();
+                }
+                var storage = currentItem.GetComponent<Storage>();
+                if (storage != null)
+                {
+                    storage.CloseInventory();
+                }
+                var printer = currentItem.GetComponent<Printer>();
+                if (printer != null)
+                {
+                    printer.CloseCrafting();
+                }
                 currentItem = null;
                 currentItemDefaultMaterial = null;
             }

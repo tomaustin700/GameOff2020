@@ -14,5 +14,7 @@
     Rock4,
     Rock5,
     Drill,
-    RockGrinder
+    RockGrinder,
+    CommunicationsDevice,
+    BrokenCommunicationsDevice,
 }
