@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public class UseableObjectsManager : MonoBehaviour
 {
     [SerializeField] private string useableItemTag = "UseableItem";
+    [SerializeField] private Material highlightMaterial;
     Collider[] hitColliders;
     [SerializeField] private GameObject player;
+    private GameObject currentItem;
+    private Material currentItemDefaultMaterial;
+
     void Update()
     {
         if (player != null)
@@ -18,6 +23,16 @@ public class UseableObjectsManager : MonoBehaviour
             {
                 if (col.gameObject.CompareTag(useableItemTag))
                 {
+                    //highlight
+                    if (currentItem == null)
+                    {
+                        currentItemDefaultMaterial = col.gameObject.GetComponent<Renderer>().material;
+                        col.gameObject.transform.gameObject.GetComponent<Renderer>().material = highlightMaterial;
+                        currentItem = col.gameObject.transform.gameObject;
+                    }
+
+
+
                     //solar panel
                     if (col.GetComponent<SolarPanelDust>() != null)
                     {
@@ -47,6 +62,13 @@ public class UseableObjectsManager : MonoBehaviour
 
                 }
             }
+            if (currentItem != null && !hitColliders.Contains(currentItem.GetComponent<Collider>()))
+            {
+                currentItem.GetComponent<Renderer>().material = currentItemDefaultMaterial;
+                currentItem = null;
+                currentItemDefaultMaterial = null;
+            }
+
         }
     }
 }
