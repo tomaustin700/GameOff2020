@@ -24,9 +24,9 @@ public class ItemSpawner : MonoBehaviour
     {
         //Spawn player - use similar logic to spawn other items that player starts with such as hab
         //var startingPosition = new Vector3(Random.Range(0, 50), 5, Random.Range(0, 50));
-        var startingPosition = new Vector3(0, 5, 0);
+        //var startingPosition = new Vector3(0, 5, 0);
 
-        Instantiate(playerPrefab, startingPosition, Quaternion.identity);
+       // Instantiate(playerPrefab, startingPosition, Quaternion.identity);
 
 
         for (int i = 0; i < commonRocksToSpawn; i++)

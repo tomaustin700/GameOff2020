@@ -152,28 +152,32 @@ public class InventoryManager : MonoBehaviour
     {
         if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
         {
-            isPlaceing = true;
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
 
-            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
-
-            if (player == null)
-                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
-
-            var forward = player.transform.position + player.transform.forward * 2;
-
-            itemToPlace = Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
-            itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = true;
-            itemToPlace.transform.parent = player.transform;
-            var components = itemToPlace.GetComponentsInChildren<MeshRenderer>();
-
-            for (int i = 0; i < components.Length; i++)
+            if (item.Placeable)
             {
-                // e.g. color red
-                components[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                isPlaceing = true;
 
+                var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+                if (player == null)
+                    player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+                var forward = player.transform.position + player.transform.forward * 2;
+
+                itemToPlace = Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+                itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                itemToPlace.transform.parent = player.transform;
+                var components = itemToPlace.GetComponentsInChildren<MeshRenderer>();
+
+                for (int i = 0; i < components.Length; i++)
+                {
+                    // e.g. color red
+                    components[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+                }
             }
 
 
@@ -191,7 +195,9 @@ public class InventoryManager : MonoBehaviour
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
             itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
             itemToPlace.transform.parent = null;
-            itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = false;
+            var rigidBody = itemToPlace.GetComponentInChildren<Rigidbody>();
+            rigidBody.isKinematic = false;
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
 
             isPlaceing = false;
         }
@@ -214,6 +220,9 @@ public class InventoryManager : MonoBehaviour
 
         selectedSlot = slotToSelect;
 
-        GetComponentsInChildren<RawImage>().Single(a => a.name == "Slot (" + slotToSelect + ")").color = Color.red;
+        var slotImage = GetComponentsInChildren<RawImage>().FirstOrDefault(a => a.name == "Slot (" + slotToSelect + ")");
+
+        if (slotImage != null)
+            slotImage.color = Color.red;
     }
 }
