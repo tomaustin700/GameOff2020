@@ -116,7 +116,7 @@ public class InventoryManager : MonoBehaviour
             {
                 DropItem();
             }
-            else if (Input.GetKeyDown(KeyCode.P))
+            else if (Input.GetMouseButtonDown(0))
             {
                 if (!isPlaceing)
                     StartPlace();
