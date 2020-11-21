@@ -27,6 +27,8 @@ public class InventoryItem
         }
     }
 
+    public int posX;
+    public int posY;
     public InventoryItem(Item item)
     {
         name = item.ToString();

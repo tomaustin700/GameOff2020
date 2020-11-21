@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject hotbar;
     private int? selectedSlot;
     private GameObject player;
-    private List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
+    public List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
     private bool isPlaceing;
     private GameObject itemToPlace;
     private void Awake()
@@ -30,10 +30,13 @@ public class InventoryManager : MonoBehaviour
         if (hotbar != null)
             hotbarLocations = new List<(string hotbarLocation, Guid itemGuid)>();
     }
-
+    public bool HasInventorySpace()
+    {
+        return itemsInInventory.Count < maxSize;
+    }
     public void AddItem(InventoryItem item)
     {
-        if (itemsInInventory.Count < maxSize)
+        if (HasInventorySpace())
         {
             itemsInInventory.Add(item);
             if (hotbar != null)
@@ -129,20 +132,7 @@ public class InventoryManager : MonoBehaviour
         {
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
-            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
-            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
-
-            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
-            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
-            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
-
-
-            if (player == null)
-                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
-
-            var forward = player.transform.position + player.transform.forward;
-            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+    
 
 
         }
@@ -225,4 +215,24 @@ public class InventoryManager : MonoBehaviour
         if (slotImage != null)
             slotImage.color = Color.red;
     }
-}
+
+    public void DropItemBySlot((string hotbarLocation, Guid itemGuid) slotItem, bool instantiate = true)
+    {
+        var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+        var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+        GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+        hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+        itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+
+
+        if (player == null)
+            player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+        var forward = player.transform.position + player.transform.forward;
+        if (instantiate)
+        {
+            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+        }
+    }
+    }

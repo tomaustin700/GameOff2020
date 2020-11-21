@@ -27,7 +27,14 @@ public class UseableObjectsManager : MonoBehaviour
                             solarPanel.RemoveDust();
                         }
                     }
-
+                    if (col.GetComponent<Storage>() != null)
+                    {
+                        var storage = col.GetComponent<Storage>();
+                        if (Input.GetKeyUp(KeyCode.E))
+                        {
+                            storage.ToggleInventory();
+                        }
+                    }
                     if (col.GetComponentInParent<RockInteraction>() != null)
                     {
                         var rock = col.GetComponentInParent<RockInteraction>();

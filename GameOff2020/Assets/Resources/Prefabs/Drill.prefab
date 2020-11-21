@@ -11,25 +11,31 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
---- !u!54 &5880862938418969643
-Rigidbody:
+--- !u!114 &6307116128048710470
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2650102370254370976}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37e3b7ea750bc440b92d19ccc47e66c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Inventory: {fileID: 0}
+  InventoryUI: {fileID: 0}
+  InventorySlot: {fileID: 1846012011366627649, guid: 37bcae1b1cab2164ea9162e2768e8824, type: 3}
+  SlotsXLength: 8
+  SlotsYLength: 1
+  IsOpen: 0
+  Owner: {fileID: 0}
+  CameraObject: {fileID: 0}
+  Locked: 1
+  PreExistingItems: 
 --- !u!1 &2884106690904739817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4859,6 @@ GameObject:
   - component: {fileID: 2884106691859624241}
   - component: {fileID: 7078396417635563852}
   - component: {fileID: 2006271843}
-  - component: {fileID: 3520221079493972658}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -4908,19 +4913,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToGatherResources: 2
   ResourcesAvailable: 0
---- !u!114 &3520221079493972658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2884106691859624246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 197079cef108a5a448e7afee2ba4595b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSize: 32
 --- !u!64 &1212034888
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5017,6 +5009,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
       propertyPath: m_Name
       value: Full_drill
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
+      propertyPath: m_TagString
+      value: UseableItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 1300264252759386080, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0040957383
       objectReference: {fileID: 0}
     - target: {fileID: 1300264252759386080, guid: affebb9f01d3f9c498c3787a582bc734, type: 3}
       propertyPath: m_LocalRotation.w
