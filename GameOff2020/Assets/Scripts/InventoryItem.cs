@@ -8,7 +8,8 @@ public class InventoryItem
     public string name { get; set; }
     public Texture sprite { get; set; }
     public Guid refId { get; set; }
-
+    public int posX;
+    public int posY;
     public InventoryItem(Item item)
     {
         name = item.ToString();

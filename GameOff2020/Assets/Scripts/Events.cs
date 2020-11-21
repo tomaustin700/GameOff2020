@@ -8,4 +8,5 @@ public enum EventName
     MoveBackwards,
     TurnLeft,
     TurnRight,
+    TakeCommunicationsDeviceFromInventory,
 }

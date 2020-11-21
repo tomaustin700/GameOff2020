@@ -29,10 +29,13 @@ public class InventoryManager : MonoBehaviour
         if (hotbar != null)
             hotbarLocations = new List<(string hotbarLocation, Guid itemGuid)>();
     }
-
+    public bool HasInventorySpace()
+    {
+        return itemsInInventory.Count < maxSize;
+    }
     public void AddItem(InventoryItem item)
     {
-        if (itemsInInventory.Count < maxSize)
+        if (HasInventorySpace())
         {
             itemsInInventory.Add(item);
             if (hotbar != null)
