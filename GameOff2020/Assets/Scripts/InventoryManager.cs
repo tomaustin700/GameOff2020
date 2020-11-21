@@ -131,7 +131,7 @@ public class InventoryManager : MonoBehaviour
 
 
             if (player == null)
-                player = GameObject.Find("Player_Astronaut");
+                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
 
             var forward = player.transform.position + player.transform.forward;
             Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
