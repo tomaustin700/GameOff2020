@@ -39,11 +39,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if ((horizontal != 0 || vertical != 0))
         {
-            if(vertical > 0)
+            if (vertical > 0)
             {
                 NotificationManager.CompleteNotification(EventName.MoveForwards);
             }
-            if(vertical < 0)
+            if (vertical < 0)
             {
                 NotificationManager.CompleteNotification(EventName.MoveBackwards);
             }
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 NotificationManager.CompleteNotification(EventName.TurnRight);
             }
-             if (horizontal < 0)
+            if (horizontal < 0)
             {
                 NotificationManager.CompleteNotification(EventName.TurnLeft);
             }
@@ -60,14 +60,14 @@ public class PlayerMovement : MonoBehaviour
                 var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
                 model.transform.rotation = Quaternion.Slerp(model.transform.rotation, Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z), 0.2f);
             }
-            else if(AllowPlayerMovementInAir)
+            else if (AllowPlayerMovementInAir)
             {
                 var transformTarget = Camera.main.GetComponent<CameraFollow>().CameraPoint.gameObject.transform;
                 model.transform.rotation = Quaternion.Slerp(model.transform.rotation, Quaternion.Euler(model.transform.rotation.eulerAngles.x, transformTarget.rotation.eulerAngles.y, model.transform.rotation.eulerAngles.z), 0.2f);
             }
 
         }
-        
+
         animator.SetInteger(nameof(PlayerAnimationState), (int)PlayerAnimationState);
         onGround = Physics.CheckSphere(transform.position, 0.4f, groundLayers);
         horizontal = Input.GetAxis("Horizontal");
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             isFloating = false;
         }
 
-        if(onGround && !isJumping && !isFloating && vertical == 0)
+        if (onGround && !isJumping && !isFloating && vertical == 0)
         {
             PlayerAnimationState = PlayerAnimationState.Idle;
         }
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movementVector = model.transform.forward * vertical + model.transform.right * 0;
         movementVector.y = 0;
-        if(Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
             rigidBody.MovePosition(transform.position + movementVector * Time.deltaTime * (Speed * 1.5f));
@@ -122,9 +122,9 @@ public class PlayerMovement : MonoBehaviour
             isRunning = false;
             rigidBody.MovePosition(transform.position + movementVector * Time.deltaTime * Speed);
         }
-      
-      
-        if(queueJump && !isJumping)
+
+
+        if (queueJump && !isJumping)
         {
             queueJump = false;
             StartCoroutine(StartJump());
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.AddForce((Vector3.up * JumpHeight) + rigidBody.velocity, ForceMode.Impulse);
         }
         isJumping = false;
-      
+
 
 
 

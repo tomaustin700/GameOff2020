@@ -17,7 +17,8 @@ public class InventoryManager : MonoBehaviour
     private int? selectedSlot;
     private GameObject player;
     public List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
-
+    private bool isPlaceing;
+    private GameObject itemToPlace;
     private void Awake()
     {
         if (tag != "UseableItem")
@@ -41,7 +42,7 @@ public class InventoryManager : MonoBehaviour
             if (hotbar != null)
             {
                 var slots = GetComponentsInChildren<RawImage>();
-                foreach(var slot in slots)
+                foreach (var slot in slots)
                 {
                     if (!hotbarLocations.Any(x => x.hotbarLocation == slot.gameObject.name))
                     {
@@ -50,7 +51,7 @@ public class InventoryManager : MonoBehaviour
                         break;
                     }
                 }
-                
+
             }
 
         }
@@ -68,7 +69,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            AddItem(new InventoryItem(Item.Aluminium));
+            AddItem(new InventoryItem(Item.Drill));
         }
 
         if (hotbar != null)
@@ -115,6 +116,13 @@ public class InventoryManager : MonoBehaviour
             {
                 DropItem();
             }
+            else if (Input.GetKeyDown(KeyCode.P))
+            {
+                if (!isPlaceing)
+                    StartPlace();
+                else
+                    Place();
+            }
         }
     }
 
@@ -123,40 +131,110 @@ public class InventoryManager : MonoBehaviour
         if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
         {
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
-            DropItemBySlot(slotItem);
+
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
+            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+
+
+            if (player == null)
+                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+            var forward = player.transform.position + player.transform.forward;
+            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+
+
         }
     }
+
+    void StartPlace()
+    {
+        if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
+        {
+            isPlaceing = true;
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+
+            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+            if (player == null)
+                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+            var forward = player.transform.position + player.transform.forward * 2;
+
+            itemToPlace = Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+            itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = true;
+            itemToPlace.transform.parent = player.transform;
+            var components = itemToPlace.GetComponentsInChildren<MeshRenderer>();
+
+            for (int i = 0; i < components.Length; i++)
+            {
+                // e.g. color red
+                components[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+            }
+
+
+        }
+    }
+
+    void Place()
+    {
+        if (isPlaceing)
+        {
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+            itemToPlace.transform.parent = null;
+            itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = false;
+
+            isPlaceing = false;
+        }
+    }
+
+    void SelectHotbarSlot(int slotToSelect)
+    {
+        if (isPlaceing)
+        {
+            Destroy(itemToPlace);
+            isPlaceing = false;
+        }
+
+        var slots = GetComponentsInChildren<RawImage>();
+
+        foreach (var slot in slots)
+        {
+            slot.color = new Color(125f / 255f, 125f / 255f, 120f / 255f, 255f / 255f);
+        }
+
+        selectedSlot = slotToSelect;
+
+        GetComponentsInChildren<RawImage>().Single(a => a.name == "Slot (" + slotToSelect + ")").color = Color.red;
+    }
+
     public void DropItemBySlot((string hotbarLocation, Guid itemGuid) slotItem, bool instantiate = true)
     {
         var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
         var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
-        
+
         GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
         hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
         itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
-        
-        
+
+
         if (player == null)
             player = GameObject.Find("Player_Astronaut");
-        
+
         var forward = player.transform.position + player.transform.forward;
-        if(instantiate)
+        if (instantiate)
             Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
     }
-    void SelectHotbarSlot(int slotToSelect)
-    {
-        //if (itemsInInventory.ElementAtOrDefault(slotToSelect - 1) != null)
-        //{
-            var slots = GetComponentsInChildren<RawImage>();
-
-            foreach (var slot in slots)
-            {
-                slot.color = new Color(125f / 255f, 125f / 255f, 120f / 255f, 255f / 255f);
-            }
-
-            selectedSlot = slotToSelect;
-
-            GetComponentsInChildren<RawImage>().Single(a => a.name == "Slot (" + slotToSelect + ")").color = Color.red;
-        //}
     }
-}

@@ -8,6 +8,25 @@ public class InventoryItem
     public string name { get; set; }
     public Texture sprite { get; set; }
     public Guid refId { get; set; }
+
+    public bool Placeable
+    {
+        get
+        {
+            switch (name)
+            {
+                case "Drill":
+                    return true;
+                case "Printer":
+                    return true;
+                case "RockGrinder":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    }
+
     public int posX;
     public int posY;
     public InventoryItem(Item item)
