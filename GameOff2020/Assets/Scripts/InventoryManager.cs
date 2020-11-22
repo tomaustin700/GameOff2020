@@ -131,13 +131,13 @@ public class InventoryManager : MonoBehaviour
 
         if (isPlaceing)
         {
-            hitColliders = Physics.OverlapBox(itemToPlace.transform.position, new Vector3(0, 0, 0), itemToPlace.transform.rotation);
+            hitColliders = Physics.OverlapBox(itemToPlace.transform.position, new Vector3(1f, 1f, 1f), itemToPlace.transform.rotation);
             var renderers = itemToPlace.GetComponentsInChildren<Renderer>();
             var colliders = itemToPlace.GetComponentsInChildren<Collider>();
 
             if (hitColliders.Except(colliders).Any())
             {
-                
+
                 for (int i = 0; i < renderers.Length; i++)
                 {
                     renderers[i].material = cantPlaceMat;
@@ -165,21 +165,23 @@ public class InventoryManager : MonoBehaviour
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
-            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
 
-            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
-            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
-            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+            if (!item.Placeable)
+            {
+                var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
 
-
-            if (player == null)
-                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
-
-            var forward = player.transform.position + player.transform.forward;
-            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+                GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+                hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+                itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
 
 
+                if (player == null)
+                    player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+                var forward = player.transform.position + player.transform.forward;
+                Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+
+            }
 
 
         }
