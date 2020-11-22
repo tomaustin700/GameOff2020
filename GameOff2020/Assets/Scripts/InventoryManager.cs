@@ -11,6 +11,8 @@ public class InventoryManager : MonoBehaviour
 {
 
     public int maxSize = 8;
+    public Material canPlaceMat;
+    public Material cantPlaceMat;
 
     public List<InventoryItem> itemsInInventory;
     private GameObject hotbar;
@@ -18,7 +20,9 @@ public class InventoryManager : MonoBehaviour
     private GameObject player;
     public List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
     private bool isPlaceing;
+    private bool canPlace;
     private GameObject itemToPlace;
+    Collider[] hitColliders;
     private void Awake()
     {
         if (tag != "UseableItem")
@@ -124,6 +128,34 @@ public class InventoryManager : MonoBehaviour
                     Place();
             }
         }
+
+        if (isPlaceing)
+        {
+            hitColliders = Physics.OverlapBox(itemToPlace.transform.position, new Vector3(0, 0, 0), itemToPlace.transform.rotation);
+            var renderers = itemToPlace.GetComponentsInChildren<Renderer>();
+            var colliders = itemToPlace.GetComponentsInChildren<Collider>();
+
+            if (hitColliders.Except(colliders).Any())
+            {
+                
+                for (int i = 0; i < renderers.Length; i++)
+                {
+                    renderers[i].material = cantPlaceMat;
+                }
+                canPlace = false;
+            }
+            else
+            {
+                for (int i = 0; i < renderers.Length; i++)
+                {
+                    renderers[i].material = canPlaceMat;
+                }
+                canPlace = true;
+            }
+
+
+
+        }
     }
 
     void DropItem()
@@ -132,7 +164,22 @@ public class InventoryManager : MonoBehaviour
         {
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
-    
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+            // var asset = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/" + item.name + ".prefab", typeof(UnityEngine.Object)) as GameObject;
+            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+
+
+            if (player == null)
+                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+            var forward = player.transform.position + player.transform.forward;
+            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+
+
 
 
         }
@@ -158,15 +205,28 @@ public class InventoryManager : MonoBehaviour
                 var forward = player.transform.position + player.transform.forward * 2;
 
                 itemToPlace = Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
-                itemToPlace.GetComponentInChildren<Rigidbody>().isKinematic = true;
+                var rigid = itemToPlace.GetComponentInChildren<Rigidbody>();
+                rigid.isKinematic = true;
+
+
                 itemToPlace.transform.parent = player.transform;
-                var components = itemToPlace.GetComponentsInChildren<MeshRenderer>();
+                var renderers = itemToPlace.GetComponentsInChildren<Renderer>();
+                var paticleSystems = itemToPlace.GetComponentsInChildren<ParticleSystem>();
+                var animations = itemToPlace.GetComponentsInChildren<Animation>();
 
-                for (int i = 0; i < components.Length; i++)
+                for (int i = 0; i < renderers.Length; i++)
                 {
-                    // e.g. color red
-                    components[i].gameObject.GetComponent<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+                    renderers[i].material = canPlaceMat;
+                }
 
+                for (int i = 0; i < paticleSystems.Length; i++)
+                {
+                    paticleSystems[i].Stop();
+                }
+
+                for (int i = 0; i < animations.Length; i++)
+                {
+                    animations[i].Stop();
                 }
             }
 
@@ -176,7 +236,7 @@ public class InventoryManager : MonoBehaviour
 
     void Place()
     {
-        if (isPlaceing)
+        if (isPlaceing && canPlace)
         {
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
 
@@ -184,11 +244,18 @@ public class InventoryManager : MonoBehaviour
             GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
             itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
-            itemToPlace.transform.parent = null;
-            var rigidBody = itemToPlace.GetComponentInChildren<Rigidbody>();
+
+            var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
+
+            var newItem = Instantiate(asset, itemToPlace.transform.position, itemToPlace.transform.rotation);
+
+            var rigidBody = newItem.GetComponentInChildren<Rigidbody>();
             rigidBody.isKinematic = false;
-            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |RigidbodyConstraints.FreezeRotation;
+            rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             rigidBody.mass = 10f;
+
+            Destroy(itemToPlace);
+
             isPlaceing = false;
         }
     }
@@ -235,4 +302,4 @@ public class InventoryManager : MonoBehaviour
             Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
         }
     }
-    }
+}
