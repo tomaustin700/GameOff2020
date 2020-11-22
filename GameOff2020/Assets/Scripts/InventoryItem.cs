@@ -21,6 +21,8 @@ public class InventoryItem
                     return true;
                 case "RockGrinder":
                     return true;
+                case "Locker":
+                    return true;
                 default:
                     return false;
             }

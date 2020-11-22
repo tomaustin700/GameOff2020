@@ -17,4 +17,5 @@
     RockGrinder,
     CommunicationsDevice,
     BrokenCommunicationsDevice,
+    Locker,
 }
