@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -70,5 +71,93 @@ public class Inventory : ScriptableObject
             }
         }
         return null;
+    }
+    public bool Contains(Item item_type)
+    {
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            {
+                var item = InventorySlots[k, l];
+                if (item != null && item.name == item_type.ToString())
+                {
+
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+   
+    public InventoryItem GetItemByItemType(Item item_type)
+    {
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            {
+                var item = InventorySlots[k, l];
+                if (item != null && item.name == item_type.ToString())
+                {
+
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+    public List<Item> GetAllItemsAsItemTypes()
+    {
+        List<Item> returnItems = new List<Item>();
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            {
+                var item = InventorySlots[k, l];
+                if (item != null)
+                {
+                    var type = Enum.Parse(typeof(Item), item.name);
+                    if (type != null && type is Item)
+                    {
+                        returnItems.Add((Item)type);
+                    }
+                    
+                }
+            }
+        }
+        return returnItems;
+    }
+    public List<string> GetAllItemNames()
+    {
+        List<string> returnItems = new List<string>();
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            {
+                var item = InventorySlots[k, l];
+                if (item != null)
+                {
+                    returnItems.Add(item.name);
+
+                }
+            }
+        }
+        return returnItems;
+    }
+    public List<InventoryItem> GetAllItemsAsInventoryItems()
+    {
+        List<InventoryItem> returnItems = new List<InventoryItem>();
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            {
+                var item = InventorySlots[k, l];
+                if (item != null)
+                {
+                    returnItems.Add(item);
+
+                }
+            }
+        }
+        return returnItems;
     }
 }

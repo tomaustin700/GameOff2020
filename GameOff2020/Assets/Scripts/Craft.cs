@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Craft : MonoBehaviour
@@ -28,6 +30,11 @@ public class Craft : MonoBehaviour
         {
             var requirements = recipe.Requirements;
             var inventoryCopy = HotBar.itemsInInventory.Select(x => x.name).ToList();
+            var combinedStorage = FindObjectsOfType<Storage>();
+            var type = Enum.Parse(typeof(Item), "Drill");
+            var storageStrings = new List<string>();
+            combinedStorage.ToList().ForEach(x => storageStrings.AddRange(x.Inventory.GetAllItemNames()));
+            inventoryCopy.AddRange(storageStrings);
             bool passed = true;
             foreach (Item item in requirements)
             {
@@ -49,14 +56,31 @@ public class Craft : MonoBehaviour
         if (ValidRequirements())
         {
             var requirements = recipe.Requirements;
-            var inventoryCopy = HotBar.itemsInInventory.Select(x => x.name).ToList();
+            var combinedStorage = FindObjectsOfType<Storage>();
+            var type = Enum.Parse(typeof(Item), "Drill");
             foreach (Item item in requirements)
             {
-                var firstRemove = HotBar.itemsInInventory.First(x => x.name == item.ToString());
-                var hotBarLoc = HotBar.hotbarLocations.First(x => x.itemGuid == firstRemove.refId);
-                HotBar.DropItemBySlot(hotBarLoc, false);
+                if(HotBar.itemsInInventory.Any(x => x.name == item.ToString()))
+                {
+                    var firstRemove = HotBar.itemsInInventory.First(x => x.name == item.ToString());
+                    var hotBarLoc = HotBar.hotbarLocations.First(x => x.itemGuid == firstRemove.refId);
+                    HotBar.DropItemBySlot(hotBarLoc, false);
+                }
+                else
+                {
+                    foreach(Storage storage in combinedStorage)
+                    {
+                        if(storage.Inventory.Contains(item))
+                        {
+                            var itemInStorage = storage.Inventory.GetItemByItemType(item);
+                            storage.Inventory.RemoveItemFromSlot(itemInStorage.posX, itemInStorage.posY);
+                        }
+                    }
+                }
+          
             }
             HotBar.AddItem(new InventoryItem(recipe.ReturnItem));
+            UpdateRecipe(recipe);
         }
     }
 
@@ -71,7 +95,7 @@ public class Craft : MonoBehaviour
         List<string> itemParts = new List<string>();
         foreach(var item in uniqueItems)
         {
-            itemParts.Add($"{item}({uniqueItems.Count(x => x == item)})");
+            itemParts.Add($"{item}({recipe.Requirements.Count(x => x == item)})");
         }
         Requirements.text = requirements += string.Join(",", itemParts);
         if (ValidRequirements())
