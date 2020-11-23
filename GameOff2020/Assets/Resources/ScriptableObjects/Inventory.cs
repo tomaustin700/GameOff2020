@@ -53,6 +53,21 @@ public class Inventory : ScriptableObject
         if (InventorySlots[x,y] != null)
         {
             InventorySlots[x,y] = null;
+            RecalculateAllPositions();
+        }
+    }
+    public void RecalculateAllPositions()
+    {
+        for (int k = 0; k < InventorySlots.GetLength(0); k++)
+        {
+            for (int l = 0; l < InventorySlots.GetLength(1); l++)
+            { 
+                if (InventorySlots[k, l] != null)
+                {
+                    InventorySlots[k, l].posX = k;
+                    InventorySlots[k, l].posY = l;
+                }
+            }
         }
     }
 
@@ -91,6 +106,7 @@ public class Inventory : ScriptableObject
    
     public InventoryItem GetItemByItemType(Item item_type)
     {
+        RecalculateAllPositions();
         for (int k = 0; k < InventorySlots.GetLength(0); k++)
         {
             for (int l = 0; l < InventorySlots.GetLength(1); l++)

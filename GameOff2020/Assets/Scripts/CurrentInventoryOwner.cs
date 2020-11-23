@@ -15,6 +15,7 @@ public class CurrentInventoryOwner : MonoBehaviour
             var hotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<InventoryManager>();
             if(hotbar.HasInventorySpace())
             {
+                CurrentOwner.GetComponent<Storage>().Inventory.RecalculateAllPositions();
                 var item = CurrentOwner.GetComponent<Storage>().Inventory.GetItemByGuid(gameObject.name);
                 if(item != null)
                 {

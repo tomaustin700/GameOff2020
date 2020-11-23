@@ -18,4 +18,6 @@
     CommunicationsDevice,
     BrokenCommunicationsDevice,
     Locker,
+    Solar,
+    Hab,
 }
