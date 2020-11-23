@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7a25f51d3b6cb0418147a892c26eb9a, type: 3}
   m_Name: Printer
   m_EditorClassIdentifier: 
-  RecipeName: 
-  Image: {fileID: 0}
-  Description: 
-  Requirements: 
+  RecipeName: Printer
+  Image: {fileID: 2800000, guid: 686dd4cf8af67834990aa72efa929c92, type: 3}
+  Description: For crafting things
+  Requirements: 0300000003000000030000000300000003000000030000000300000003000000030000000300000006000000060000000500000005000000050000000500000005000000
   ReturnItem: 0
