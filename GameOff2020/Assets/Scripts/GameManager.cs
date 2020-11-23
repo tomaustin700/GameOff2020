@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnItems();
-        StartRescueTimer();
+       // StartRescueTimer();
         Physics.gravity = new Vector3(0, -3, 0);
 
 

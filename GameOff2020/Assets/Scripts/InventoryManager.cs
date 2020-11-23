@@ -73,7 +73,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            AddItem(new InventoryItem(Item.Drill));
+            AddItem(new InventoryItem(Item.Aluminium));
         }
 
         if (hotbar != null)

@@ -90,6 +90,16 @@ public class UseableObjectsManager : MonoBehaviour
                         }
                     }
 
+                    if (col.GetComponentInParent<ElementInteraction>() != null)
+                    {
+                        var element = col.GetComponentInParent<ElementInteraction>();
+                        text = "'E' To Pick Up " + col.transform.parent.name.Replace("(Clone)", "");
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            element.PickUpElement();
+                        }
+                    }
+
                 }
             }
             if (currentItem != null && !hitColliders.Contains(currentItem.GetComponent<Collider>()))
