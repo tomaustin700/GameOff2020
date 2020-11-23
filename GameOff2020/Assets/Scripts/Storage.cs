@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Renderer))]
+
 public class Storage : MonoBehaviour
 {
     public Inventory Inventory;
