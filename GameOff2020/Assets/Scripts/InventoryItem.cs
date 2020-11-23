@@ -23,6 +23,8 @@ public class InventoryItem
                     return true;
                 case "Locker":
                     return true;
+                case "CommunicationsDevice":
+                    return true;
                 default:
                     return false;
             }

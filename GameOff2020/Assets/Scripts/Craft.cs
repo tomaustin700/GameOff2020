@@ -30,22 +30,32 @@ public class Craft : MonoBehaviour
         {
             var requirements = recipe.Requirements;
             var inventoryCopy = HotBar.itemsInInventory.Select(x => x.name).ToList();
+            List<string> combinedInventory = new List<string>();
             var combinedStorage = FindObjectsOfType<Storage>();
             var type = Enum.Parse(typeof(Item), "Drill");
             var storageStrings = new List<string>();
             combinedStorage.ToList().ForEach(x => storageStrings.AddRange(x.Inventory.GetAllItemNames()));
-            inventoryCopy.AddRange(storageStrings);
+            combinedInventory.AddRange(storageStrings);
+            combinedInventory.AddRange(inventoryCopy);
             bool passed = true;
             foreach (Item item in requirements)
             {
-                if (inventoryCopy.Contains(item.ToString()))
+                if (combinedInventory.Contains(item.ToString()))
                 {
-                    inventoryCopy.Remove(item.ToString());
+                    if (inventoryCopy.Contains(item.ToString()))
+                    {
+                        inventoryCopy.Remove(item.ToString());
+                    }
+                    combinedInventory.Remove(item.ToString());
                 }
                 else
                 {
                     passed = false;
                 }
+            }
+            if (inventoryCopy.Count >= HotBar.maxSize)
+            {
+                passed = false;
             }
             return passed;
         }
