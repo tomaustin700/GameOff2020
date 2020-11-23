@@ -76,6 +76,11 @@ public class InventoryManager : MonoBehaviour
             AddItem(new InventoryItem(Item.Aluminium));
         }
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            DropAll();
+        }
+
         if (hotbar != null)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -120,7 +125,7 @@ public class InventoryManager : MonoBehaviour
             {
                 DropItem();
             }
-            else if (Input.GetMouseButtonDown(0))
+            else if (Input.GetMouseButtonDown(1))
             {
                 if (!isPlaceing)
                     StartPlace();
@@ -155,6 +160,16 @@ public class InventoryManager : MonoBehaviour
 
 
 
+        }
+    }
+
+    void DropAll()
+    {
+        selectedSlot = 0;
+        while(itemsInInventory.Any())
+        {
+            DropItem();
+            selectedSlot++;
         }
     }
 
