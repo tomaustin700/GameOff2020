@@ -11,6 +11,7 @@ TagManager:
   - InventorySlot
   - CraftList
   - CraftUI
+  - PlayerTag
   layers:
   - Default
   - TransparentFX
