@@ -11,11 +11,7 @@ public class InHabScript : MonoBehaviour
     {
         if (player == null)
         {
-            player = GameObject.Find("Player_WithCamera(Clone)");
-            if (player == null)
-            {
-                player = GameObject.Find("Player_WithCamera");
-            }
+            player = GameObject.Find("Player_WithCamera");
         }
         playerManager = player.GetComponent<PlayerManager>();
     }
