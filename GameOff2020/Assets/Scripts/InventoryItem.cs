@@ -9,6 +9,14 @@ public class InventoryItem
     public Texture sprite { get; set; }
     public Guid refId { get; set; }
 
+    public string DropPrefabName
+    {
+        get
+        {
+            return name + "Drop";
+        }
+    }
+
     public bool Placeable
     {
         get

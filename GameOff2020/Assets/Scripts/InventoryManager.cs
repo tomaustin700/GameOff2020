@@ -73,12 +73,12 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            AddItem(new InventoryItem(Item.Iron));
-            AddItem(new InventoryItem(Item.Oxygen));
-            AddItem(new InventoryItem(Item.Magnesium));
-            AddItem(new InventoryItem(Item.Titanium));
-            AddItem(new InventoryItem(Item.Silicon));
-            AddItem(new InventoryItem(Item.Hydrogen));
+            AddItem(new InventoryItem(Item.Printer));
+            //AddItem(new InventoryItem(Item.Oxygen));
+            //AddItem(new InventoryItem(Item.Magnesium));
+            //AddItem(new InventoryItem(Item.Titanium));
+            //AddItem(new InventoryItem(Item.Silicon));
+            //AddItem(new InventoryItem(Item.Hydrogen));
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -175,7 +175,7 @@ public class InventoryManager : MonoBehaviour
     void DropAll()
     {
         selectedSlot = 0;
-        while(itemsInInventory.Any())
+        while (itemsInInventory.Any())
         {
             DropItem();
             selectedSlot++;
@@ -190,22 +190,29 @@ public class InventoryManager : MonoBehaviour
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
 
+            GameObject asset;
+
             if (!item.Placeable)
             {
-                var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
-
-                GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
-                hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
-                itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
-
-
-                if (player == null)
-                    player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
-
-                var forward = player.transform.position + player.transform.forward;
-                Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
+                asset = Resources.Load("Prefabs/" + item.name) as GameObject;
 
             }
+            else
+            {
+                asset = Resources.Load("Prefabs/" + item.DropPrefabName) as GameObject;
+
+            }
+
+            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+            itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+
+
+            if (player == null)
+                player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
+
+            var forward = player.transform.position + player.transform.forward;
+            Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
 
 
         }

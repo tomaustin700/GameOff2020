@@ -149,8 +149,8 @@ public class PlayerManager : MonoBehaviour
 
             if (oxygenLvl.health == 0 && healthLvl.health > 0)
             {
-                if (healthLvl.health - 25 >= 0)
-                    healthLvl.SetHealth(healthLvl.health - 25f);
+                if (healthLvl.health - 50 >= 0)
+                    healthLvl.SetHealth(healthLvl.health - 50f);
                 else
                 {
                     healthLvl.SetHealth(0f);
