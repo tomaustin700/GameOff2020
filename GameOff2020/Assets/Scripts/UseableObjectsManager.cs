@@ -74,7 +74,7 @@ public class UseableObjectsManager : MonoBehaviour
 
                         var rockGrinder = col.GetComponent<RockGrinder>();
 
-                        text = "Select a rock and press E";
+                        text = "Select a rock and press 'E'";
                         if (Input.GetKeyUp(KeyCode.E))
                         {
                             rockGrinder.TradeRock();
