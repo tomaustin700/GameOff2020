@@ -69,10 +69,21 @@ public class UseableObjectsManager : MonoBehaviour
                             storage.ToggleInventory();
                         }
                     }
-                    if (col.GetComponent<Printer>() != null)
+                    if (col.GetComponent<RockGrinder>() != null)
                     {
 
-                        var printer = col.GetComponent<Printer>();
+                        var rockGrinder = col.GetComponent<RockGrinder>();
+
+                        text = "Select a rock and press E";
+                        if (Input.GetKeyUp(KeyCode.E))
+                        {
+                            rockGrinder.TradeRock();
+                        }
+                    }
+                    if (col.GetComponentInChildren<Printer>() != null)
+                    {
+
+                        var printer = col.GetComponentInChildren<Printer>();
 
                         text = printer.IsOpen ? "'E' Close Crafting" : "'E' Begin Crafting";
                         if (Input.GetKeyUp(KeyCode.E))

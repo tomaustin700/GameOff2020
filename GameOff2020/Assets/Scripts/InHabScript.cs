@@ -13,17 +13,21 @@ public class InHabScript : MonoBehaviour
         {
             player = GameObject.Find("Player_WithCamera");
         }
-        if (playerManager != null)
+        if (playerManager == null && player != null)
             playerManager = player.GetComponent<PlayerManager>();
     }
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider col)
     {
-        if (playerManager != null)
+        if (playerManager != null && col.gameObject.layer == 9)
+        {
             playerManager.inHab = true;
+        }
     }
-    void OnTriggerExit()
+    void OnTriggerExit(Collider col)
     {
-        if (playerManager != null)
+        if (playerManager != null && col.gameObject.layer == 9)
+        {
             playerManager.inHab = false;
+        }
     }
 }

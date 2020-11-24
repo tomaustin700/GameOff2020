@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour
 
     public List<InventoryItem> itemsInInventory;
     private GameObject hotbar;
-    private int? selectedSlot;
+    public int? SelectedSlot;
     private GameObject player;
     public List<(string hotbarLocation, Guid itemGuid)> hotbarLocations;
     private bool isPlaceing;
@@ -71,7 +71,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && Application.isEditor)
         {
             AddItem(new InventoryItem(Item.Printer));
             AddItem(new InventoryItem(Item.CommunicationsDevice));
@@ -79,7 +79,17 @@ public class InventoryManager : MonoBehaviour
             AddItem(new InventoryItem(Item.Locker));
             AddItem(new InventoryItem(Item.RockGrinder));
         }
-
+        if (Input.GetKeyDown(KeyCode.R) && Application.isEditor)
+        {
+            AddItem(new InventoryItem(Item.Rock1));
+            AddItem(new InventoryItem(Item.Rock2));
+            AddItem(new InventoryItem(Item.Rock3));
+            AddItem(new InventoryItem(Item.Rock3));
+            AddItem(new InventoryItem(Item.Rock4));
+            AddItem(new InventoryItem(Item.Rock5));
+            AddItem(new InventoryItem(Item.Rock4));
+            AddItem(new InventoryItem(Item.Rock5));
+        }
         if (Input.GetKeyDown(KeyCode.Z))
         {
             DropAll();
@@ -173,19 +183,19 @@ public class InventoryManager : MonoBehaviour
 
     void DropAll()
     {
-        selectedSlot = 0;
+        SelectedSlot = 0;
         while (itemsInInventory.Any())
         {
             DropItem();
-            selectedSlot++;
+            SelectedSlot++;
         }
     }
 
     void DropItem()
     {
-        if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
+        if (SelectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString())))
         {
-            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
 
@@ -219,9 +229,9 @@ public class InventoryManager : MonoBehaviour
 
     void StartPlace()
     {
-        if (selectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString())))
+        if (SelectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString())))
         {
-            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
 
@@ -270,7 +280,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (isPlaceing && canPlace)
         {
-            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(selectedSlot.Value.ToString()));
+            var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
             GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
@@ -313,7 +323,7 @@ public class InventoryManager : MonoBehaviour
             slot.color = new Color(125f / 255f, 125f / 255f, 120f / 255f, 255f / 255f);
         }
 
-        selectedSlot = slotToSelect;
+        SelectedSlot = slotToSelect;
 
         var slotImage = GetComponentsInChildren<RawImage>().FirstOrDefault(a => a.name == "Slot (" + slotToSelect + ")");
 
