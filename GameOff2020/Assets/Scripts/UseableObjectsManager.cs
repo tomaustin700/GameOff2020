@@ -32,7 +32,7 @@ public class UseableObjectsManager : MonoBehaviour
                 if (col.gameObject.CompareTag(useableItemTag))
                 {
                     //highlight
-                    if (currentItem == null)
+                  if (currentItem == null)
                     {
                         currentItemDefaultMaterial = col.gameObject.GetComponentInChildren<Renderer>().material;
                         col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
@@ -97,6 +97,16 @@ public class UseableObjectsManager : MonoBehaviour
                         if (Input.GetKey(KeyCode.E))
                         {
                             element.PickUpElement();
+                        }
+                    }
+
+                    if (col.GetComponentInParent<DropUsableInteraction>() != null)
+                    {
+                        var prefab = col.GetComponentInParent<DropUsableInteraction>();
+                        text = "'E' To Pick Up " + col.transform.parent.name.Replace("Drop(Clone)", "");
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            prefab.PickUpUsable();
                         }
                     }
 

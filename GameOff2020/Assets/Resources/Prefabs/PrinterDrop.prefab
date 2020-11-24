@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5284843703243537706}
   - component: {fileID: 5284843703243537707}
   - component: {fileID: 5284843703243537704}
-  - component: {fileID: 5284843703243537701}
+  - component: {fileID: 135749659456903707}
   m_Layer: 10
   m_Name: PrinterDrop
   m_TagString: Untagged
@@ -70,7 +70,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5284843703243537701
+--- !u!114 &135749659456903707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5284843703243537705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63ce867b5ead2d644b734124fed771a3, type: 3}
+  m_Script: {fileID: 11500000, guid: cbb1dfeb7572d484f8115a175f925c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5284843703782758926
