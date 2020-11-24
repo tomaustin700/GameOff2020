@@ -71,6 +71,29 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
+        var scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0f) // forward
+        {
+            if (SelectedSlot == null || SelectedSlot >= 8)
+            {
+                SelectHotbarSlot(0);
+            }
+            else
+            {
+                SelectHotbarSlot(SelectedSlot.Value + 1);
+            }
+        }
+        if (scroll < 0f) // backwards
+        {
+            if (SelectedSlot == null || SelectedSlot <= 0)
+            {
+                SelectHotbarSlot(8);
+            }
+            else
+            {
+                SelectHotbarSlot(SelectedSlot.Value - 1);
+            }
+        }
         if (Input.GetKeyDown(KeyCode.G) && Application.isEditor)
         {
             AddItem(new InventoryItem(Item.Printer));
