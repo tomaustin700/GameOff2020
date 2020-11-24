@@ -74,6 +74,11 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
         {
             AddItem(new InventoryItem(Item.Iron));
+            AddItem(new InventoryItem(Item.Oxygen));
+            AddItem(new InventoryItem(Item.Magnesium));
+            AddItem(new InventoryItem(Item.Titanium));
+            AddItem(new InventoryItem(Item.Silicon));
+            AddItem(new InventoryItem(Item.Hydrogen));
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
