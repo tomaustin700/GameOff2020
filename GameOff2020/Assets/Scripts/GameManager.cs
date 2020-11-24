@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public int daysUntilRescue = 61;
+    public int daysUntilRescue = 11;
     public bool rescueTimerStarted;
     public GameObject rescueHud;
 
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnItems();
-       // StartRescueTimer();
         Physics.gravity = new Vector3(0, -3, 0);
 
 
@@ -25,7 +24,17 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (!rescueTimerStarted)
+        {
+            var comms = GameObject.Find("CommunicationsDevice(Clone)");
+            if (comms)
+            {
+                var rigid = comms.GetComponentInChildren<Rigidbody>();
+                if (!rigid.isKinematic)
+                    StartRescueTimer();
 
+            }
+        }
 
     }
 
@@ -35,7 +44,8 @@ public class GameManager : MonoBehaviour
         {
             rescueHud.SetActive(true);
             rescueText = GameObject.Find("daysValue").GetComponent<Text>();
-            InvokeRepeating("UpdateDaysUntilRescue", 0, 600);
+            InvokeRepeating(nameof(UpdateDaysUntilRescue), 0, 600);
+            rescueTimerStarted = true;
         }
 
 

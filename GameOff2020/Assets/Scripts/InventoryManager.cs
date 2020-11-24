@@ -73,7 +73,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            AddItem(new InventoryItem(Item.Aluminium));
+            AddItem(new InventoryItem(Item.Iron));
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
@@ -131,6 +131,10 @@ public class InventoryManager : MonoBehaviour
                     StartPlace();
                 else
                     Place();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && isPlaceing)
+            {
+                CancelPlace();
             }
         }
 
@@ -219,7 +223,7 @@ public class InventoryManager : MonoBehaviour
                 if (player == null)
                     player = GameObject.Find("Player_Astronaut").GetComponentInChildren<Animator>().gameObject;
 
-                var forward = player.transform.position + player.transform.forward * 2;
+                var forward = player.transform.position + player.transform.forward * 3;
 
                 itemToPlace = Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
                 var rigid = itemToPlace.GetComponentInChildren<Rigidbody>();
@@ -275,6 +279,12 @@ public class InventoryManager : MonoBehaviour
 
             isPlaceing = false;
         }
+    }
+
+    void CancelPlace()
+    {
+        Destroy(itemToPlace);
+        isPlaceing = false;
     }
 
     void SelectHotbarSlot(int slotToSelect)

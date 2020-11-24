@@ -25,6 +25,8 @@ public class InventoryItem
                     return true;
                 case "CommunicationsDevice":
                     return true;
+                case "Solar":
+                    return true;
                 default:
                     return false;
             }

@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     private Healthbar oxygenLvl;
     private Healthbar healthLvl;
     private Healthbar powerLvl;
+    private Healthbar suitTempLvl;
     private Text tempText;
     private GameObject playerAstronaut;
     private float temp;
@@ -31,14 +32,16 @@ public class PlayerManager : MonoBehaviour
         oxygenLvl = GameObject.Find("oxygenValue").GetComponent<Healthbar>();
         healthLvl = GameObject.Find("healthValue").GetComponent<Healthbar>();
         powerLvl = GameObject.Find("powerValue").GetComponent<Healthbar>();
+        suitTempLvl = GameObject.Find("suitTempValue").GetComponent<Healthbar>();
 
         tempText = GameObject.Find("tempValue").GetComponent<Text>();
         playerAstronaut = GameObject.Find("Player_Astronaut");
 
-        InvokeRepeating("UpdateOxygen", 4, 4.0f);
-        InvokeRepeating("UpdatePower", 60, 180);
-        InvokeRepeating("UpdateTemp", 0, 5.0f);
-        
+        InvokeRepeating(nameof(UpdateOxygen), 4, 4.0f);
+        InvokeRepeating(nameof(UpdatePower), 60, 180);
+        InvokeRepeating(nameof(UpdateTemp), 0, 5.0f);
+        InvokeRepeating(nameof(UpdateSuitTemp), 0, 5.0f);
+
         oxygenLvl.SetHealth(100);
         healthLvl.SetHealth(100);
         powerLvl.SetHealth(100);
@@ -48,22 +51,43 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (healthLvl != null && healthLvl.health == 0)
+            playerDead = true;
+
+    }
 
 
+
+    void UpdateSuitTemp()
+    {
+        if (powerLvl.health > 0)
+        {
+            suitTempLvl.health = Random.Range(35 - 2f, 35 + 0.8f);
+        }
+
+        if (suitTempLvl.health == 0 && healthLvl.health - 25 >= 0)
+        {
+            if (healthLvl.health - 25 >= 0)
+                healthLvl.SetHealth(healthLvl.health - 25f);
+            else
+            {
+                healthLvl.SetHealth(0f);
+            }
+        }
     }
 
     void UpdateTemp()
     {
         var playerPos = playerAstronaut.transform;
-        temp = 100f;
+        temp = -100f;
 
         if (playerPos.position.x > playerPos.position.z)
         {
-            temp = temp - (playerPos.position.x / 150);
+            temp = temp - (playerPos.position.x / 20);
         }
         else
         {
-            temp = temp - (playerPos.position.z / 150);
+            temp = temp - (playerPos.position.z / 20);
 
         }
 
@@ -95,14 +119,18 @@ public class PlayerManager : MonoBehaviour
         powerLvl.SetHealth(powerLvl.health - powerSubtractionMultiplier - (float)tempMultiplier);
 
 
-        if (powerLvl.health == 0 && healthLvl.health > 0)
+        if (powerLvl.health == 0 && suitTempLvl.health > 0)
         {
-            if (healthLvl.health - 25 >= 0)
-                healthLvl.SetHealth(healthLvl.health - 25f);
+            if (suitTempLvl.health - 25 >= 0)
+                suitTempLvl.SetHealth(suitTempLvl.health - 25f);
             else
             {
-                healthLvl.SetHealth(0f);
+                suitTempLvl.SetHealth(0f);
             }
+        }
+        else if (powerLvl.health > 0 && suitTempLvl.health < 20)
+        {
+            suitTempLvl.health = 37;
         }
 
     }
