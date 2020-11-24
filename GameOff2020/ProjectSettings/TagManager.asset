@@ -12,6 +12,7 @@ TagManager:
   - CraftList
   - CraftUI
   - PlayerTag
+  - PostProcessVolume
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 targetRotation;
     private float horizontal;
     public bool CanAlterCursor = true;
+    public bool MoveToCursor = true;
     private void Awake()
     {
         PrepareCursor();
@@ -25,7 +26,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
-        mouseAxis = new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")).normalized;
+        mouseAxis = CanAlterCursor ? new Vector2(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X")).normalized : Vector2.zero;
         if (CanAlterCursor && (Mathf.Abs(mouseAxis.x) <= 0.001f || Mathf.Abs(mouseAxis.y) <= 0.001f))
         {
             Cursor.lockState = CursorLockMode.Locked;
