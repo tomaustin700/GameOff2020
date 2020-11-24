@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 using UnityEngine.UI;
 
 
@@ -59,24 +61,53 @@ public class Storage : MonoBehaviour
 
     public void OpenInventory()
     {
-        
-       InventoryUI.GetComponent<Image>().enabled = true;
-       IsOpen = true;
+        var volume = GameObject.FindGameObjectWithTag("PostProcessVolume")?.GetComponent<Volume>();
+        if (volume != null)
+        {
+            for (int i = 0; i < volume.profile.components.Count; i++)
+            {
+                Debug.Log(volume.profile.components[i].name);
+                if (volume.profile.components[i].name.Contains("Bloom"))
+                {
+                    Bloom bloom = (Bloom)volume.profile.components[i];
+                    bloom.intensity.value = 1f;
+
+                }
+            }
+        }
+        InventoryUI.GetComponent<Image>().enabled = true;
+        IsOpen = true;
         ReDraw();
         Owner.CurrentOwner = gameObject;
         CameraObject.GetComponent<CameraFollow>().CanAlterCursor = false;
+        CameraObject.GetComponent<CameraFollow>().MoveToCursor = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
     }
     public void CloseInventory()
     {
+        var volume = GameObject.FindGameObjectWithTag("PostProcessVolume")?.GetComponent<Volume>();
+        if (volume != null)
+        {
+            for (int i = 0; i < volume.profile.components.Count; i++)
+            {
+                Debug.Log(volume.profile.components[i].name);
+                if (volume.profile.components[i].name.Contains("Bloom"))
+                {
+                    Bloom bloom = (Bloom)volume.profile.components[i];
+                    bloom.intensity.value = 0.25f;
+
+                }
+            }
+        }
         GameObject.FindGameObjectsWithTag("InventorySlot").ToList().ForEach(x => Destroy(x));
         InventoryUI.GetComponent<Image>().enabled = false;
         IsOpen = false;
         Owner.CurrentOwner = null;
         var cam = CameraObject.GetComponent<CameraFollow>();
         cam.CanAlterCursor = true;
+        CameraObject.GetComponent<CameraFollow>().MoveToCursor = true;
     }
     public void ReDraw()
     {
