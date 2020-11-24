@@ -47,7 +47,6 @@ public class Printer : MonoBehaviour
         {
             for (int i = 0; i < volume.profile.components.Count; i++)
             {
-                Debug.Log(volume.profile.components[i].name);
                 if (volume.profile.components[i].name.Contains("Bloom"))
                 {
                     Bloom bloom = (Bloom)volume.profile.components[i];
@@ -74,7 +73,6 @@ public class Printer : MonoBehaviour
         {
             for (int i = 0; i < volume.profile.components.Count; i++)
             {
-                Debug.Log(volume.profile.components[i].name);
                 if (volume.profile.components[i].name.Contains("Bloom"))
                 {
                     Bloom bloom = (Bloom)volume.profile.components[i];
