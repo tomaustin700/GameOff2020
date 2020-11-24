@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnItems();
+        daysUntilRescue = 11;
         Physics.gravity = new Vector3(0, -3, 0);
 
 

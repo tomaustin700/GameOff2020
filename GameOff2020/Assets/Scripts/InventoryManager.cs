@@ -78,6 +78,7 @@ public class InventoryManager : MonoBehaviour
             AddItem(new InventoryItem(Item.Drill));
             AddItem(new InventoryItem(Item.Locker));
             AddItem(new InventoryItem(Item.RockGrinder));
+            AddItem(new InventoryItem(Item.Solar));
         }
         if (Input.GetKeyDown(KeyCode.R) && Application.isEditor)
         {
