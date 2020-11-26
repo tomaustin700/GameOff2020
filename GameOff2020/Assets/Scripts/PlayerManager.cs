@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
@@ -54,6 +55,12 @@ public class PlayerManager : MonoBehaviour
         if (healthLvl != null && healthLvl.health == 0)
             playerDead = true;
 
+        if(playerDead)
+        {
+            PlayerDead();
+        }
+        if (Input.GetKeyUp(KeyCode.Backspace))
+            playerDead = true;
     }
 
 
@@ -164,5 +171,9 @@ public class PlayerManager : MonoBehaviour
         }
 
 
+    }
+    public void PlayerDead()
+    {
+        SceneManager.LoadScene("PlayerDeadScene");
     }
 }
