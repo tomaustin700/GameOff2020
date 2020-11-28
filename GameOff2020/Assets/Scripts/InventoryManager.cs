@@ -45,11 +45,12 @@ public class InventoryManager : MonoBehaviour
             itemsInInventory.Add(item);
             if (hotbar != null)
             {
-                var slots = GetComponentsInChildren<RawImage>();
+                var slots = GetComponentsInChildren<InventorySlotScript>().ToList().Select(x => x.GetComponent<RawImage>());
                 foreach (var slot in slots)
                 {
                     if (!hotbarLocations.Any(x => x.hotbarLocation == slot.gameObject.name))
                     {
+                        slot.color = Color.white;
                         slot.texture = item.sprite;
                         hotbarLocations.Add((slot.gameObject.name, item.refId));
                         break;
@@ -236,7 +237,11 @@ public class InventoryManager : MonoBehaviour
 
             }
 
-            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            var slots = GetComponentsInChildren<InventorySlotScript>();
+            var firstSlotImage = slots.First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).GetComponent<RawImage>();
+            firstSlotImage.texture = null;
+            firstSlotImage.color = Color.clear;
+            
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
             itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
 
@@ -307,7 +312,10 @@ public class InventoryManager : MonoBehaviour
             var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
 
             var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-            GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+            var slots = GetComponentsInChildren<InventorySlotScript>();
+            var firstSlotImage = slots.First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).GetComponent<RawImage>();
+            firstSlotImage.texture = null;
+            firstSlotImage.color = Color.clear;
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
             itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
 
@@ -340,19 +348,43 @@ public class InventoryManager : MonoBehaviour
             isPlaceing = false;
         }
 
-        var slots = GetComponentsInChildren<RawImage>();
+        var slots = GetComponentsInChildren<InventorySlotScript>();
 
         foreach (var slot in slots)
         {
-            slot.color = new Color(125f / 255f, 125f / 255f, 120f / 255f, 255f / 255f);
+            var img = slot.GetComponent<RawImage>();
+            if (img.texture == null)
+            {
+                img.color = Color.clear;
+            }
+            slot.transform.localScale = new Vector3(1, 1, 1);
+            if (slot.transform.childCount > 0)
+            {
+                var child = slot.transform.GetChild(0).gameObject;
+                child.gameObject.SetActive(false);
+                child.gameObject.transform.localScale = new Vector3(1, 1, 1);
+            }
         }
 
         SelectedSlot = slotToSelect;
 
-        var slotImage = GetComponentsInChildren<RawImage>().FirstOrDefault(a => a.name == "Slot (" + slotToSelect + ")");
+        var slotImage = GetComponentsInChildren<InventorySlotScript>().FirstOrDefault(a => a.name == "Slot (" + slotToSelect + ")");
 
         if (slotImage != null)
-            slotImage.color = Color.red;
+        {
+            var img = slotImage.GetComponent<RawImage>();
+            if (img.texture != null)
+            {
+                img.color = Color.white;
+            }
+            slotImage.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            if (slotImage.transform.childCount > 0)
+            {
+                var child = slotImage.transform.GetChild(0).gameObject;
+                child.gameObject.SetActive(true);
+                child.gameObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            }
+        }
     }
 
     public void DropItemBySlot((string hotbarLocation, Guid itemGuid) slotItem, bool instantiate = true)
@@ -360,7 +392,10 @@ public class InventoryManager : MonoBehaviour
         var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
         var asset = Resources.Load("Prefabs/" + item.name) as GameObject;
 
-        GetComponentsInChildren<RawImage>().First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).texture = null;
+        var slots = GetComponentsInChildren<InventorySlotScript>();
+        var firstSlotImage = slots.First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).GetComponent<RawImage>();
+        firstSlotImage.texture = null;
+        firstSlotImage.color = Color.clear;
         hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
         itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
 
