@@ -94,8 +94,4 @@ public class MenuScript : MonoBehaviour
         MainMenu.SetActive(false);
         SetMenuEffects(false);
     }
-    public void Controls()
-    {
-
-    }
 }
