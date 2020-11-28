@@ -898,7 +898,7 @@ RectTransform:
   m_GameObject: {fileID: 1355270818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.68625, y: 0.69139284, z: 1}
   m_Children:
   - {fileID: 155552864}
   m_Father: {fileID: 2055304416}
@@ -906,7 +906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 392.9, y: -228.5}
+  m_AnchoredPosition: {x: 298, y: -175}
   m_SizeDelta: {x: 282.6211, y: 48.94574}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355270820
@@ -1180,15 +1180,15 @@ RectTransform:
   m_GameObject: {fileID: 1562931943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.975, y: 1, z: 1}
+  m_LocalScale: {x: 0.7969483, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2055304416}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -354.5, y: -289}
-  m_SizeDelta: {x: 200, y: 920}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 170.14, y: 145}
+  m_SizeDelta: {x: 200, y: 750}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1562931945
 MonoBehaviour:
@@ -1225,6 +1225,8 @@ MonoBehaviour:
     Thank
     you for playing
 
+    Beyond The Crater!
+
 
 
 
@@ -1240,10 +1242,10 @@ MonoBehaviour:
 
     Tom Poucher
 
-    Tom Austin
-
     Tom
-    Martin
+    Austin
+
+    Tom Martin
 
 '
   m_isRightToLeft: 0
@@ -1272,8 +1274,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1308,7 +1310,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -274.1277, w: 0}
+  m_margin: {x: 0, y: 155.62222, z: -222.7172, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1718,7 +1720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

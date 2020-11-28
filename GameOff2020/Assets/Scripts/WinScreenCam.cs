@@ -28,13 +28,14 @@ public class WinScreenCam : MonoBehaviour
     }
     void RollCredits()
     {
-        if (Credits.transform.position.y < 1080)
+        if (Credits.transform.position.y < 2080)
         {
             Vector3 creditsPos = Credits.transform.position;
             creditsPos.y += 0.2f;
             Credits.transform.position = creditsPos;
+            Debug.Log("Credits Y: " + Credits.transform.position.y.ToString());
         }
-        if (!MainMenuButton.activeSelf && Credits.transform.position.y >= 1080)
+        if (!MainMenuButton.activeSelf && Credits.transform.position.y >= 2080)
             MainMenuButton.SetActive(true);
     }
 }
