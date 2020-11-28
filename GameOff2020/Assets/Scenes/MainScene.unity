@@ -1973,6 +1973,10 @@ PrefabInstance:
       propertyPath: solarPanelStage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 658702050461288974, guid: 9944f0a5f57f65040bf12706a299470f, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4703660900295441989, guid: 9944f0a5f57f65040bf12706a299470f, type: 3}
       propertyPath: m_Name
       value: Solar
@@ -2261,7 +2265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: rareRockXSpread
-      value: 400
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: rareRockYSpread
@@ -2269,19 +2273,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: rareRockZSpread
-      value: 400
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: rareRocksToSpawn
-      value: 50
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: commonRockXSpread
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: commonRockZSpread
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570078, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: commonRocksToSpawn
@@ -2293,11 +2297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 177.05
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5229372980702570079, guid: 2cbcd5a49e45bc74c813f2b5bde2e17f, type: 3}
       propertyPath: m_LocalPosition.z
