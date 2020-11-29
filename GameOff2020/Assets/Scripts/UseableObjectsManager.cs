@@ -75,7 +75,7 @@ public class UseableObjectsManager : MonoBehaviour
 
                         var rockGrinder = col.GetComponent<RockGrinder>();
 
-                        text = "Select a rock and press 'E'";
+                        text = "Select a Rock and Press 'E'";
                         if (Input.GetKeyUp(KeyCode.E))
                         {
                             rockGrinder.TradeRock();
@@ -97,13 +97,15 @@ public class UseableObjectsManager : MonoBehaviour
                         var rock = col.GetComponentInParent<RockInteraction>();
                         var name = rock.name.Replace("(Clone)", "");
 
-                        if (name == "Rock1" || name == "Rock2" || name == "Rock3")
-                        {
-                            text = "'E' To Pick Up Common Moon Rock";
-                        }
-                        else
-                            text = "'E' To Pick Up Rare Moon Rock";
+                        //if (name == "Rock1" || name == "Rock2" || name == "Rock3")
+                        //{
+                        //    text = "'E' To Pick Up Common Moon Rock";
+                        //}
+                        //else
+                        //    text = "'E' To Pick Up Rare Moon Rock";
 
+
+                        text = "'E' To Pick Up Moon Rock";
 
                         if (Input.GetKey(KeyCode.E))
                         {

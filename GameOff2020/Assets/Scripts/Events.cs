@@ -8,6 +8,7 @@ public enum EventName
     MoveBackwards,
     TurnLeft,
     TurnRight,
+    Jump,
     TakeCommunicationsDeviceFromInventory,
     FirstMissionControlMessage,
     SecondMissionControlMessage,
