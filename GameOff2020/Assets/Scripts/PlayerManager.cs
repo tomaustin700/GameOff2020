@@ -19,7 +19,8 @@ public class PlayerManager : MonoBehaviour
     private Text tempText;
     private GameObject playerAstronaut;
     private float temp;
-    public int causeOfDeath = 0;
+    [SerializeField] public GameObject causeOfDeath;
+
 
     // Start is called before the first frame update
     void Start()
@@ -60,16 +61,16 @@ public class PlayerManager : MonoBehaviour
         {
             if (suitTempLvl.health == 0)
             {
-                causeOfDeath = 1;
+                causeOfDeath.GetComponent<CauseOfDeath>().cause = 1;
             }
             else if (oxygenLvl.health == 0)
             {
-                causeOfDeath = 2;
+                causeOfDeath.GetComponent<CauseOfDeath>().cause = 2;
             }
             else
             {
                 //testing
-                causeOfDeath = 0;
+                causeOfDeath.GetComponent<CauseOfDeath>().cause = 0;
             }
             PlayerDead();
         }
@@ -193,7 +194,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerDead()
     {
-        DontDestroyOnLoad(this);
-        SceneManager.LoadScene("PlayerDeadScene", LoadSceneMode.Single);
+        if (SceneManager.GetActiveScene().buildIndex != 2)
+            SceneManager.LoadScene("PlayerDeadScene", LoadSceneMode.Single);
     }
 }
