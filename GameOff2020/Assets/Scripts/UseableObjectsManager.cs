@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +25,7 @@ public class UseableObjectsManager : MonoBehaviour
             Vector3 newPosition = player.transform.position;
             transform.position = newPosition;
 
-            hitColliders = Physics.OverlapBox(transform.position + transform.forward, new Vector3(1f,1f,1),transform.rotation);
+            hitColliders = Physics.OverlapBox(transform.position + transform.forward, new Vector3(1f, 1f, 1), transform.rotation);
             //hitColliders = Physics.OverlapCapsule(transform.position, transform.position + transform.forward,1.5f);
             string text = string.Empty;
             foreach (Collider col in hitColliders)
@@ -32,13 +33,13 @@ public class UseableObjectsManager : MonoBehaviour
                 if (col.gameObject.CompareTag(useableItemTag))
                 {
                     //highlight
-                  if (currentItem == null)
+                    if (currentItem == null)
                     {
                         currentItemDefaultMaterial = col.gameObject.GetComponentInChildren<Renderer>().material;
                         col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
                         currentItem = col.gameObject.transform.gameObject;
                     }
-                    else if(col.Equals(currentItem) && col.gameObject.GetComponentInChildren<Renderer>().material != highlightMaterial)
+                    else if (col.Equals(currentItem) && col.gameObject.GetComponentInChildren<Renderer>().material != highlightMaterial)
                     {
                         currentItemDefaultMaterial = col.gameObject.GetComponentInChildren<Renderer>().material;
                         col.gameObject.transform.gameObject.GetComponentInChildren<Renderer>().material = highlightMaterial;
@@ -50,7 +51,7 @@ public class UseableObjectsManager : MonoBehaviour
                     if (col.GetComponent<SolarPanelDust>() != null)
                     {
                         var solarPanel = col.GetComponent<SolarPanelDust>();
-                       
+
                         text = "'E' To Remove Dust";
                         if (Input.GetKey(KeyCode.E))
                         {
@@ -123,7 +124,7 @@ public class UseableObjectsManager : MonoBehaviour
                     if (col.GetComponentInParent<DropUsableInteraction>() != null)
                     {
                         var prefab = col.GetComponentInParent<DropUsableInteraction>();
-                        text = "'E' To Pick Up " + col.transform.parent.name.Replace("Drop(Clone)", "");
+                        text = "'E' To Pick Up " + Regex.Replace(col.transform.parent.name.Replace("Drop(Clone)", ""), "(\\B[A-Z])", " $1");
                         if (Input.GetKey(KeyCode.E))
                         {
                             prefab.PickUpUsable();
