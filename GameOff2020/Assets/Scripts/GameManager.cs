@@ -36,7 +36,12 @@ public class GameManager : MonoBehaviour
                 {
                     StartRescueTimer();
                     NotificationManager.AddNotification(new NotificationEvent(EventName.FirstMissionControlMessage, "New Message - Press M to view"));
-
+                    MessageManager.AddMessage(new Message()
+                    {
+                        Title = "Mission Control - You're alive?",
+                        Body = "Wow you're alive?! We were worried then for a few minutes, that was quite the crash! We're working on sending a rescue mission but it's looking lke it'll be about 10 days until we can get to you. Hang tight until then, we'll be in touch with more instructions.",
+                        EventName = EventName.FirstMissionControlMessage
+                    });
 
 
                 }

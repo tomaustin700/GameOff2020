@@ -73,6 +73,7 @@ public class NotificationDisplay : MonoBehaviour
 
     IEnumerator AddNotification(NotificationEvent newNotification)
     {
+        StopCoroutine(CompleteNotification());
         canCreateNotification = false;
         completeCheckBox.gameObject.SetActive(false);
 
