@@ -33,7 +33,13 @@ public class GameManager : MonoBehaviour
             {
                 var rigid = comms.GetComponentInChildren<Rigidbody>();
                 if (!rigid.isKinematic)
+                {
                     StartRescueTimer();
+                    NotificationManager.AddNotification(new NotificationEvent(EventName.FirstMissionControlMessage, "New Message - Press M to view"));
+
+
+
+                }
 
             }
         }
