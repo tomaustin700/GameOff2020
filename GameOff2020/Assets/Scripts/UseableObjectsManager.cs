@@ -131,6 +131,16 @@ public class UseableObjectsManager : MonoBehaviour
                         }
                     }
 
+                    if (col.GetComponentInParent<SuitPowerInteraction>() != null)
+                    {
+                        var prefab = col.GetComponentInParent<SuitPowerInteraction>();
+                        text = "'E' To Recharge Suit";
+                        if (Input.GetKey(KeyCode.E))
+                        {
+                            prefab.RechargeSuit();
+                        }
+                    }
+
                 }
             }
             if (currentItem != null && !hitColliders.Contains(currentItem.GetComponent<Collider>()))
