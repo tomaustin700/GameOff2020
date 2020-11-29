@@ -74,8 +74,17 @@ public class PlayerManager : MonoBehaviour
             }
             PlayerDead();
         }
+
+        if (FindObjectOfType<GameManager>().daysUntilRescue == 0)
+            SceneManager.LoadScene(3, LoadSceneMode.Single);
+
+
+
         if (Application.isEditor && Input.GetKeyUp(KeyCode.Backspace))
             playerDead = true;
+
+        if (Application.isEditor && Input.GetKeyUp(KeyCode.Return))
+            FindObjectOfType<GameManager>().daysUntilRescue = 0;
     }
 
 
@@ -194,7 +203,6 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerDead()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 2)
-            SceneManager.LoadScene("PlayerDeadScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("PlayerDeadScene", LoadSceneMode.Single);
     }
 }
