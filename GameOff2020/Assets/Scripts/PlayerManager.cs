@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     private Text tempText;
     private GameObject playerAstronaut;
     private float temp;
+    public int causeOfDeath = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,14 @@ public class PlayerManager : MonoBehaviour
 
         if(playerDead)
         {
+            if (suitTempLvl.health == 0)
+            {
+                causeOfDeath = 1;
+            }
+            else
+            {
+                causeOfDeath = 2;
+            }
             PlayerDead();
         }
         if (Application.isEditor && Input.GetKeyUp(KeyCode.Backspace))
@@ -174,6 +183,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerDead()
     {
+        DontDestroyOnLoad(this);
         SceneManager.LoadScene("PlayerDeadScene");
     }
 }
