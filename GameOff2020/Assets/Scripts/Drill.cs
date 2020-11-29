@@ -58,7 +58,7 @@ public class Drill : MonoBehaviour
 
     void DrillInterval()
     {
-        var hitColliders = Physics.OverlapBox(transform.position, new Vector3(1f, 1f, 1f), transform.rotation);
+        var hitColliders = Physics.OverlapBox(transform.position, new Vector3(1f, 2f, 1f), transform.rotation);
         bool onMineralPatch = hitColliders.Any(x => x.gameObject.CompareTag("IronPatch"));
         bool onIce = hitColliders.Any(x => x.gameObject.CompareTag("IcePatch"));
         if (powerIO.CanBePowered() && storage.Inventory.CanAddItem())
@@ -70,14 +70,19 @@ public class Drill : MonoBehaviour
             }
             else
             {
-                elements.Add((new InventoryItem(Item.Silicon), 45));
-                elements.Add((new InventoryItem(Item.Aluminium), 15));
-
+        
                 if (onMineralPatch)
                 {
-                    elements.Add((new InventoryItem(Item.Magnesium), 9));
-                    elements.Add((new InventoryItem(Item.Titanium), 4));
-                    elements.Add((new InventoryItem(Item.Iron), 14));
+                    elements.Add((new InventoryItem(Item.Magnesium), 8));
+                    elements.Add((new InventoryItem(Item.Titanium), 13));
+                    elements.Add((new InventoryItem(Item.Iron), 25));
+                    elements.Add((new InventoryItem(Item.Silicon), 40));
+                    elements.Add((new InventoryItem(Item.Aluminium), 20));
+                }
+                else
+                {
+                    elements.Add((new InventoryItem(Item.Silicon), 45));
+                    elements.Add((new InventoryItem(Item.Aluminium), 15));
                 }
             }
 
