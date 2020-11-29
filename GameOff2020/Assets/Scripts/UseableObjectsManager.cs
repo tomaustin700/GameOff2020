@@ -94,7 +94,16 @@ public class UseableObjectsManager : MonoBehaviour
                     if (col.GetComponentInParent<RockInteraction>() != null)
                     {
                         var rock = col.GetComponentInParent<RockInteraction>();
-                        text = "'E' To Pick Up Rock"; 
+                        var name = rock.name.Replace("(Clone)", "");
+
+                        if (name == "Rock1" || name == "Rock2" || name == "Rock3")
+                        {
+                            text = "'E' To Pick Up Common Moon Rock";
+                        }
+                        else
+                            text = "'E' To Pick Up Rare Moon Rock";
+
+
                         if (Input.GetKey(KeyCode.E))
                         {
                             rock.PickUpRock();

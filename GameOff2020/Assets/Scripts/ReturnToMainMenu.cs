@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerDeadSceneScript : MonoBehaviour
+public class ReturnToMainMenu : MonoBehaviour
 {
     private void Update()
     {

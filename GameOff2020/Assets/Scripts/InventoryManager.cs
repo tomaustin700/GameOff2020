@@ -284,6 +284,7 @@ public class InventoryManager : MonoBehaviour
                 var renderers = itemToPlace.GetComponentsInChildren<Renderer>();
                 var paticleSystems = itemToPlace.GetComponentsInChildren<ParticleSystem>();
                 var animations = itemToPlace.GetComponentsInChildren<Animation>();
+                var audio = itemToPlace.GetComponentsInChildren<AudioSource>();
 
                 for (int i = 0; i < renderers.Length; i++)
                 {
@@ -298,6 +299,11 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < animations.Length; i++)
                 {
                     animations[i].Stop();
+                }
+
+                for (int i = 0; i < audio.Length; i++)
+                {
+                    audio[i].Stop();
                 }
             }
 

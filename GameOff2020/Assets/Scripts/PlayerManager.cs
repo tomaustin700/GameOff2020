@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
         {
             PlayerDead();
         }
-        if (Input.GetKeyUp(KeyCode.Backspace))
+        if (Application.isEditor && Input.GetKeyUp(KeyCode.Backspace))
             playerDead = true;
     }
 
