@@ -5,28 +5,37 @@ using UnityEngine;
 
 public class PlayerCauseOfDeath : MonoBehaviour
 {
-    // Start is called before the first frame update
+    GameObject CauseOfDeathText;
     void Start()
     {
         PlayerManager player = FindObjectOfType<PlayerManager>();
-
-        switch (player.causeOfDeath)
+        if (player != null)
         {
-            case 1:
-                //Hypothermia
-                GameObject.Find("CauseOfDeathText").GetComponent<TextMeshPro>().text = "Hypothermia";
-                GameObject.Find("HypothermiaTip").SetActive(true);
-                break;
-            case 2:
-                //Asphyxia
-                GameObject.Find("CauseOfDeathText").GetComponent<TextMeshPro>().text = "Asphyxia";
-                GameObject.Find("AsphyxiaTip").SetActive(true);
-                break;
-            default:
-                //Testing
-                GameObject.Find("CauseOfDeathText").GetComponent<TextMeshPro>().text = "Testing";
-                GameObject.Find("TestingTip").SetActive(true);
-                break;
+            switch (player.causeOfDeath)
+            {
+                case 1:
+                    //Hypothermia
+                    CauseOfDeathText = GameObject.Find("CauseOfDeathText");
+                    CauseOfDeathText.GetComponent<TextMeshProUGUI>().text = "Hypothermia";
+                    GameObject.Find("HypothermiaTip").GetComponent<TextMeshProUGUI>().enabled = true;
+                    break;
+                case 2:
+                    //Asphyxia
+                    CauseOfDeathText = GameObject.Find("CauseOfDeathText");
+                    CauseOfDeathText.GetComponent<TextMeshProUGUI>().text = "Asphyxia";
+                    GameObject.Find("AsphyxiaTip").GetComponent<TextMeshProUGUI>().enabled = true;
+                    break;
+                default:
+                    //Testing
+                    CauseOfDeathText = GameObject.Find("CauseOfDeathText");
+                    CauseOfDeathText.GetComponent<TextMeshProUGUI>().text = "Testing";
+                    GameObject.Find("TestingTip").GetComponent<TextMeshProUGUI>().enabled = true;
+                    break;
+            }
+        }
+        else
+        {
+            Debug.Log("Player is null");
         }
     }
 }

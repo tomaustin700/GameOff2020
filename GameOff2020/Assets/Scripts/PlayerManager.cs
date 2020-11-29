@@ -62,9 +62,14 @@ public class PlayerManager : MonoBehaviour
             {
                 causeOfDeath = 1;
             }
-            else
+            else if (oxygenLvl.health == 0)
             {
                 causeOfDeath = 2;
+            }
+            else
+            {
+                //testing
+                causeOfDeath = 0;
             }
             PlayerDead();
         }
@@ -189,6 +194,6 @@ public class PlayerManager : MonoBehaviour
     public void PlayerDead()
     {
         DontDestroyOnLoad(this);
-        SceneManager.LoadScene("PlayerDeadScene");
+        SceneManager.LoadScene("PlayerDeadScene", LoadSceneMode.Single);
     }
 }

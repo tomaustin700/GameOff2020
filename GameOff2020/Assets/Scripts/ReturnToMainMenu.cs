@@ -12,9 +12,6 @@ public class ReturnToMainMenu : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        GameObject player = FindObjectOfType<PlayerManager>().gameObject;
-        if (player != null)
-            Destroy(player);
         SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }

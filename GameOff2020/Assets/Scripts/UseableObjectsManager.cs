@@ -11,6 +11,7 @@ public class UseableObjectsManager : MonoBehaviour
     [SerializeField] private GameObject player;
     private GameObject currentItem;
     private Material currentItemDefaultMaterial;
+    [SerializeField] private GameObject playerWithCam;
 
     public Text InstructionText;
     private void OnDrawGizmosSelected()
@@ -20,7 +21,7 @@ public class UseableObjectsManager : MonoBehaviour
     }
     void Update()
     {
-        if (player != null)
+        if (player != null && !playerWithCam.GetComponent<PlayerManager>().playerDead)
         {
             Vector3 newPosition = player.transform.position;
             transform.position = newPosition;
