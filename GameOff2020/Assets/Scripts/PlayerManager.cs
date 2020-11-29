@@ -119,6 +119,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void AddOxygen(int amount)
+    {
+        oxygenLvl.SetHealth(oxygenLvl.health + amount);
+    }
+
     void UpdatePower()
     {
 

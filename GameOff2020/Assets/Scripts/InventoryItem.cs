@@ -17,6 +17,23 @@ public class InventoryItem
         }
     }
 
+    public bool Consumable
+    {
+        get
+        {
+            switch (name)
+            {
+                case "Oxygen":
+                    return true;
+                //case "Ration Pack":
+                //    return true;
+                default:
+                    return false;
+            }
+
+        }
+    }
+
     public bool Placeable
     {
         get
