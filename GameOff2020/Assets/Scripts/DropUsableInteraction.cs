@@ -9,8 +9,11 @@ public class DropUsableInteraction : MonoBehaviour
     {
         var formattedName = name.Replace("Drop(Clone)", "");
         var item = new InventoryItem((Item)Enum.Parse(typeof(Item), formattedName, true));
-        GameObject.FindGameObjectWithTag("Hotbar").GetComponent<InventoryManager>().AddItem(item);
-        Destroy(gameObject);
-
+        var hotbar = GameObject.FindGameObjectWithTag("Hotbar").GetComponent<InventoryManager>();
+        if (hotbar.HasInventorySpace())
+        {
+            GameObject.FindGameObjectWithTag("Hotbar").GetComponent<InventoryManager>().AddItem(item);
+            Destroy(gameObject);
+        }
     }
 }

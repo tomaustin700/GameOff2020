@@ -30,21 +30,44 @@ public class ItemSpawner : MonoBehaviour
         {
             SpreadRareRocks();
         }
+
     }
 
     void SpreadCommonRocks()
     {
         Vector3 randPosition = new Vector3(Random.Range(-commonRockXSpread, commonRockXSpread),
             Random.Range(-commonRockYSpread, commonRockYSpread), Random.Range(-commonRockZSpread, commonRockZSpread)) + transform.position;
-        Instantiate(commonRockPrefab, randPosition, Quaternion.identity);
+        var inst = Instantiate(commonRockPrefab, randPosition, Quaternion.identity);
+        var rock = inst.GetComponent<RockSelector>().Pick();
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(inst.transform.position, -inst.transform.up, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Default")))
+        {
+            var rockComp = rock.GetComponentInChildren<Rigidbody>();
+            rockComp.velocity = Vector3.zero;
+            rockComp.angularDrag = 10;
+            rockComp.gameObject.transform.position = hit.point + (Vector3.up * 0.5f);
 
+        }
+        Destroy(inst);
     }
 
     void SpreadRareRocks()
     {
         Vector3 randPosition = new Vector3(Random.Range(-rareRockXSpread, rareRockXSpread),
             Random.Range(-rareRockYSpread, rareRockYSpread), Random.Range(-rareRockZSpread, rareRockZSpread)) + transform.position;
-        Instantiate(rareRockPrefab, randPosition, Quaternion.identity);
-
+        var inst = Instantiate(rareRockPrefab, randPosition, Quaternion.identity);
+        var rock = inst.GetComponent<RockSelector>().Pick();
+        RaycastHit hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (Physics.Raycast(inst.transform.position, -inst.transform.up, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Default")))
+        {
+            var rockComp = rock.GetComponentInChildren<Rigidbody>();
+            rockComp.velocity = Vector3.zero;
+            rockComp.angularDrag = 10;
+            rockComp.gameObject.transform.position = hit.point + (Vector3.up * 0.5f);
+            
+        }
+        Destroy(inst);
     }
 }

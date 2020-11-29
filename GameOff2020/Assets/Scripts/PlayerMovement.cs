@@ -105,6 +105,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && !isJumping && onGround && !isFloating)
         {
             queueJump = true;
+            NotificationManager.CompleteNotification(EventName.Jump);
+
         }
     }
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3757797185725229603}
   - component: {fileID: 1016553920387444219}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rock5
   m_TagString: UseableItem
   m_Icon: {fileID: 0}
@@ -81,6 +81,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3757797185725229603}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -94,6 +102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -103,14 +115,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
@@ -129,17 +133,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock5
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3403348643546350386, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3403348643546350386, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
       propertyPath: m_TagString
       value: UseableItem
       objectReference: {fileID: 0}
     - target: {fileID: 7141543424195929510, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141543424195929510, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
       propertyPath: m_LocalPosition.z
       value: -2.79
       objectReference: {fileID: 0}
-    - target: {fileID: 7141543424195929510, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
+    - target: {fileID: 9013638940889411661, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97ad7d568921db241b35ca48ba0d833e, type: 3}

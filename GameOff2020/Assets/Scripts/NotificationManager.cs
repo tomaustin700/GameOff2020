@@ -33,10 +33,13 @@ public static class NotificationManager
     }
     public static void CompleteNotification(EventName eventName)
     {
-        var currentNotification = Notifications.FirstOrDefault();
-        if (currentNotification != null && currentNotification.IsReady && currentNotification.EventName == eventName && currentNotification.IsReady)
+        if (!NotificationHistory.Any(x => x.EventName == eventName))
         {
-            Notifications.RemoveAll(x => x.EventName == eventName);
+            var currentNotification = Notifications.FirstOrDefault();
+            if (currentNotification != null && currentNotification.IsReady && currentNotification.EventName == eventName && currentNotification.IsReady)
+            {
+                Notifications.RemoveAll(x => x.EventName == eventName);
+            }
         }
     }
 }

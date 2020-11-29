@@ -103,6 +103,7 @@ public class InventoryManager : MonoBehaviour
             AddItem(new InventoryItem(Item.Locker));
             AddItem(new InventoryItem(Item.RockGrinder));
             AddItem(new InventoryItem(Item.Solar));
+            AddItem(new InventoryItem(Item.Oxygen));
         }
         if (Input.GetKeyDown(KeyCode.R) && Application.isEditor)
         {
@@ -167,7 +168,7 @@ public class InventoryManager : MonoBehaviour
             else if (Input.GetMouseButtonDown(1))
             {
                 if (!isPlaceing)
-                    StartPlace();
+                    UseItem();
                 else
                     Place();
             }
@@ -241,7 +242,7 @@ public class InventoryManager : MonoBehaviour
             var firstSlotImage = slots.First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).GetComponent<RawImage>();
             firstSlotImage.texture = null;
             firstSlotImage.color = Color.clear;
-            
+
             hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
             itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
 
@@ -256,7 +257,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void StartPlace()
+    void UseItem()
     {
         if (SelectedSlot != null && hotbarLocations.Any(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString())))
         {
@@ -304,6 +305,22 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < audio.Length; i++)
                 {
                     audio[i].Stop();
+                }
+            }
+            else if (item.Consumable)
+            {
+                var slots = GetComponentsInChildren<InventorySlotScript>();
+
+                var firstSlotImage = slots.First(q => q.gameObject.name == hotbarLocations.First(a => a.itemGuid == item.refId).hotbarLocation).GetComponent<RawImage>();
+                firstSlotImage.texture = null;
+                firstSlotImage.color = Color.clear;
+                hotbarLocations.Remove(hotbarLocations.First(a => a.itemGuid == item.refId));
+                itemsInInventory.Remove(itemsInInventory.First(a => a.refId == item.refId));
+                var playerManager = FindObjectOfType<PlayerManager>();
+
+                if (item.name == "Oxygen")
+                {
+                    playerManager.AddOxygen(15);
                 }
             }
 

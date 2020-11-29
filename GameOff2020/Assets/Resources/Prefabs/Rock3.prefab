@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7808281060603995553}
   - component: {fileID: 5349848855270957096}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rock3
   m_TagString: UseableItem
   m_Icon: {fileID: 0}
@@ -81,6 +81,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7808281060603995553}
     m_Modifications:
+    - target: {fileID: -8700617353114198275, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -94,6 +102,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -103,14 +115,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 03032643fcba47a4bb2b416398752744, type: 3}
@@ -129,9 +133,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8039765736737727803, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8039765736737727803, guid: 03032643fcba47a4bb2b416398752744, type: 3}
       propertyPath: m_TagString
       value: UseableItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013638940889411661, guid: 03032643fcba47a4bb2b416398752744, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03032643fcba47a4bb2b416398752744, type: 3}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Drill : MonoBehaviour
@@ -12,8 +13,8 @@ public class Drill : MonoBehaviour
     private new Animation animation;
     private new ParticleSystem particleSystem;
     private Storage storage;
-    private bool onMineralPatch;
-    private bool onIce;
+    public bool onMineralPatch;
+    public bool onIce;
     private System.Random rnd;
     private List<(InventoryItem, int chance)> elements;
     void Start()
@@ -27,8 +28,8 @@ public class Drill : MonoBehaviour
         particleSystem = GetComponentInChildren<ParticleSystem>();
         InvokeRepeating(nameof(DrillInterval), TimeToGatherResources, TimeToGatherResources);
 
-        onMineralPatch = true; //do raycast down and if on patch set this to true
-        onIce = false; //do raycast down and if on patch set this to true
+        //onMineralPatch = true; //do raycast down and if on patch set this to true
+        //onIce = false; //do raycast down and if on patch set this to true
 
     }
 
@@ -57,6 +58,9 @@ public class Drill : MonoBehaviour
 
     void DrillInterval()
     {
+        var hitColliders = Physics.OverlapBox(transform.position, new Vector3(1f, 2f, 1f), transform.rotation);
+        bool onMineralPatch = hitColliders.Any(x => x.gameObject.CompareTag("IronPatch"));
+        bool onIce = hitColliders.Any(x => x.gameObject.CompareTag("IcePatch"));
         if (powerIO.CanBePowered() && storage.Inventory.CanAddItem())
         {
             if (onIce)
@@ -66,14 +70,19 @@ public class Drill : MonoBehaviour
             }
             else
             {
-                elements.Add((new InventoryItem(Item.Silicon), 45));
-                elements.Add((new InventoryItem(Item.Aluminium), 15));
-
+        
                 if (onMineralPatch)
                 {
-                    elements.Add((new InventoryItem(Item.Magnesium), 9));
-                    elements.Add((new InventoryItem(Item.Titanium), 4));
-                    elements.Add((new InventoryItem(Item.Iron), 14));
+                    elements.Add((new InventoryItem(Item.Magnesium), 8));
+                    elements.Add((new InventoryItem(Item.Titanium), 13));
+                    elements.Add((new InventoryItem(Item.Iron), 25));
+                    elements.Add((new InventoryItem(Item.Silicon), 40));
+                    elements.Add((new InventoryItem(Item.Aluminium), 20));
+                }
+                else
+                {
+                    elements.Add((new InventoryItem(Item.Silicon), 45));
+                    elements.Add((new InventoryItem(Item.Aluminium), 15));
                 }
             }
 
