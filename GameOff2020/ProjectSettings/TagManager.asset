@@ -13,6 +13,8 @@ TagManager:
   - CraftUI
   - PlayerTag
   - PostProcessVolume
+  - IcePatch
+  - IronPatch
   layers:
   - Default
   - TransparentFX
