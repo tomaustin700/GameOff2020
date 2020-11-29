@@ -14,6 +14,7 @@ public class NotificationDisplay : MonoBehaviour
     public Text Description;
     private Animator _animator;
     private bool canCreateNotification = true;
+    private bool isCompleting = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -32,16 +33,16 @@ public class NotificationDisplay : MonoBehaviour
                 StartCoroutine(AddNotification(currentNotification));
 
             }
-            else if (notification != null && notification.EventName != currentNotification.EventName && canCreateNotification)
+            else if (notification != null && notification.EventName != currentNotification.EventName && canCreateNotification && !isCompleting)
             {
                 StartCoroutine(CompleteNotification());
             }
 
         }
-        else if (currentNotification == null)
+        else if (currentNotification == null && notification != null)
         {
             Description.text = string.Empty;
-            if (_animator.isActiveAndEnabled)
+            if (_animator.isActiveAndEnabled && !isCompleting)
             {
                 StartCoroutine(CompleteNotification());
 
@@ -51,28 +52,24 @@ public class NotificationDisplay : MonoBehaviour
 
     IEnumerator CompleteNotification()
     {
-        canCreateNotification = false;
-        completeCheckBox.isOn = true;
-        yield return new WaitForSeconds(0.5f);
-        completeCheckBox.gameObject.SetActive(false);
+       isCompleting = true;
+       canCreateNotification = false;
+       completeCheckBox.isOn = true;
+       yield return new WaitForSeconds(0.5f);
+       completeCheckBox.gameObject.SetActive(false);
 
-        Description.text = string.Empty;
-        _animator.SetInteger("NotificationState", 1);
-        yield return new WaitForSeconds(0.5f);
-
-        notification = null;
-        //    _animator.SetInteger("NotificationState", -1);
-        canCreateNotification = true;
-        //if (!NotificationManager.Notifications.Any())
-        //{
-        //    yield return new WaitForSeconds(1.0f);
-        //    _animator.enabled = false;
-        //}    
-          
+       Description.text = string.Empty;
+       _animator.SetInteger("NotificationState", 1);
+       yield return new WaitForSeconds(0.5f);
+       Debug.Log("Complete " + notification.EventName);
+       notification = null;
+       canCreateNotification = true;
+       isCompleting = false;
     }
 
     IEnumerator AddNotification(NotificationEvent newNotification)
     {
+        Debug.Log("Adding " + newNotification.EventName);
         StopCoroutine(CompleteNotification());
         canCreateNotification = false;
         completeCheckBox.gameObject.SetActive(false);
