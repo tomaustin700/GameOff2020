@@ -59,6 +59,8 @@ public class MessageDisplay : MonoBehaviour
                 NotificationManager.CompleteNotification(EventName.FifthMissionControlMessage);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.OpenDrop, "Find Supply Drop And Open"));
 
+                //Arrow logic goes here
+
 
             }
 
