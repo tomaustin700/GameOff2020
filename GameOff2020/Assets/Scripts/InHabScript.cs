@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InHabScript : MonoBehaviour
@@ -28,6 +29,13 @@ public class InHabScript : MonoBehaviour
         if (playerManager != null && col.gameObject.layer == 9)
         {
             playerManager.inHab = false;
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms2))
+            {
+                NotificationManager.CompleteNotification(EventName.PlaceComms2);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms3, "Right Click To Begin Place"));
+
+            }
         }
     }
 }

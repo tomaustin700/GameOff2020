@@ -12,6 +12,7 @@ public class ProgressionManager : MonoBehaviour
         NotificationManager.AddNotification(new NotificationEvent(EventName.TurnLeft, "Turn left with A"));
         NotificationManager.AddNotification(new NotificationEvent(EventName.TurnRight, "Turn right with D"));
         NotificationManager.AddNotification(new NotificationEvent(EventName.Jump, "Jump with Space"));
+        NotificationManager.AddNotification(new NotificationEvent(EventName.PickUpRock, "Pick Up a Rock"));
 
     }
 

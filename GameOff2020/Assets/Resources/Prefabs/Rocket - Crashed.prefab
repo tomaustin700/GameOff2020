@@ -329,7 +329,7 @@ MonoBehaviour:
   Owner: {fileID: 0}
   CameraObject: {fileID: 0}
   Locked: 0
-  PreExistingItems: 0d0000001000000008000000
+  PreExistingItems: 010000000100000008000000
 --- !u!65 &7462442330472004339
 BoxCollider:
   m_ObjectHideFlags: 0

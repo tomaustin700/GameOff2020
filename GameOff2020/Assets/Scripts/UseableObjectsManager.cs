@@ -76,10 +76,16 @@ public class UseableObjectsManager : MonoBehaviour
 
                         var rockGrinder = col.GetComponent<RockGrinder>();
 
-                        text = "Select a Rock and Press 'E'";
+                        text = "Select a Rock and Press 'E' To Grind";
                         if (Input.GetKeyUp(KeyCode.E))
                         {
                             rockGrinder.TradeRock();
+                            if (NotificationManager.Notifications.Any(q => q.EventName == EventName.GrindRock))
+                            {
+                                NotificationManager.CompleteNotification(EventName.GrindRock);
+                                NotificationManager.AddNotification(new NotificationEvent(EventName.OpenCraftingMenu, "Go to the 3D Printer and Open Crafting Menu"));
+                            }
+
                         }
                     }
                     if (col.GetComponentInChildren<Printer>() != null)
@@ -87,10 +93,16 @@ public class UseableObjectsManager : MonoBehaviour
 
                         var printer = col.GetComponentInChildren<Printer>();
 
-                        text = printer.IsOpen ? "'E' Close Crafting" : "'E' Begin Crafting";
+                        text = printer.IsOpen ? "'E' Close Crafting" : "'E' Begin Crafting With 3D Printer";
                         if (Input.GetKeyUp(KeyCode.E))
                         {
                             printer.ToggleCrafting();
+                            if (NotificationManager.Notifications.Any(q => q.EventName == EventName.OpenCraftingMenu))
+                            {
+                                NotificationManager.CompleteNotification(EventName.OpenCraftingMenu);
+                                NotificationManager.AddNotification(new NotificationEvent(EventName.GatherBrokenCommsResources, "Gather Resources To Craft Communications Device"));
+
+                            }
                         }
                     }
                     if (col.GetComponentInParent<RockInteraction>() != null)
@@ -111,6 +123,13 @@ public class UseableObjectsManager : MonoBehaviour
                         if (Input.GetKey(KeyCode.E))
                         {
                             rock.PickUpRock();
+                            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PickUpRock))
+                            {
+                                NotificationManager.CompleteNotification(EventName.PickUpRock);
+                                NotificationManager.AddNotification(new NotificationEvent(EventName.SelectHotbarSlot, "Select Rock with 2"));
+
+                            }
+
                         }
                     }
 

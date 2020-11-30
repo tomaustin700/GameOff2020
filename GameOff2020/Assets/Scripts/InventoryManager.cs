@@ -33,6 +33,9 @@ public class InventoryManager : MonoBehaviour
         itemsInInventory = new List<InventoryItem>();
         if (hotbar != null)
             hotbarLocations = new List<(string hotbarLocation, Guid itemGuid)>();
+
+        AddItem(new InventoryItem(Item.BrokenCommunicationsDevice));
+
     }
     public bool HasInventorySpace()
     {
@@ -58,6 +61,13 @@ public class InventoryManager : MonoBehaviour
                 }
 
             }
+
+        }
+
+        if (NotificationManager.Notifications.Any(a => a.EventName == EventName.GatherBrokenCommsResources) && itemsInInventory.Any(x => x.name == "Iron") && itemsInInventory.Any(x => x.name == "Silicon") && itemsInInventory.Any(x => x.name == "BrokenCommunicationsDevice"))
+        {
+            NotificationManager.CompleteNotification(EventName.GatherBrokenCommsResources);
+            NotificationManager.AddNotification(new NotificationEvent(EventName.CraftComms, "Craft Communications Device using 3D Printer"));
 
         }
 
@@ -130,6 +140,12 @@ public class InventoryManager : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 SelectHotbarSlot(2);
+                if (NotificationManager.Notifications.Any(a => a.EventName == EventName.SelectHotbarSlot))
+                {
+                    NotificationManager.CompleteNotification(EventName.SelectHotbarSlot);
+                    NotificationManager.AddNotification(new NotificationEvent(EventName.Drop, "Drop Selected Item With V"));
+                }
+
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
@@ -253,6 +269,12 @@ public class InventoryManager : MonoBehaviour
             var forward = player.transform.position + player.transform.forward;
             Instantiate(asset, new Vector3(forward.x, player.transform.position.y + 1.5f, forward.z), player.transform.rotation);
 
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.Drop))
+            {
+                NotificationManager.CompleteNotification(EventName.Drop);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.GrindRock, "Pick Up Rock and Take To Grinder In Hab To Grind"));
+            }
+
 
         }
     }
@@ -354,6 +376,12 @@ public class InventoryManager : MonoBehaviour
             Destroy(itemToPlace);
 
             isPlaceing = false;
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms3) && item.name == "CommunicationsDevice")
+            {
+                NotificationManager.CompleteNotification(EventName.PlaceComms3);
+
+            }
         }
     }
 
@@ -407,6 +435,16 @@ public class InventoryManager : MonoBehaviour
                 child.gameObject.SetActive(true);
                 child.gameObject.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             }
+        }
+
+        var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
+        var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+
+        if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms1) && item.name == "CommunicationsDevice")
+        {
+            NotificationManager.CompleteNotification(EventName.PlaceComms1);
+            NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms2, "Go Outside"));
+
         }
     }
 

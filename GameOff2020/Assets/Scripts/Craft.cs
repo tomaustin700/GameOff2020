@@ -91,6 +91,13 @@ public class Craft : MonoBehaviour
             }
             HotBar.AddItem(new InventoryItem(recipe.ReturnItem));
             UpdateRecipe(recipe);
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.CraftComms))
+            {
+                NotificationManager.CompleteNotification(EventName.CraftComms);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms1, "Select Communications Device"));
+
+            }
         }
     }
 
