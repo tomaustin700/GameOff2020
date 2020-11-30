@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
             MessageManager.AddMessage(new Message()
             {
                 Title = "Mission Control - Rescue Plan Stage 4",
-                Body = "You're doing great. Make sure you have enough solar panels for your equipment and they're clean. Rescue mission has been launched but it's still a bit off. Hang in there.",
+                Body = "You're doing great. Make sure you have enough solar panels for your equipment and they're clean. If you're suit is running low on power it can be recharged in the hab. Rescue mission has been launched but it's still a bit off. Hang in there.",
                 EventName = EventName.ForthMissionControlMessage
             });
         }
