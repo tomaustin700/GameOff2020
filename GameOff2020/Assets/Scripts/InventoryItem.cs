@@ -25,8 +25,8 @@ public class InventoryItem
             {
                 case "Oxygen":
                     return true;
-                //case "Ration Pack":
-                //    return true;
+                case "Rations":
+                    return true;
                 default:
                     return false;
             }

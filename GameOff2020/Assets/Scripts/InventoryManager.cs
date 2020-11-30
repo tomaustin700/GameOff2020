@@ -364,6 +364,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     playerManager.AddOxygen(15);
                 }
+
+                if (item.name == "Rations")
+                {
+                    playerManager.AddFood(30);
+                }
             }
 
 

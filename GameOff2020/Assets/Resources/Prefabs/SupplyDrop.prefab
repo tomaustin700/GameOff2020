@@ -159,10 +159,10 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   InventoryUI: {fileID: 0}
   InventorySlot: {fileID: 1846012011366627649, guid: 37bcae1b1cab2164ea9162e2768e8824, type: 3}
-  SlotsXLength: 1
+  SlotsXLength: 5
   SlotsYLength: 1
   IsOpen: 0
   Owner: {fileID: 0}
   CameraObject: {fileID: 0}
   Locked: 0
-  PreExistingItems: 0000000000000000000000000000000000000000
+  PreExistingItems: 1400000014000000140000001400000014000000

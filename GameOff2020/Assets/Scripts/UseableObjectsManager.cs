@@ -70,6 +70,12 @@ public class UseableObjectsManager : MonoBehaviour
                         {
                             storage.ToggleInventory();
                         }
+
+                        if (col.GetComponentInParent<Storage>().name.Contains("Cube"))
+                        {
+                            NotificationManager.CompleteNotification(EventName.OpenDrop);
+
+                        }
                     }
                     if (col.GetComponent<RockGrinder>() != null)
                     {
