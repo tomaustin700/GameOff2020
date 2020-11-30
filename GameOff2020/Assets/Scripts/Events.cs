@@ -34,5 +34,6 @@ public enum EventName
     PlaceComms4,
     Explore,
     CraftDrill,
-    MineOxygen
+    MineOxygen,
+    OpenDrop
 }

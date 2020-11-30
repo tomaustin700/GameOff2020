@@ -74,13 +74,14 @@ public class InventoryManager : MonoBehaviour
         if (NotificationManager.Notifications.Any(a => a.EventName == EventName.MineOxygen) && item.name == "Oxygen")
         {
             NotificationManager.CompleteNotification(EventName.MineOxygen);
-            NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
+            NotificationManager.AddNotification(new NotificationEvent(EventName.ForthMissionControlMessage, "New Message - Press M to view"));
             MessageManager.AddMessage(new Message()
             {
-                Title = "Mission Control - Rescue Plan Stage 4",
+                Title = "Mission Control - Rescue Plan Stage 3",
                 Body = "You're doing great. Make sure you have enough solar panels for your equipment and they're clean. If you're suit is running low on power it can be recharged in the hab. Rescue mission has been launched but it's still a bit off. Hang in there.",
                 EventName = EventName.ForthMissionControlMessage
             });
+            
         }
 
     }
@@ -408,7 +409,7 @@ public class InventoryManager : MonoBehaviour
                 NotificationManager.AddNotification(new NotificationEvent(EventName.ThirdMissionControlMessage, "New Message - Press M to view"));
                 MessageManager.AddMessage(new Message()
                 {
-                    Title = "Mission Control - Rescue Plan Stage 3",
+                    Title = "Mission Control - Rescue Plan Stage 2",
                     Body = "Excellent job with the drill. You can place multiple and where you place it will determine what it mines, maybe try those ice patches out. Mined oxygen in your hotbar can be used to extend your suit oxygen with right click. Await further instuctions.",
                     EventName = EventName.ThirdMissionControlMessage
                 });

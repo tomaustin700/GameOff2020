@@ -52,13 +52,35 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void StartDropSpawn()
+    {
+        StartCoroutine(SpawnDrop(60));
+    }
+
+    IEnumerator SpawnDrop(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        var asset = Resources.Load("Prefabs/SupplyDrop") as GameObject;
+
+        Instantiate(asset, new Vector3(55f, 2f, 500f), Quaternion.identity);
+        NotificationManager.AddNotification(new NotificationEvent(EventName.FifthMissionControlMessage, "New Message - Press M to view"));
+        MessageManager.AddMessage(new Message()
+        {
+            Title = "Mission Control - Supply Drop",
+            Body = "A supply drop is arriving soon containing some rations. I've sent it's location to your GPS Navigation. It might be a long trip so take oxygen.",
+            EventName = EventName.OpenDrop
+        });
+
+    }
+
     public void StartRescueTimer()
     {
         if (rescueHud != null)
         {
             rescueHud.SetActive(true);
             rescueText = GameObject.Find("daysValue").GetComponent<Text>();
-            InvokeRepeating(nameof(UpdateDaysUntilRescue), 0, 300);
+            InvokeRepeating(nameof(UpdateDaysUntilRescue), 0, 200);
             rescueTimerStarted = true;
         }
 
@@ -96,7 +118,7 @@ public class GameManager : MonoBehaviour
             if (daysUntilRescue == 1)
             {
                 NotificationManager.RemoveAllNotification();
-                NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
+                NotificationManager.AddNotification(new NotificationEvent(EventName.FinalMissionControlMessage, "New Message - Press M to view"));
                 MessageManager.AddMessage(new Message()
                 {
                     Title = "Mission Control - Last Message",

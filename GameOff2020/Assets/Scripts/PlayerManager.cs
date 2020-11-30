@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     private Healthbar healthLvl;
     private Healthbar powerLvl;
     private Healthbar suitTempLvl;
+    private Healthbar foodLvl;
     private Text tempText;
     private GameObject playerAstronaut;
     private float temp;
@@ -36,6 +37,7 @@ public class PlayerManager : MonoBehaviour
         healthLvl = GameObject.Find("healthValue").GetComponent<Healthbar>();
         powerLvl = GameObject.Find("powerValue").GetComponent<Healthbar>();
         suitTempLvl = GameObject.Find("suitTempValue").GetComponent<Healthbar>();
+        foodLvl = GameObject.Find("hungerValue").GetComponent<Healthbar>();
 
         tempText = GameObject.Find("tempValue").GetComponent<Text>();
         playerAstronaut = GameObject.Find("Player_Astronaut");
@@ -44,20 +46,22 @@ public class PlayerManager : MonoBehaviour
         InvokeRepeating(nameof(UpdatePower), 60, 180);
         InvokeRepeating(nameof(UpdateTemp), 0, 5.0f);
         InvokeRepeating(nameof(UpdateSuitTemp), 0, 5.0f);
+        InvokeRepeating(nameof(UpdateFood), 120, 120);
 
         oxygenLvl.SetHealth(100);
         healthLvl.SetHealth(100);
         powerLvl.SetHealth(100);
+        foodLvl.SetHealth(100);
         temp = 100f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (healthLvl != null && healthLvl.health == 0)
+        if (healthLvl != null && healthLvl.health <= 0)
             playerDead = true;
 
-        if(playerDead)
+        if (playerDead)
         {
             if (suitTempLvl.health == 0)
             {
@@ -87,7 +91,21 @@ public class PlayerManager : MonoBehaviour
             FindObjectOfType<GameManager>().daysUntilRescue = 0;
     }
 
+    void UpdateFood()
+    {
+        if (foodLvl.health > 0)
+            foodLvl.SetHealth(foodLvl.health - 10);
 
+        if (foodLvl.health <= 0)
+        {
+            healthLvl.SetHealth(healthLvl.health - 25f);
+        }
+    }
+
+    public void AddFood(float amount)
+    {
+        foodLvl.SetHealth(foodLvl.health + amount);
+    }
 
     void UpdateSuitTemp()
     {
