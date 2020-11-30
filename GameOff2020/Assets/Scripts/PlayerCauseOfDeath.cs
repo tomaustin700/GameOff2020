@@ -23,6 +23,12 @@ public class PlayerCauseOfDeath : MonoBehaviour
                 CauseOfDeathText.GetComponent<TextMeshProUGUI>().text = "Asphyxia";
                 GameObject.Find("AsphyxiaTip").GetComponent<TextMeshProUGUI>().enabled = true;
                 break;
+            case 3:
+                //Asphyxia
+                CauseOfDeathText = GameObject.Find("CauseOfDeathText");
+                CauseOfDeathText.GetComponent<TextMeshProUGUI>().text = "Starvation";
+                GameObject.Find("StarvationTip").GetComponent<TextMeshProUGUI>().enabled = true;
+                break;
             default:
                 //Testing
                 CauseOfDeathText = GameObject.Find("CauseOfDeathText");

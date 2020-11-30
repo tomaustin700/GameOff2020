@@ -71,7 +71,11 @@ public class PlayerManager : MonoBehaviour
             {
                 causeOfDeath.GetComponent<CauseOfDeath>().cause = 2;
             }
-            else
+            else if (foodLvl.health == 0)
+            {
+                causeOfDeath.GetComponent<CauseOfDeath>().cause = 3;
+            }
+            else 
             {
                 //testing
                 causeOfDeath.GetComponent<CauseOfDeath>().cause = 0;
@@ -83,7 +87,8 @@ public class PlayerManager : MonoBehaviour
             SceneManager.LoadScene(3, LoadSceneMode.Single);
 
 
-
+        if (Application.isEditor && Input.GetKeyUp(KeyCode.Period))
+            foodLvl.health = 1;
         if (Application.isEditor && Input.GetKeyUp(KeyCode.Backspace))
             playerDead = true;
 
