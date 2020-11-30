@@ -84,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         if (FindObjectOfType<GameManager>().daysUntilRescue == 0)
-            SceneManager.LoadScene(3, LoadSceneMode.Single);
+            SceneManager.LoadScene(4, LoadSceneMode.Single);
 
 
         if (Application.isEditor && Input.GetKeyUp(KeyCode.Period))

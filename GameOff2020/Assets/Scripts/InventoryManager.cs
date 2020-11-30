@@ -66,14 +66,14 @@ public class InventoryManager : MonoBehaviour
 
         if (NotificationManager.Notifications.Any(a => a.EventName == EventName.GatherBrokenCommsResources) && itemsInInventory.Any(x => x.name == "Iron") && itemsInInventory.Any(x => x.name == "Silicon") && itemsInInventory.Any(x => x.name == "BrokenCommunicationsDevice"))
         {
-            NotificationManager.CompleteNotification(EventName.GatherBrokenCommsResources);
+            NotificationManager.CompleteNotification(EventName.GatherBrokenCommsResources,false);
             NotificationManager.AddNotification(new NotificationEvent(EventName.CraftComms, "Craft Communications Device using 3D Printer"));
 
         }
 
         if (NotificationManager.Notifications.Any(a => a.EventName == EventName.MineOxygen) && item.name == "Oxygen")
         {
-            NotificationManager.CompleteNotification(EventName.MineOxygen);
+            NotificationManager.CompleteNotification(EventName.MineOxygen,false);
             NotificationManager.AddNotification(new NotificationEvent(EventName.ForthMissionControlMessage, "New Message - Press M to view"));
             MessageManager.AddMessage(new Message()
             {
@@ -344,7 +344,7 @@ public class InventoryManager : MonoBehaviour
 
                 if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms3) && item.name == "CommunicationsDevice")
                 {
-                    NotificationManager.CompleteNotification(EventName.PlaceComms3);
+                    NotificationManager.CompleteNotification(EventName.PlaceComms3,false);
                     NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms4, "Right Click To Place"));
 
                 }
@@ -404,13 +404,13 @@ public class InventoryManager : MonoBehaviour
 
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms4) && item.name == "CommunicationsDevice")
             {
-                NotificationManager.CompleteNotification(EventName.PlaceComms4);
+                NotificationManager.CompleteNotification(EventName.PlaceComms4,false);
 
             }
 
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.CraftDrill) && item.name == "Drill")
             {
-                NotificationManager.CompleteNotification(EventName.CraftDrill);
+                NotificationManager.CompleteNotification(EventName.CraftDrill,false);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.ThirdMissionControlMessage, "New Message - Press M to view"));
                 MessageManager.AddMessage(new Message()
                 {
@@ -483,7 +483,7 @@ public class InventoryManager : MonoBehaviour
 
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms1) && item.name == "CommunicationsDevice")
             {
-                NotificationManager.CompleteNotification(EventName.PlaceComms1);
+                NotificationManager.CompleteNotification(EventName.PlaceComms1,false);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms2, "Go Outside"));
 
             }

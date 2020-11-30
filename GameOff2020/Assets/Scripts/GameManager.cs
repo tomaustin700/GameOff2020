@@ -22,9 +22,6 @@ public class GameManager : MonoBehaviour
         daysUntilRescue = 11;
         Physics.gravity = new Vector3(0, -3, 0);
 
-        //StartDropSpawn();
-
-
     }
 
     private void Update()
@@ -106,7 +103,7 @@ public class GameManager : MonoBehaviour
 
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.Explore) && daysUntilRescue == 9)
             {
-                NotificationManager.CompleteNotification(EventName.Explore);
+                NotificationManager.CompleteNotification(EventName.Explore,false);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
                 MessageManager.AddMessage(new Message()
                 {
@@ -132,7 +129,7 @@ public class GameManager : MonoBehaviour
 
         }
         else
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
 
         rescueText.text = daysUntilRescue.ToString();
     }

@@ -86,8 +86,7 @@ public class Printer : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         var cam = CameraObject.GetComponent<CameraFollow>();
-        cam.CanAlterCursor = true;
-        CameraObject.GetComponent<CameraFollow>().MoveToCursor = true;
+        cam.PrepareCursor();
         IsOpen = false;
     }
 }

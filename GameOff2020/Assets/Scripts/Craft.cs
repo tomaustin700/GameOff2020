@@ -92,9 +92,9 @@ public class Craft : MonoBehaviour
             HotBar.AddItem(new InventoryItem(recipe.ReturnItem));
             UpdateRecipe(recipe);
 
-            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.CraftComms))
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.CraftComms) && recipe.ReturnItem == Item.CommunicationsDevice)
             {
-                NotificationManager.CompleteNotification(EventName.CraftComms);
+                NotificationManager.CompleteNotification(EventName.CraftComms,false);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms1, "Select Communications Device"));
 
             }
