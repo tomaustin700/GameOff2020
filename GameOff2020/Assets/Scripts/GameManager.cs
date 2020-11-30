@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
         daysUntilRescue = 11;
         Physics.gravity = new Vector3(0, -3, 0);
 
-        StartDropSpawn();
+        //StartDropSpawn();
 
 
     }
