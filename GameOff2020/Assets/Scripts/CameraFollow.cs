@@ -19,8 +19,10 @@ public class CameraFollow : MonoBehaviour
     }
     public void PrepareCursor()
     {
-        Cursor.visible = false;
         CanAlterCursor = true;
+        MoveToCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     // Update is called once per frame
     void Update()

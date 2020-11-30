@@ -75,14 +75,15 @@ public class Storage : MonoBehaviour
             }
         }
         InventoryUI.GetComponent<Image>().enabled = true;
-        IsOpen = true;
-        ReDraw();
+       
+    
         Owner.CurrentOwner = gameObject;
         CameraObject.GetComponent<CameraFollow>().CanAlterCursor = false;
         CameraObject.GetComponent<CameraFollow>().MoveToCursor = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        IsOpen = true;
+        ReDraw();
     }
     public void CloseInventory()
     {
@@ -104,8 +105,7 @@ public class Storage : MonoBehaviour
         IsOpen = false;
         Owner.CurrentOwner = null;
         var cam = CameraObject.GetComponent<CameraFollow>();
-        cam.CanAlterCursor = true;
-        CameraObject.GetComponent<CameraFollow>().MoveToCursor = true;
+        cam.PrepareCursor();
     }
     public void ReDraw()
     {

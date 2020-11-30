@@ -32,7 +32,7 @@ public class InHabScript : MonoBehaviour
 
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms2))
             {
-                NotificationManager.CompleteNotification(EventName.PlaceComms2);
+                NotificationManager.CompleteNotification(EventName.PlaceComms2,false);
                 NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms3, "Right Click To Begin Place"));
 
             }

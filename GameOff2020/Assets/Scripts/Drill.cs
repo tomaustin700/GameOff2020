@@ -66,7 +66,7 @@ public class Drill : MonoBehaviour
             if (onIce)
             {
                 elements.Add((new InventoryItem(Item.Oxygen), 50));
-                elements.Add((new InventoryItem(Item.Hydrogen), 40));
+                //elements.Add((new InventoryItem(Item.Hydrogen), 40));
             }
             else
             {
@@ -74,7 +74,7 @@ public class Drill : MonoBehaviour
                 if (onMineralPatch)
                 {
                     elements.Add((new InventoryItem(Item.Magnesium), 8));
-                    elements.Add((new InventoryItem(Item.Titanium), 13));
+                    //elements.Add((new InventoryItem(Item.Titanium), 13));
                     elements.Add((new InventoryItem(Item.Iron), 25));
                     elements.Add((new InventoryItem(Item.Silicon), 40));
                     elements.Add((new InventoryItem(Item.Aluminium), 20));

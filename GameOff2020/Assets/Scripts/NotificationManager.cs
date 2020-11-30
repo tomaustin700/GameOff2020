@@ -36,14 +36,19 @@ public static class NotificationManager
     {
         Notifications = new List<NotificationEvent>();
     }
-    public static void CompleteNotification(EventName eventName)
+    public static void CompleteNotification(EventName eventName,bool completeIfNotActive = false)
     {
         if (!NotificationHistory.Any(x => x.EventName == eventName))
         {
-            var currentNotification = Notifications.FirstOrDefault();
-            if (currentNotification != null && currentNotification.IsReady && currentNotification.EventName == eventName && currentNotification.IsReady)
+            var currentNotification = completeIfNotActive ? Notifications.FirstOrDefault(x => x.EventName == eventName) : Notifications.FirstOrDefault();
+            if (currentNotification != null && currentNotification.EventName == eventName && (completeIfNotActive || currentNotification.IsReady))
             {
                 Notifications.RemoveAll(x => x.EventName == eventName);
+                NotificationHistory.Add(currentNotification);
+            }
+            else if (completeIfNotActive)
+            {
+                NotificationHistory.Add(new NotificationEvent(eventName,$"Pre-completed {eventName}"));
             }
         }
     }

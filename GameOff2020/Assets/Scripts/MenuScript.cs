@@ -17,6 +17,7 @@ public class MenuScript : MonoBehaviour
         {
             if (MainMenu.activeInHierarchy)
             {
+                CloseOpenMenus();
                 MainMenu.SetActive(false);
                 SetMenuEffects(false);
                 Time.timeScale = 1;
@@ -55,17 +56,14 @@ public class MenuScript : MonoBehaviour
      
         if (isOpen)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             cam.CanAlterCursor = false;
             cam.MoveToCursor = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            cam.CanAlterCursor = true;
-            cam.MoveToCursor = true;
+            cam.PrepareCursor();
         }
     }
     public void PlayGame()
