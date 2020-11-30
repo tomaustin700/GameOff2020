@@ -20,6 +20,7 @@ public enum EventName
     EigthMissionControlMessage,
     NinthMissionControlMessage,
     TenthMissionControlMessage,
+    FinalMissionControlMessage,
     PickUpRock,
     GrindRock,
     SelectHotbarSlot,

@@ -31,6 +31,11 @@ public static class NotificationManager
             Notifications.Add(notification);
         }
     }
+
+    public static void RemoveAllNotification()
+    {
+        Notifications = new List<NotificationEvent>();
+    }
     public static void CompleteNotification(EventName eventName)
     {
         if (!NotificationHistory.Any(x => x.EventName == eventName))

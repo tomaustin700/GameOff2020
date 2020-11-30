@@ -93,6 +93,18 @@ public class GameManager : MonoBehaviour
 
             }
 
+            if (daysUntilRescue == 1)
+            {
+                NotificationManager.RemoveAllNotification();
+                NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
+                MessageManager.AddMessage(new Message()
+                {
+                    Title = "Mission Control - Last Message",
+                    Body = "Rescue mission is nearly with you. Just a little bit longer to wait. See you soon!",
+                    EventName = EventName.FinalMissionControlMessage
+                });
+            }
+
 
         }
         else
