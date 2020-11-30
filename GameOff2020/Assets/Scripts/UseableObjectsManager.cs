@@ -136,7 +136,9 @@ public class UseableObjectsManager : MonoBehaviour
                     if (col.GetComponentInParent<ElementInteraction>() != null)
                     {
                         var element = col.GetComponentInParent<ElementInteraction>();
-                        text = "'E' To Pick Up " + col.transform.parent.name.Replace("(Clone)", "");
+                        text = "'E' To Pick Up " + Regex.Replace(col.transform.parent.name.Replace("(Clone)", ""), "(\\B[A-Z])", " $1");
+
+
                         if (Input.GetKey(KeyCode.E))
                         {
                             element.PickUpElement();

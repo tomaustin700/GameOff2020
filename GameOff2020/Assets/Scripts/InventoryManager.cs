@@ -469,14 +469,18 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        var slotItem = hotbarLocations.First(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
-        var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
-
-        if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms1) && item.name == "CommunicationsDevice")
+        if (hotbarLocations.Any(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString())))
         {
-            NotificationManager.CompleteNotification(EventName.PlaceComms1);
-            NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms2, "Go Outside"));
+            var slotItem = hotbarLocations.FirstOrDefault(a => a.hotbarLocation.Contains(SelectedSlot.Value.ToString()));
 
+            var item = itemsInInventory.First(q => q.refId == slotItem.itemGuid);
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms1) && item.name == "CommunicationsDevice")
+            {
+                NotificationManager.CompleteNotification(EventName.PlaceComms1);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms2, "Go Outside"));
+
+            }
         }
     }
 
