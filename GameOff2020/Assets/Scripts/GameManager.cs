@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         {
             rescueHud.SetActive(true);
             rescueText = GameObject.Find("daysValue").GetComponent<Text>();
-            InvokeRepeating(nameof(UpdateDaysUntilRescue), 0, 600);
+            InvokeRepeating(nameof(UpdateDaysUntilRescue), 0, 300);
             rescueTimerStarted = true;
         }
 
