@@ -65,12 +65,12 @@ public class GameManager : MonoBehaviour
 
         var asset = Resources.Load("Prefabs/SupplyDrop") as GameObject;
 
-        Instantiate(asset, new Vector3(55f, 2f, 500f), Quaternion.identity);
+        Instantiate(asset, new Vector3(108f, -13f, 300f), Quaternion.identity);
         NotificationManager.AddNotification(new NotificationEvent(EventName.FifthMissionControlMessage, "New Message - Press M to view"));
         MessageManager.AddMessage(new Message()
         {
             Title = "Mission Control - Supply Drop",
-            Body = "A supply drop is arriving soon containing some rations. I've sent it's location to your GPS Navigation. It might be a long trip so take oxygen.",
+            Body = "A supply drop is arriving soon containing some rations. It should be on the edge of the crater somewhere. It might be a long trip so take oxygen.",
             EventName = EventName.OpenDrop
         });
 
