@@ -20,4 +20,5 @@
     Locker,
     Solar,
     Hab,
+    Rations
 }

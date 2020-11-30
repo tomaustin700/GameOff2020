@@ -45,6 +45,27 @@ public class MessageDisplay : MonoBehaviour
 
             }
 
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.ForthMissionControlMessage))
+            {
+                NotificationManager.CompleteNotification(EventName.ForthMissionControlMessage);
+
+                var gm = FindObjectOfType<GameManager>();
+                gm.StartDropSpawn();
+
+            }
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.FifthMissionControlMessage))
+            {
+                NotificationManager.CompleteNotification(EventName.FifthMissionControlMessage);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.OpenDrop, "Find Supply Drop And Open"));
+
+                //Arrow logic goes here
+
+
+            }
+
+
+
 
 
             if (!messagePanel.activeSelf)
