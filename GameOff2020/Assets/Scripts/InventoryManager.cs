@@ -328,6 +328,14 @@ public class InventoryManager : MonoBehaviour
                 {
                     audio[i].Stop();
                 }
+
+                if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms3) && item.name == "CommunicationsDevice")
+                {
+                    NotificationManager.CompleteNotification(EventName.PlaceComms3);
+                    NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms4, "Right Click To Place"));
+
+
+                }
             }
             else if (item.Consumable)
             {
@@ -377,9 +385,9 @@ public class InventoryManager : MonoBehaviour
 
             isPlaceing = false;
 
-            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms3) && item.name == "CommunicationsDevice")
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms4) && item.name == "CommunicationsDevice")
             {
-                NotificationManager.CompleteNotification(EventName.PlaceComms3);
+                NotificationManager.CompleteNotification(EventName.PlaceComms4);
 
             }
         }
