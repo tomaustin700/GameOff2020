@@ -45,7 +45,7 @@ public class RockGrinder : MonoBehaviour
             if (item.name == nameof(Item.Rock1) || item.name == nameof(Item.Rock2) || item.name == nameof(Item.Rock3))
             {
                 elements.Add((new InventoryItem(Item.Silicon), 45));
-                elements.Add((new InventoryItem(Item.Aluminium), 20));
+                elements.Add((new InventoryItem(Item.Aluminium), 30));
                 elements.Add((new InventoryItem(Item.Iron), 20));
             }
             else if (item.name == nameof(Item.Rock4) || item.name == nameof(Item.Rock5))

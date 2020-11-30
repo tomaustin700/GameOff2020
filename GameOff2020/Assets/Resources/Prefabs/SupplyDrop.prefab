@@ -164,5 +164,5 @@ MonoBehaviour:
   IsOpen: 0
   Owner: {fileID: 0}
   CameraObject: {fileID: 0}
-  Locked: 0
+  Locked: 1
   PreExistingItems: 1400000014000000140000001400000014000000
