@@ -71,6 +71,18 @@ public class InventoryManager : MonoBehaviour
 
         }
 
+        if (NotificationManager.Notifications.Any(a => a.EventName == EventName.MineOxygen) && item.name == "Oxygen")
+        {
+            NotificationManager.CompleteNotification(EventName.MineOxygen);
+            NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
+            MessageManager.AddMessage(new Message()
+            {
+                Title = "Mission Control - Rescue Plan Stage 4",
+                Body = "You're doing great. Make sure you have enough solar panels for your equipment and they're clean. Rescue mission has been launched but it's still a bit off. Hang in there.",
+                EventName = EventName.ForthMissionControlMessage
+            });
+        }
+
     }
 
 
@@ -334,7 +346,6 @@ public class InventoryManager : MonoBehaviour
                     NotificationManager.CompleteNotification(EventName.PlaceComms3);
                     NotificationManager.AddNotification(new NotificationEvent(EventName.PlaceComms4, "Right Click To Place"));
 
-
                 }
             }
             else if (item.Consumable)
@@ -388,6 +399,19 @@ public class InventoryManager : MonoBehaviour
             if (NotificationManager.Notifications.Any(a => a.EventName == EventName.PlaceComms4) && item.name == "CommunicationsDevice")
             {
                 NotificationManager.CompleteNotification(EventName.PlaceComms4);
+
+            }
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.CraftDrill) && item.name == "Drill")
+            {
+                NotificationManager.CompleteNotification(EventName.CraftDrill);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.ThirdMissionControlMessage, "New Message - Press M to view"));
+                MessageManager.AddMessage(new Message()
+                {
+                    Title = "Mission Control - Rescue Plan Stage 3",
+                    Body = "Excellent job with the drill. You can place multiple and where you place it will determine what it mines, maybe try those ice patches out. Mined oxygen in your hotbar can be used to extend your suit oxygen with right click. Await further instuctions.",
+                    EventName = EventName.ThirdMissionControlMessage
+                });
 
             }
         }

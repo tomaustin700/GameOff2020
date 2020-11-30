@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
                     MessageManager.AddMessage(new Message()
                     {
                         Title = "Mission Control - You're alive?",
-                        Body = "Wow you're alive?! We were worried then for a few minutes, that was quite the crash! We're working on sending a rescue mission but it's looking lke it'll be about 10 days until we can get to you. Hang tight until then, we'll be in touch with more instructions.",
+                        Body = "Wow you're alive?! We were worried then for a few minutes, that was quite the crash! We're working on sending a rescue mission but it's looking like it'll be about 10 days until we can get to you. Hang tight until then, we'll be in touch with more instructions.",
                         EventName = EventName.FirstMissionControlMessage
                     });
 
@@ -76,7 +77,24 @@ public class GameManager : MonoBehaviour
     void UpdateDaysUntilRescue()
     {
         if (daysUntilRescue > 0)
+        {
             daysUntilRescue--;
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.Explore) && daysUntilRescue == 9)
+            {
+                NotificationManager.CompleteNotification(EventName.Explore);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.SecondMissionControlMessage, "New Message - Press M to view"));
+                MessageManager.AddMessage(new Message()
+                {
+                    Title = "Mission Control - Rescue Plan Stage 1",
+                    Body = "Okay we have a plan. We need you to craft and place a drill to start mining resources. You may need to clean your solar panel to get enough electricity to drill. Also be careful of your oxygen, it'll refill in the hab but outside it will go down. Await further instructions.",
+                    EventName = EventName.SecondMissionControlMessage
+                });
+
+            }
+
+
+        }
         else
             SceneManager.LoadScene(3);
 

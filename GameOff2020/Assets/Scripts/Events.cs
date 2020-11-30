@@ -31,4 +31,7 @@ public enum EventName
     PlaceComms2,
     PlaceComms3,
     PlaceComms4,
+    Explore,
+    CraftDrill,
+    MineOxygen
 }

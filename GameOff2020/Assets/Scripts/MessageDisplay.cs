@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,29 @@ public class MessageDisplay : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.FirstMissionControlMessage))
+            {
+                NotificationManager.CompleteNotification(EventName.FirstMissionControlMessage);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.Explore, "Explore The Landscape Whilst Awaiting Instructions"));
+
+            }
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.SecondMissionControlMessage))
+            {
+                NotificationManager.CompleteNotification(EventName.SecondMissionControlMessage);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.CraftDrill, "Craft Drill and Place"));
+
+            }
+
+            if (NotificationManager.Notifications.Any(a => a.EventName == EventName.ThirdMissionControlMessage))
+            {
+                NotificationManager.CompleteNotification(EventName.ThirdMissionControlMessage);
+                NotificationManager.AddNotification(new NotificationEvent(EventName.MineOxygen, "Mine Oxygen to Extend Your Suit Range"));
+
+            }
+
+
 
             if (!messagePanel.activeSelf)
             {
