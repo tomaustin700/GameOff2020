@@ -78,7 +78,7 @@ public class InventoryManager : MonoBehaviour
             MessageManager.AddMessage(new Message()
             {
                 Title = "Mission Control - Rescue Plan Stage 3",
-                Body = "You're doing great. Make sure you have enough solar panels for your equipment and they're clean. If you're suit is running low on power it can be recharged in the hab. Rescue mission has been launched but it's still a bit off. Hang in there.",
+                Body = "You're doing great.  If you're suit is running low on power it can be recharged in the hab. Rescue mission has been launched but it's still a bit off. Hang in there.",
                 EventName = EventName.ForthMissionControlMessage
             });
             
@@ -415,7 +415,7 @@ public class InventoryManager : MonoBehaviour
                 MessageManager.AddMessage(new Message()
                 {
                     Title = "Mission Control - Rescue Plan Stage 2",
-                    Body = "Excellent job with the drill. You can place multiple and where you place it will determine what it mines, maybe try those ice patches out. Mined oxygen in your hotbar can be used to extend your suit oxygen with right click. Await further instuctions.",
+                    Body = "Excellent job with the drill. Make sure you have enough solar panels for your equipment and they're clean. Maybe try placing a drill on the ice patches. Mined oxygen in your hotbar can be used to extend your suit oxygen with right click.",
                     EventName = EventName.ThirdMissionControlMessage
                 });
 
