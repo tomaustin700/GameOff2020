@@ -2,7 +2,7 @@
 
 public class SolarPanelDust : MonoBehaviour
 {
-    [SerializeField] private float SolarDustTime;//150f
+    private float SolarDustTime;//150f
     public int solarPanelStage;
     [SerializeField] private Material stageOne;
     [SerializeField] private Material stageTwo;
@@ -16,7 +16,7 @@ public class SolarPanelDust : MonoBehaviour
         powerIO = GetComponent<PowerIO>();
         renderer = GetComponentInChildren<Renderer>();
         powerIO.CurrentPowerProduction = powerIO.MaxPowerProduced;
-        
+        SolarDustTime = 150f;
     }
     void Start()
     {

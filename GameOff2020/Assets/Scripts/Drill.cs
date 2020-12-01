@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Drill : MonoBehaviour
 {
-    public float TimeToGatherResources = 2.0f;
+    public float TimeToGatherResources = 4.0f;
     public bool ResourcesAvailable;
 
     private PowerIO powerIO;

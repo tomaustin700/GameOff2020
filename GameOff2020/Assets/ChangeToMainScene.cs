@@ -18,7 +18,7 @@ public class ChangeToMainScene : MonoBehaviour
     private void Update()
     {
         Time = director.time;
-        if (director.time >= 11.00)
+        if (director.time >= 14.00)
         {
             SceneManager.LoadScene("MainScene",LoadSceneMode.Single);
         }
