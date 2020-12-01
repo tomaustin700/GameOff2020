@@ -10,9 +10,18 @@ public class MenuScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject MainMenu;
+    private CameraFollow CameraObject;
+    private void Awake()
+    {
+        CameraObject = Camera.main.GetComponent<CameraFollow>();
+    }
     // Start is called before the first frame update
     private void Update()
     {
+        if(CameraObject == null)
+        {
+            CameraObject = Camera.main.GetComponent<CameraFollow>();
+        }
         if(MainMenu != null && Input.GetKeyUp(KeyCode.Escape))
         {
             if (MainMenu.activeInHierarchy)
@@ -52,18 +61,17 @@ public class MenuScript : MonoBehaviour
                 }
             }
         }
-        var cam = Camera.main.GetComponent<CameraFollow>();
-     
+
         if (isOpen)
         {
-            cam.CanAlterCursor = false;
-            cam.MoveToCursor = false;
+            CameraObject.CanAlterCursor = false;
+            CameraObject.MoveToCursor = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
-            cam.PrepareCursor();
+            CameraObject.PrepareCursor();
         }
     }
     public void PlayGame()
